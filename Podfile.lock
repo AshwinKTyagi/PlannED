@@ -1,0 +1,24 @@
+PODS:
+  - FSCalendar (2.8.1)
+  - MultiSelectSegmentedControl (2.3.3):
+    - SweeterSwift
+  - SweeterSwift (1.1.3)
+
+DEPENDENCIES:
+  - FSCalendar
+  - MultiSelectSegmentedControl
+
+SPEC REPOS:
+  trunk:
+    - FSCalendar
+    - MultiSelectSegmentedControl
+    - SweeterSwift
+
+SPEC CHECKSUMS:
+  FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
+  MultiSelectSegmentedControl: 170794791657e12ee5ff5c09dae5f6af1976746d
+  SweeterSwift: d909211f6833405628c8c7c6bf9f8f2e8a0e9df9
+
+PODFILE CHECKSUM: d6371438f430b64f7289ccb953a4080e9bdb21bf
+
+COCOAPODS: 1.9.3

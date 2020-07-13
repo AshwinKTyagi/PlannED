@@ -1,0 +1,6 @@
+framework module Pods_PlannEDTests {
+  umbrella header "Pods-PlannEDTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
