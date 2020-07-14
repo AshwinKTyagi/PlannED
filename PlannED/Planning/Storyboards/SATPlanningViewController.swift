@@ -32,6 +32,7 @@ class SATPlanningViewController: UIViewController {
     var selectedSATDate = String()
     var selectedDays = [String]()
     
+    // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -57,6 +58,7 @@ class SATPlanningViewController: UIViewController {
     }
     
     //code for when practice amount is selected (1,2 or 3)
+    // MARK: onPracticeSelection
     @IBAction func onPracticeSelection(_ sender: Any){
         let daysPerWeek = practiceIntensity.selectedSegmentIndex + 1
         var selectedSegs = [Int]()
@@ -90,6 +92,7 @@ class SATPlanningViewController: UIViewController {
     }
     
     //code for when the finish button is pressed
+    // MARK: onClickFinish
     @IBAction func onClickFinish(_ sender: Any){
         
         activityIndicator.startAnimating()
@@ -132,6 +135,7 @@ class SATPlanningViewController: UIViewController {
     }
     
     //code for when the SAT Date select button is pressed
+    // MARK: onClickSelectSATDate
     @IBAction func onClickSelectSATDate(_ sender: Any){
         selectedButton = btnSelectSATDate
         dataSource = userData.getSATDates()
@@ -139,6 +143,7 @@ class SATPlanningViewController: UIViewController {
     }
     
     //sets up and executes dropdown for a button that is passed in
+    // MARK: addTransparentView
     func addTransparentView(frames: CGRect){
         
         transparentView.frame = self.view.frame
@@ -173,6 +178,7 @@ class SATPlanningViewController: UIViewController {
     }
     
     //removes dropdown bar from screen
+    // MARK: removeTransparentView
     @objc func removeTransparentView() {
         let frames = selectedButton.frame
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
@@ -182,14 +188,17 @@ class SATPlanningViewController: UIViewController {
     }
 }
 
+// MARK: EXTENSION W/ UITableViewDelegate AND UITableViewDataSource
 extension SATPlanningViewController: UITableViewDelegate, UITableViewDataSource{
     
     //adds the correct amount of rows to the dropdown
+    // MARK: tableView: numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
     
     //sets each cell's text label to a date from the data source
+    // MARK: tableView: cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
@@ -199,11 +208,13 @@ extension SATPlanningViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     //sets the table row height for the dropdown to be 50
+    // MARK: tableView: heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
     
     //sets button label to selected row and saves selection to selectedSATDate
+    // MARK: tableView: didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedButton.setTitle(dataSource[indexPath.row], for: .normal)
         selectedSATDate = dataSource[indexPath.row]
@@ -214,9 +225,11 @@ extension SATPlanningViewController: UITableViewDelegate, UITableViewDataSource{
         
 }
 
-
+// MARK: EXTENSION W/ MultiSelectSegmentedControlDelegate
 extension SATPlanningViewController: MultiSelectSegmentedControlDelegate {
+    
     //executes code for when a segment from daySelecter is selected or unselected
+    // MARK: multiSelect: didChange
     func multiSelect(_ multiSelectSegmentedControl: MultiSelectSegmentedControl, didChange value: Bool, at index: Int) {
         let selectedDay = daySelecter.items[index] as! String
         

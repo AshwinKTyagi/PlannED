@@ -22,6 +22,7 @@ class RemoveEventViewController: UIViewController {
     var dataSource = [String]()
     var selectedDate = Date()
     
+    // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,12 +45,14 @@ class RemoveEventViewController: UIViewController {
         
     }
     
+    // MARK: datePicked
     @IBAction func datePicked(_ sender: Any) {
         selectedDate = dateSelecter.date
         eventTableView.reloadData()
     }
     
     //sets up and executes dropdown for a button that is passed in
+    // MARK: addTransparentView
     func addTransparentView(frames: CGRect){
         
         transparentView.frame = self.view.frame
@@ -74,7 +77,8 @@ class RemoveEventViewController: UIViewController {
         
     }
         
-        //removes dropdown bar from screen
+    //removes dropdown bar from screen
+    // MARK: removeTransparentView
     @objc func removeTransparentView() {
         let frames = selectedButton.frame
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
@@ -86,10 +90,11 @@ class RemoveEventViewController: UIViewController {
     
 }
 
-
+// MARK: EXTENSION W/ UITableViewDelegate AND UITableViewDataSource
 extension RemoveEventViewController: UITableViewDelegate, UITableViewDataSource{
     
     //adds the correct amount of rows to the dropdown
+    // MARK: numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (tableView == self.tableView){
             return dataSource.count
@@ -101,6 +106,7 @@ extension RemoveEventViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     //sets each cell's text label to a date from the data source
+    // MARK: cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
@@ -133,11 +139,13 @@ extension RemoveEventViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     //sets the table row height for the dropdown to be 50
+    // MARK: heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
     
     //sets button label to selected row and saves selection to selectedSATDate
+    // MARK: didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (tableView == self.tableView){
             selectedButton.setTitle(dataSource[indexPath.row], for: .normal)

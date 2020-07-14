@@ -18,6 +18,7 @@
 		2B064AC824A26859008791AF /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B064AC724A26859008791AF /* Calendar.storyboard */; };
 		2B5889B024B8D4AD0040E006 /* collegeData.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B5889AF24B8D4AD0040E006 /* collegeData.json */; };
 		2B5889B324B8EC3C0040E006 /* College.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5889B224B8EC3C0040E006 /* College.swift */; };
+		2B5889B524BE1CF00040E006 /* CollegePlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5889B424BE1CF00040E006 /* CollegePlanningViewController.swift */; };
 		2B5ECBA724B7BDB10051BCE2 /* CollegeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5ECBA624B7BDB10051BCE2 /* CollegeData.swift */; };
 		2B6BA3BD24B63D7A00433937 /* ACTPlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6BA3BC24B63D7A00433937 /* ACTPlanningViewController.swift */; };
 		2B6BA3BF24B6430200433937 /* ACTEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6BA3BE24B6430200433937 /* ACTEvent.swift */; };
@@ -62,6 +63,7 @@
 		2B064AC724A26859008791AF /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		2B5889AF24B8D4AD0040E006 /* collegeData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = collegeData.json; sourceTree = "<group>"; };
 		2B5889B224B8EC3C0040E006 /* College.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = College.swift; sourceTree = "<group>"; };
+		2B5889B424BE1CF00040E006 /* CollegePlanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollegePlanningViewController.swift; path = PlannED/Helpers/Models/CollegePlanningViewController.swift; sourceTree = SOURCE_ROOT; };
 		2B5ECBA624B7BDB10051BCE2 /* CollegeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollegeData.swift; sourceTree = "<group>"; };
 		2B6BA3BC24B63D7A00433937 /* ACTPlanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ACTPlanningViewController.swift; path = PlannED/Calender/ViewControllers/ACTPlanningViewController.swift; sourceTree = SOURCE_ROOT; };
 		2B6BA3BE24B6430200433937 /* ACTEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTEvent.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 			children = (
 				2BA7A0F924AFD16E00AEF8B8 /* SATPlanningViewController.swift */,
 				2B6BA3BC24B63D7A00433937 /* ACTPlanningViewController.swift */,
+				2B5889B424BE1CF00040E006 /* CollegePlanningViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				2BA7A0FD24B1349300AEF8B8 /* EventData.swift in Sources */,
 				2B5889B324B8EC3C0040E006 /* College.swift in Sources */,
 				2B6BA3BD24B63D7A00433937 /* ACTPlanningViewController.swift in Sources */,
+				2B5889B524BE1CF00040E006 /* CollegePlanningViewController.swift in Sources */,
 				2BD6C1ED24A677D800D8652D /* UserData.swift in Sources */,
 				2B064AA924A26191008791AF /* MainViewController.swift in Sources */,
 				2BD6C1EB24A547D100D8652D /* AddEventViewController.swift in Sources */,

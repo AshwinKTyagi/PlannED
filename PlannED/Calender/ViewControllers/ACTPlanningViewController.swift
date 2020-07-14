@@ -27,6 +27,7 @@ class ACTPlanningViewController: UIViewController {
     var selectedACTDate = String()
     var selectedDays = [String]()
     
+    // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -52,6 +53,7 @@ class ACTPlanningViewController: UIViewController {
     }
     
     //code for when practice amount is selected (1,2 or 3)
+    // MARK: onPracticeSelection
     @IBAction func onPracticeSelection(_ sender: Any){
         let daysPerWeek = practiceIntensity.selectedSegmentIndex + 1
         var selectedSegs = [Int]()
@@ -85,6 +87,7 @@ class ACTPlanningViewController: UIViewController {
     }
     
     //code for when the finish button is pressed
+    // MARK: onClickFinish
     @IBAction func onClickFinish(_ sender: Any){
         
         activityIndicator.startAnimating()
@@ -127,13 +130,15 @@ class ACTPlanningViewController: UIViewController {
     }
     
     //code for when the ACT Date select button is pressed
+    // MARK:  onClickSelectACTDate
     @IBAction func onClickSelectACTDate(_ sender: Any){
         selectedButton = btnSelectACTDate
         dataSource = userData.getACTDates()
         addTransparentView(frames: btnSelectACTDate.frame)
     }
-     //sets up and executes dropdown for a button that is passed in
-        
+    
+    //sets up and executes dropdown for a button that is passed in
+    // MARK: addTransparentView
     func addTransparentView(frames: CGRect){
         
         transparentView.frame = self.view.frame
@@ -167,7 +172,8 @@ class ACTPlanningViewController: UIViewController {
             
     }
         
-        //removes dropdown bar from screen
+    //removes dropdown bar from screen
+    // MARK: removeTransparentView
     @objc func removeTransparentView() {
         let frames = selectedButton.frame
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
@@ -177,14 +183,17 @@ class ACTPlanningViewController: UIViewController {
     }
 }
 
+// MARK: EXTENSION W/ UITableViewDelegate AND UITableViewDataSource
 extension ACTPlanningViewController: UITableViewDelegate, UITableViewDataSource{
         
-        //adds the correct amount of rows to the dropdown
+    //adds the correct amount of rows to the dropdown
+    // MARK: tableView: numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
         
     //sets each cell's text label to a date from the data source
+    // MARK: tableView: cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
@@ -194,11 +203,13 @@ extension ACTPlanningViewController: UITableViewDelegate, UITableViewDataSource{
     }
         
     //sets the table row height for the dropdown to be 50
+    // MARK: tableView: heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
         
-        //sets button label to selected row and saves selection to selectedSATDate
+    //sets button label to selected row and saves selection to selectedSATDate
+    // MARK: tableView: didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedButton.setTitle(dataSource[indexPath.row], for: .normal)
         selectedACTDate = dataSource[indexPath.row]
@@ -209,9 +220,11 @@ extension ACTPlanningViewController: UITableViewDelegate, UITableViewDataSource{
             
 }
 
-
+// MARK: EXTENSION W/ MultiSelectSegmentedControlDelegate
 extension ACTPlanningViewController: MultiSelectSegmentedControlDelegate {
+    
     //executes code for when a segment from daySelecter is selected or unselected
+    // MARK: multiSelect: didChange
     func multiSelect(_ multiSelectSegmentedControl: MultiSelectSegmentedControl, didChange value: Bool, at index: Int) {
         let selectedDay = daySelecter.items[index] as! String
             

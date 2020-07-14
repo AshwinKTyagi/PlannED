@@ -39,6 +39,7 @@ final class College: ObservableObject {
     
     private var applicationDate = String()
     
+    //MARK: intializeEvent
     func initializeEvent(objectid: Int, ipedsid: String, name: String, address: String, city: String, state: String, zip: String, zip4: String, telephone: String, type: String, population: Int, county: String, countyfips: String, country: String, naicsCode: String, naicsDesc: String, source: String, website: String, alias: String, ptEnroll: Int, ftEnroll: Int, totEnroll: Int, housing: String, dormCap: Int, totEmp: Int, shelterID: String) {
         self.objectid = objectid
         self.ipedsid = ipedsid
@@ -70,7 +71,118 @@ final class College: ObservableObject {
         
     }
     
+    //MARK: initializeApplicationDate
     func initializeApplicationDate(applicationDate: String) {
         self.applicationDate = applicationDate
+    }
+    
+    
+    // MARK: getter methods
+    func getObjectID() -> Int{
+        return objectid
+    }
+    
+    func getIpedsID() -> String{
+        return ipedsid
+    }
+    
+    func getName() -> String{
+        return name
+    }
+    
+    func getAddress() -> String{
+        return address
+    }
+    
+    func getCity() -> String{
+        return city
+    }
+    
+    func getState() -> String{
+        return state
+    }
+    
+    func getZip() -> String{
+        return zip
+    }
+    
+    func getZip4() -> String{
+        return zip4
+    }
+    
+    func getTelephone() -> String{
+        return telephone
+    }
+    
+    func getType() -> String{
+        return type
+    }
+    
+    func getStatus() -> String{
+        return status
+    }
+    
+    func getPopulation() -> Int{
+        return population
+    }
+    
+    func getCounty() -> String{
+        return county
+    }
+    
+    func getCountyFips() -> String{
+        return countyfips
+    }
+    
+    func getCountry() -> String{
+        return country
+    }
+    
+    func getNaicsCode() -> String{
+        return naicsCode
+    }
+    
+    func getNaicsDesc() -> String{
+        return naicsDesc
+    }
+    
+    func getSource() -> String{
+        return source
+    }
+    
+    func getWebsite() -> String{
+        return website
+    }
+    
+    func getAlias() -> String{
+        return alias
+    }
+    
+    func getPartTimeEnroll() -> Int{
+        return ptEnroll
+    }
+    
+    func getFullTimeEnroll() -> Int{
+        return ftEnroll
+    }
+    
+    func getTotalEnroll() -> Int{
+        return totEnroll
+    }
+    
+    func getHousing() -> String{
+        return housing
+    }
+    
+    func getDormCap() -> Int{
+        return dormCap
+    }
+    
+    func getTotalEmp() -> Int{
+        return totEmp
+    }
+    
+    func getShelterID() -> String{
+        return shelterID
     }
 }

@@ -28,6 +28,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         
     var userData = UserData()
     
+    // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         calendar.delegate = self
@@ -48,6 +49,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         }
     }
     
+    // MARK: viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
@@ -56,6 +58,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     }
     
     //code for when a date on the calendar is selected
+    // MARK: calendar: didSelect
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         let selectedDate = date
         
@@ -85,11 +88,13 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     }
     
     //sets the FSCalenar's frame to be correct in terms of the storyboard
+    // MARK: calendar: boundingRectWillChange
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         calendar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
     }
     
     //displays a dot if a date has an event
+    // MARK: calendar: numberOfEventsFor
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         
         let formatter = DateFormatter()
@@ -106,6 +111,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     }
 
     //sets the correct number of items in the table view
+    // MARK: tableView: numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let val = dayEventNames.count
         
@@ -113,6 +119,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     }
     
     // initializes data for selected date
+    // MARK: tableView: cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let itemLbl  =  dayEventNames[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
@@ -125,6 +132,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     }
     
     //displays information for selected cell
+    // MARK: tableView: didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         for e in userData.getEvents(){
@@ -149,6 +157,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     }
     
     //closes the transparent view
+    // MARK: onClickEventCloseButton
     @IBAction func onClickEventCloseButton(_ sender: Any?){
         UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
             self.transparentView.alpha = 0.0

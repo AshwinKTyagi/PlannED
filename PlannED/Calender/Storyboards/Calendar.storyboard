@@ -12,7 +12,7 @@
             <objects>
                 <viewController storyboardIdentifier="CalendarViewController" id="MeT-aZ-Rfk" customClass="CalendarViewController" customModule="PlannED" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sxN-3K-ewk">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="ab9-po-WQN" customClass="FSCalendar">
@@ -88,7 +88,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="go8-dZ-fs4">
-                                <rect key="frame" x="50" y="50" width="314" height="659"/>
+                                <rect key="frame" x="50" y="138" width="314" height="625"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ti6-pA-H6k">
                                         <rect key="frame" x="15" y="15" width="250" height="29"/>
@@ -204,11 +204,11 @@
             <objects>
                 <viewController id="mJf-p5-frC" customClass="RemoveEventViewController" customModule="PlannED" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="biL-ng-Tzw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W8W-1M-Lgn">
-                                <rect key="frame" x="20" y="50" width="374" height="40"/>
+                                <rect key="frame" x="20" y="138" width="374" height="40"/>
                                 <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="0u8-wJ-mGn"/>
@@ -228,7 +228,7 @@
                                 </connections>
                             </button>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="52" translatesAutoresizingMaskIntoConstraints="NO" id="7Dc-PP-aS6">
-                                <rect key="frame" x="20" y="100" width="374" height="688"/>
+                                <rect key="frame" x="20" y="188" width="374" height="605"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48A-ZP-Qkp">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
@@ -241,7 +241,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="CzV-0l-J6n">
-                                        <rect key="frame" x="0.0" y="92" width="374" height="272"/>
+                                        <rect key="frame" x="0.0" y="92" width="374" height="230.5"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
                                             <!--1970-01-01 11:00:00 +0000-->
@@ -260,7 +260,7 @@
                                         </connections>
                                     </datePicker>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mOD-SY-Gde">
-                                        <rect key="frame" x="0.0" y="416" width="374" height="272"/>
+                                        <rect key="frame" x="0.0" y="374.5" width="374" height="230.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="oMj-Ki-LUh">
@@ -308,11 +308,11 @@
             <objects>
                 <viewController id="QTP-SN-H2y" customClass="AddEventViewController" customModule="PlannED" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ok5-GP-V5h">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="HK8-0e-e1g">
-                                <rect key="frame" x="10" y="10" width="404" height="778"/>
+                                <rect key="frame" x="10" y="98" width="404" height="695"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="BgI-zW-bAa">
                                         <rect key="frame" x="0.0" y="0.0" width="404" height="57.5"/>
@@ -366,7 +366,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="TRK-13-CpC">
-                                        <rect key="frame" x="0.0" y="153.5" width="404" height="624.5"/>
+                                        <rect key="frame" x="0.0" y="153.5" width="404" height="541.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0B-ov-Qvj" userLabel="Date:">
                                                 <rect key="frame" x="0.0" y="0.0" width="404" height="20.5"/>
@@ -378,7 +378,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="TwD-vO-92o">
-                                                <rect key="frame" x="0.0" y="22.5" width="404" height="602"/>
+                                                <rect key="frame" x="0.0" y="22.5" width="404" height="519"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
                                                     <!--1970-01-01 11:00:00 +0000-->
@@ -437,6 +437,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VSH-Lo-o7a">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.15686274510000001" green="0.0039215686269999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -449,7 +452,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vV3-08-NF7"/>
+        <segue reference="nFo-9w-fS6"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>

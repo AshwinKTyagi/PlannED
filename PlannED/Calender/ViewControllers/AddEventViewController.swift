@@ -19,12 +19,14 @@ class AddEventViewController: UIViewController {
     var eventDates = [String]()
     var selectedDate = Date()
     
+    // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
     
     //code for when the done button is pressed
+    // MARK: doneButtonTapped
     @IBAction func doneButtonTapped(sender: UIBarButtonItem) {
         
         if let text = eventNameTextField.text, !text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty {

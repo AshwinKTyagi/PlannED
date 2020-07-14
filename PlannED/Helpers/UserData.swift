@@ -21,6 +21,7 @@ final class UserData: ObservableObject {
     
     
     //generic addEvent method that accepts date as a Date and formats it into a String
+    // MARK: addEvent with Date
     func addEvent(eventType: String, name: String, desc: String, date: Date) {
         
         let event = Event()
@@ -38,6 +39,7 @@ final class UserData: ObservableObject {
     }
     
     //generic addEvent method that accepts date as a String
+    // MARK: addEvent with String
     func addEvent(eventType: String, name: String, desc: String, date: String) {
         
         let event = Event()
@@ -48,7 +50,8 @@ final class UserData: ObservableObject {
         
     }
     
-    //generic addSATEvent
+    //adds a SAT Event
+    // MARK: addSATEvent
     func addSATEvent(dID: String, rID: String, date: String, reg: String) {
         
         let event = SATEvent()
@@ -59,7 +62,8 @@ final class UserData: ObservableObject {
         
     }
     
-    //generic addACTEvent
+    //adds an ACT Event
+    // MARK: addACTEvent
     func addACTEvent(dID: String, rID: String, date: String, reg: String) {
         
         let event = ACTEvent()
@@ -70,6 +74,8 @@ final class UserData: ObservableObject {
         
     }
     
+    // creates the actual events for sat
+    // MARK: satPracticePlanningHelper
     func satPracticePlanningHelper(nDays: Int, count: Int, cDate: Date, tDate: Date) -> Int{
         var tempDate = tDate
         var numDays = nDays
@@ -92,6 +98,8 @@ final class UserData: ObservableObject {
         return numDays
     }
     
+    // creates the actual events for acts
+    // MARK: actPracticePlanningHelper
     func actPracticePlanningHelper(nDays: Int, count: Int, cDate: Date, tDate: Date, eDate: Date) -> Int{
         var tempDate = tDate
         var numDays = nDays
@@ -115,7 +123,8 @@ final class UserData: ObservableObject {
     }
     
     
-    //sets up Planning for SAT using selected weekdays and a test
+    //sets up Planning for ACT using selected weekdays and a test date
+    // MARK: addACTPlanning
     func addACTPlanning(days: [String], date: String) {
         
         var actDateID = String()
@@ -221,6 +230,8 @@ final class UserData: ObservableObject {
         print("ACT Planning success")
     }
     
+    //sets up Planning for SAT using selected weekdats and a test date
+    // MARK: addSATPlanning
     func addSATPlanning(days: [String], date: String) {
         
         var satDateID = String()
@@ -292,6 +303,7 @@ final class UserData: ObservableObject {
     }
     
     //test func to check contents of the Event array
+    // MARK: printEventListContents
     func printEventListContents () -> String{
         var string = ""
         
@@ -302,6 +314,7 @@ final class UserData: ObservableObject {
     }
     
     //gets the event dates
+    // MARK: getEventDates
     func getEventDates() -> [String]{
         
         var dateStrings = [String]()
@@ -314,6 +327,7 @@ final class UserData: ObservableObject {
     }
     
     //gets the event names
+    // MARK: getEventNames
     func getEventNames() -> [String]{
         
         var nameStrings = [String]()
@@ -327,11 +341,13 @@ final class UserData: ObservableObject {
     }
     
     //gets the events themselves
+    // MARK: getEvents
     func getEvents() -> [Event] {
         return UserData.events
     }
     
     //gets the dates for the sats
+    // MARK: getSATDates
     func getSATDates() -> [String] {
         
         var satDates = [String]()
@@ -344,6 +360,7 @@ final class UserData: ObservableObject {
     }
     
     //gets the dates for the acts
+    // MARK: getACTDates
     func getACTDates() -> [String] {
         
         var actDates = [String]()
@@ -355,8 +372,25 @@ final class UserData: ObservableObject {
         return actDates
     }
     
+    // MARK: getColleges
+    func getColleges() -> [College] {
+        return UserData.colleges
+    }
+    
+    // MARK: getCollegeNames
+    func getCollegeNames() -> [String] {
+         
+        var collegeNames = [String]()
+    
+        for c in UserData.colleges {
+            collegeNames.append(c.getName())
+        }
+        
+        return collegeNames
+    }
     
     //parses through a json to initialize data for the app (currently only initializes SAT information)
+    // MARK: parseForDates
     func parseForDates(eventJsonData: Data, collegeJsonData: Data) {
         do {
             let decodedEventData = try EventData(data: eventJsonData)
@@ -390,6 +424,7 @@ final class UserData: ObservableObject {
     }
     
     //reads a local json file and returns the necessary data as Data
+    // MARK: readLocalJsonFile
     func readLocalJsonFile(forName name: String) -> Data? {
         do {
            if let bundlePath = Bundle.main.path(forResource: name,
@@ -404,6 +439,8 @@ final class UserData: ObservableObject {
         return nil
     }
     
+    //removes one Specific Event
+    // MARK: removeEvent
     func removeEvent (eventName: String, eventDate: String) {
         var count = 0
         for s in UserData.events {
@@ -414,6 +451,8 @@ final class UserData: ObservableObject {
         count += 1
     }
     
+    //removes all the SAT events for a single test date
+    // MARK: removeSATEvents
     func removeSATEvents(){
         var count = 0
         for s in UserData.events{
@@ -424,6 +463,8 @@ final class UserData: ObservableObject {
         count += 1
     }
     
+    // removes all the ACT events for a single test date
+    // MARK: removeACTEvents
     func removeACTEvents(){
         var count = 0
         for s in UserData.events{
@@ -435,7 +476,11 @@ final class UserData: ObservableObject {
     }
 }
 
+// MARK: STRING EXTENSION
 extension String {
+    
+    // formats a date from String to date
+    // MARK: toDate
     func toDate(withFormat format: String = "yyyy-MM-dd") -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
