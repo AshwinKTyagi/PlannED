@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TwF-Gj-HL5">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--ACT Planning-->
+        <scene sceneID="Fcy-qb-4CP">
+            <objects>
+                <viewController id="TwF-Gj-HL5" customClass="ACTPlanningViewController" customModule="PlannED" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lac-oU-0xY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jj2-7H-AxG">
+                                <rect key="frame" x="20" y="94" width="374" height="40"/>
+                                <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Select ACT Date">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onClickSelectACTDate:" destination="TwF-Gj-HL5" eventType="touchDown" id="tar-vd-63z"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5vR-E6-hOJ">
+                                <rect key="frame" x="20" y="142" width="374" height="141"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Practice Days per Week:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WQH-uE-8mH">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xuN-GX-wGG">
+                                        <rect key="frame" x="0.0" y="34.5" width="374" height="33"/>
+                                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="ZiY-Ag-DPf"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="1 Time"/>
+                                            <segment title="2 Times"/>
+                                            <segment title="3 Times"/>
+                                        </segments>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="onPracticeSelection:" destination="TwF-Gj-HL5" eventType="touchDown" id="Eh4-rN-33O"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="v4m-S5-m8h">
+                                        <rect key="frame" x="0.0" y="74.5" width="374" height="66.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Days:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyf-A9-nIN">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XLD-30-0XR" customClass="MultiSelectSegmentedControl" customModule="MultiSelectSegmentedControl">
+                                                <rect key="frame" x="0.0" y="34.5" width="374" height="32"/>
+                                                <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="2DC-9Y-GqT"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedBackgroundColor">
+                                                        <color key="value" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsMultipleSelection" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="eyf-A9-nIN" secondAttribute="trailing" id="6P5-nP-Jcg"/>
+                                            <constraint firstItem="eyf-A9-nIN" firstAttribute="leading" secondItem="v4m-S5-m8h" secondAttribute="leading" id="F64-h1-6KM"/>
+                                            <constraint firstItem="XLD-30-0XR" firstAttribute="leading" secondItem="v4m-S5-m8h" secondAttribute="leading" id="No6-lq-djk"/>
+                                            <constraint firstAttribute="trailing" secondItem="XLD-30-0XR" secondAttribute="trailing" id="WjQ-BA-OjG"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="xuN-GX-wGG" firstAttribute="leading" secondItem="5vR-E6-hOJ" secondAttribute="leading" id="YGf-5r-KNt"/>
+                                    <constraint firstAttribute="trailing" secondItem="WQH-uE-8mH" secondAttribute="trailing" id="jXH-PT-1LS"/>
+                                    <constraint firstAttribute="trailing" secondItem="v4m-S5-m8h" secondAttribute="trailing" id="mP8-CJ-sgW"/>
+                                    <constraint firstAttribute="trailing" secondItem="xuN-GX-wGG" secondAttribute="trailing" id="tbJ-xf-BEE"/>
+                                    <constraint firstItem="WQH-uE-8mH" firstAttribute="leading" secondItem="5vR-E6-hOJ" secondAttribute="leading" id="uze-lx-j7p"/>
+                                    <constraint firstItem="v4m-S5-m8h" firstAttribute="leading" secondItem="5vR-E6-hOJ" secondAttribute="leading" id="wkh-ad-28v"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RB8-1L-7nI">
+                                <rect key="frame" x="20" y="802" width="374" height="40"/>
+                                <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Finish">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onClickFinish:" destination="TwF-Gj-HL5" eventType="touchDown" id="qXx-WZ-L2c"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="FH7-dI-m27">
+                                <rect key="frame" x="187.88888888888891" y="430" width="37" height="37.000000000000007"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.15686274510000001" green="0.0039215686269999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="8Pf-79-12o" firstAttribute="trailing" secondItem="RB8-1L-7nI" secondAttribute="trailing" constant="20" id="6xg-Xf-LK4"/>
+                            <constraint firstItem="8Pf-79-12o" firstAttribute="trailing" secondItem="jj2-7H-AxG" secondAttribute="trailing" constant="20" id="LNp-K3-7dU"/>
+                            <constraint firstItem="5vR-E6-hOJ" firstAttribute="top" secondItem="jj2-7H-AxG" secondAttribute="bottom" constant="8" id="Tzv-8h-Pbw"/>
+                            <constraint firstItem="RB8-1L-7nI" firstAttribute="leading" secondItem="8Pf-79-12o" secondAttribute="leading" constant="20" id="Ygn-KD-Xlb"/>
+                            <constraint firstItem="RB8-1L-7nI" firstAttribute="height" secondItem="jj2-7H-AxG" secondAttribute="height" id="Z1y-MD-WNn"/>
+                            <constraint firstItem="jj2-7H-AxG" firstAttribute="top" secondItem="8Pf-79-12o" secondAttribute="top" constant="50" id="dir-N5-5f9"/>
+                            <constraint firstItem="5vR-E6-hOJ" firstAttribute="leading" secondItem="8Pf-79-12o" secondAttribute="leading" constant="20" id="lJr-Ma-ttc"/>
+                            <constraint firstItem="8Pf-79-12o" firstAttribute="trailing" secondItem="5vR-E6-hOJ" secondAttribute="trailing" constant="20" id="qBb-v8-evr"/>
+                            <constraint firstItem="8Pf-79-12o" firstAttribute="bottom" secondItem="RB8-1L-7nI" secondAttribute="bottom" constant="20" id="s34-tf-PTM"/>
+                            <constraint firstItem="jj2-7H-AxG" firstAttribute="leading" secondItem="8Pf-79-12o" secondAttribute="leading" constant="20" id="wsO-OL-d7P"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8Pf-79-12o"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="ACT Planning" id="D7Q-Pl-NRY"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="FH7-dI-m27" id="wTG-x2-B5c"/>
+                        <outlet property="btnFinish" destination="RB8-1L-7nI" id="nd1-VQ-2gn"/>
+                        <outlet property="btnSelectACTDate" destination="jj2-7H-AxG" id="oWa-fU-tl4"/>
+                        <outlet property="daySelecter" destination="XLD-30-0XR" id="OLr-qb-IsJ"/>
+                        <outlet property="practiceIntensity" destination="xuN-GX-wGG" id="u9y-Ku-QFx"/>
+                        <outlet property="setDaySetting" destination="v4m-S5-m8h" id="SUS-62-dBW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tKA-j2-XtB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-512" y="109"/>
+        </scene>
+    </scenes>
+</document>
