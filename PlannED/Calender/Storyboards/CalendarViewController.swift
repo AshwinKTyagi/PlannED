@@ -54,8 +54,11 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         super.viewWillAppear(true)
         
         calendar.reloadData()
-        tableView.reloadData() 
+        tableView.reloadData()
+        
+        calendar.adjustMonthPosition()
     }
+    
     
     //code for when a date on the calendar is selected
     // MARK: calendar: didSelect

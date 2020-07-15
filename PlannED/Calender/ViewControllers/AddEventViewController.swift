@@ -7,13 +7,12 @@
 //
 import UIKit
 
-class AddEventViewController: UIViewController {
+class AddEventViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var eventNameTextField: UITextField!
-    @IBOutlet weak var eventDescription: UITextField!
+    @IBOutlet weak var eventDescription: UITextView!
     @IBOutlet weak var eventDatePicker: UIDatePicker!
-    @IBOutlet weak var doneSegue: UIStoryboardSegue!
-    
+   
     let userData = UserData()
     
     var eventDates = [String]()
@@ -22,6 +21,10 @@ class AddEventViewController: UIViewController {
     // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        eventDescription.text = "Insert Event Description"
+        eventDescription.textColor = .lightGray
+        eventDescription.delegate = self
         
     }
     
@@ -41,7 +44,9 @@ class AddEventViewController: UIViewController {
             
             userData.addEvent(eventType: "Normal", name: eventNameTextField.text!, desc: eventDescription.text!, date: eventDatePicker.date)
             
-            performSegue(withIdentifier: "doneSegue", sender: sender)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
         
         //sends an alert if the event name is not filled properly
         } else {
@@ -53,6 +58,31 @@ class AddEventViewController: UIViewController {
         }
     }
     
+    // MARK: textViewShouldBeginEditing
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        eventDescription.text = ""
+        eventDescription.textColor = .black
+        return true
+    }
     
-
+    
+    // MARK: textViewDidChange
+    func textViewDidChange(_ textView: UITextView) {
+        if eventDescription.text.count == 0 {
+            eventDescription.textColor = .lightGray
+            eventDescription.text = "Insert Event Description"
+            
+            eventDescription.resignFirstResponder()
+        }
+    }
+    
+    func textViewShouldEndEditing (_ textView: UITextView) -> Bool {
+        if eventDescription.text.count == 0 {
+            eventDescription.textColor = .lightGray
+            eventDescription.text = "Insert Event Description"
+            
+            eventDescription.resignFirstResponder()
+        }
+        return true
+    }
 }
