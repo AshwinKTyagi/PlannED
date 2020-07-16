@@ -81,23 +81,41 @@ extension CollegePlanningViewController: UITableViewDataSource, UITableViewDeleg
         
         return cell
     }
-
+    
+    
+    // MARK: tableView: willDisplay
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        cell.alpha = 0
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0.05 * Double(indexPath.row),
+            animations: {
+                cell.alpha = 1
+        })
+    }
+    
+    // MARK: searchBarTextDidBeginEditing
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchActive = true
     }
     
+    // MARK: searchBarTextDidEndEditing
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchActive = false
     }
     
+    // MARK: searchBarCancelButtonClicked
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchActive = false
     }
     
+    // MARK: searchBarTextDidBeginEditing
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchActive = false
     }
     
+    // MARK: searchBar: textDidChange
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         var i = Int()
@@ -117,12 +135,15 @@ extension CollegePlanningViewController: UITableViewDataSource, UITableViewDeleg
         
         self.tableView.reloadData()
     }
-
+    
+    // MARK: didReceiveMemoryWarning()
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func numberOfSectionInTableView(tableView: UITableView) -> Int {
+    // MARK: numberOfSectionsInTableView
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 }
+

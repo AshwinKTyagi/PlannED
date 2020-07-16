@@ -21,6 +21,7 @@ class RemoveEventViewController: UIViewController {
     var selectedButton = UIButton()
     var dataSource = [String]()
     var selectedDate = Date()
+    var tempEventArray = [Event]()
     
     // MARK: viewDidLoad
     override func viewDidLoad() {
@@ -34,8 +35,17 @@ class RemoveEventViewController: UIViewController {
         tableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
         
         stackView.isHidden = true
+        eventTableView.isHidden = true
         
         dataSource = Event.getEventTypeList()
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM-dd-yyyy"
+        let tempDate = formatter.string(from: Date())
+
+        for e in userData.getEvents() where e.getEventType() == "Normal" && tempDate == e.getEventDate(){
+            tempEventArray.append(e)
+        }
         
     }
     
@@ -48,6 +58,18 @@ class RemoveEventViewController: UIViewController {
     // MARK: datePicked
     @IBAction func datePicked(_ sender: Any) {
         selectedDate = dateSelecter.date
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM-dd-yyyy"
+        let tempDate = formatter.string(from: selectedDate)
+
+        tempEventArray = []
+
+        for e in userData.getEvents() where e.getEventType() == "Normal" && tempDate == e.getEventDate(){
+            tempEventArray.append(e)
+        }
+        
+        
         eventTableView.reloadData()
     }
     
@@ -100,7 +122,7 @@ extension RemoveEventViewController: UITableViewDelegate, UITableViewDataSource{
             return dataSource.count
         }
         else if (tableView == eventTableView){
-            return userData.getEventNames().count
+            return tempEventArray.count
         }
         return 0
     }
@@ -108,6 +130,8 @@ extension RemoveEventViewController: UITableViewDelegate, UITableViewDataSource{
     //sets each cell's text label to a date from the data source
     // MARK: cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         if (tableView == self.tableView){
@@ -116,26 +140,15 @@ extension RemoveEventViewController: UITableViewDelegate, UITableViewDataSource{
             return cell
         }
         else if (tableView == eventTableView ) {
+
+            cell.backgroundColor = UIColor.systemIndigo
+            cell.textLabel!.textColor = UIColor.white
+            cell.textLabel!.text = tempEventArray[indexPath.row].getName()
             
-            let formatter = DateFormatter()
-            formatter.dateFormat = "MM-dd-yyyy"
-            let string = formatter.string(from: selectedDate)
-            
-            for e in userData.getEvents() where e.getEventType() == "Normal"{
-                if string == e.getEventDate()  {
-                    let itemLbl  =  userData.getEventNames()[indexPath.row]
-                    
-                    cell.textLabel!.text = itemLbl
-                    cell.backgroundColor = UIColor.systemIndigo
-                    cell.textLabel!.textColor = UIColor.white
-                    
-                }
-            }
+            return cell
+        } else {
             return cell
         }
-        eventTableView.reloadData()
-        
-        return cell
     }
     
     //sets the table row height for the dropdown to be 50
@@ -152,6 +165,7 @@ extension RemoveEventViewController: UITableViewDelegate, UITableViewDataSource{
             
             if btnSelectEventType.currentTitle == "Normal" {
                 stackView.isHidden = false
+                eventTableView.isHidden = false
             }
             else if btnSelectEventType.currentTitle == "SAT"{
                 let alert = UIAlertController(title:"Are You Sure", message: "This will delete ALL SAT Events. Once this plan is deleted, it can not be retrieved", preferredStyle: .alert)
@@ -204,6 +218,7 @@ extension RemoveEventViewController: UITableViewDelegate, UITableViewDataSource{
             alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
                 self.userData.removeEvent(eventName: (tableView.cellForRow(at: indexPath)?.textLabel?.text)!, eventDate: string)
+                self.tempEventArray.remove(at: indexPath.row)
                 }))
             self.present(alert, animated: true)
             
@@ -212,4 +227,17 @@ extension RemoveEventViewController: UITableViewDelegate, UITableViewDataSource{
         
     }
         
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if tableView == eventTableView  {
+            cell.alpha = 0
+            UIView.animate(
+                withDuration: 0.5,
+                delay: 0.05 * Double(indexPath.row),
+                animations: {
+                    cell.alpha = 1
+            })
+            
+        }
+    }
 }
