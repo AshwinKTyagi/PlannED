@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import SwiftUI
+import FirebaseCore
+import FirebaseAuth
+
 
 class StartViewController: UIViewController{
     
@@ -15,9 +19,19 @@ class StartViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool){
+        super.viewDidAppear(animated)
         
-        btnLogin = UIButton.attributedButton(button: btnLogin)
-        btnSignUp = UIButton.attributedButton(button: btnSignUp)
+        if Auth.auth().currentUser != nil {
+            self.performSegue(withIdentifier: "alreadyLoggedIn", sender: nil)
+        }
     }
     
     @IBAction func onLoginClick(_ sender: Any){
@@ -32,13 +46,4 @@ class StartViewController: UIViewController{
     
 }
 
-extension UIButton {
-    class func attributedButton(button: UIButton) -> UIButton {
-        
-        button.clipsToBounds = true
-        button.layer.cornerRadius =  20
-        button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 2.0
-        return button
-    }
-}
+

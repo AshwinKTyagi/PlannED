@@ -19,6 +19,8 @@
 		2B5889B324B8EC3C0040E006 /* College.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5889B224B8EC3C0040E006 /* College.swift */; };
 		2B5889B524BE1CF00040E006 /* CollegePlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5889B424BE1CF00040E006 /* CollegePlanningViewController.swift */; };
 		2B5ECBA724B7BDB10051BCE2 /* CollegeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5ECBA624B7BDB10051BCE2 /* CollegeData.swift */; };
+		2B60B9EC24C610B70048C2B2 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B60B9EB24C610B70048C2B2 /* Settings.storyboard */; };
+		2B60B9EE24C6134E0048C2B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B60B9ED24C6134E0048C2B2 /* SettingsViewController.swift */; };
 		2B6BA3BD24B63D7A00433937 /* ACTPlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6BA3BC24B63D7A00433937 /* ACTPlanningViewController.swift */; };
 		2B6BA3BF24B6430200433937 /* ACTEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6BA3BE24B6430200433937 /* ACTEvent.swift */; };
 		2B7CAA1B24C229DE0029CB68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7CAA1A24C229DE0029CB68 /* Main.storyboard */; };
@@ -70,6 +72,8 @@
 		2B5889B224B8EC3C0040E006 /* College.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = College.swift; sourceTree = "<group>"; };
 		2B5889B424BE1CF00040E006 /* CollegePlanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollegePlanningViewController.swift; path = PlannED/Helpers/Models/CollegePlanningViewController.swift; sourceTree = SOURCE_ROOT; };
 		2B5ECBA624B7BDB10051BCE2 /* CollegeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollegeData.swift; sourceTree = "<group>"; };
+		2B60B9EB24C610B70048C2B2 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		2B60B9ED24C6134E0048C2B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2B6BA3BC24B63D7A00433937 /* ACTPlanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ACTPlanningViewController.swift; path = PlannED/Calender/ViewControllers/ACTPlanningViewController.swift; sourceTree = SOURCE_ROOT; };
 		2B6BA3BE24B6430200433937 /* ACTEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTEvent.swift; sourceTree = "<group>"; };
 		2B7CAA1A24C229DE0029CB68 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 			children = (
 				2B7CAA1724C229580029CB68 /* Login */,
 				2BD6C20024AD2E1F00D8652D /* Calender */,
+				2B60B9E824C6106C0048C2B2 /* Settings */,
 				2BD6C20124AD2E4100D8652D /* Planning */,
 				2BD6C1EF24A6792700D8652D /* Resources */,
 				2BD6C1EE24A677DE00D8652D /* Helpers */,
@@ -189,6 +194,31 @@
 				2B5ECBA624B7BDB10051BCE2 /* CollegeData.swift */,
 			);
 			path = DecodingModels;
+			sourceTree = "<group>";
+		};
+		2B60B9E824C6106C0048C2B2 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				2B60B9EA24C6108C0048C2B2 /* Storyboards */,
+				2B60B9E924C6108A0048C2B2 /* ViewControllers */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		2B60B9E924C6108A0048C2B2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2B60B9ED24C6134E0048C2B2 /* SettingsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2B60B9EA24C6108C0048C2B2 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				2B60B9EB24C610B70048C2B2 /* Settings.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		2B7CAA1724C229580029CB68 /* Login */ = {
@@ -396,6 +426,7 @@
 				2BA7A0FF24B1390200AEF8B8 /* eventData.json in Resources */,
 				2B5889B024B8D4AD0040E006 /* collegeData.json in Resources */,
 				2B064AB124A26192008791AF /* LaunchScreen.storyboard in Resources */,
+				2B60B9EC24C610B70048C2B2 /* Settings.storyboard in Resources */,
 				2B7CAA1B24C229DE0029CB68 /* Main.storyboard in Resources */,
 				2B064AAE24A26192008791AF /* Assets.xcassets in Resources */,
 				2BA7A0F624AFB6EB00AEF8B8 /* ACTPlanning.storyboard in Resources */,
@@ -486,6 +517,7 @@
 				2BA7A0FA24AFD16E00AEF8B8 /* SATPlanningViewController.swift in Sources */,
 				2BD6C1FB24A68EC500D8652D /* Event.swift in Sources */,
 				2BA7A10124B1459000AEF8B8 /* SATEvent.swift in Sources */,
+				2B60B9EE24C6134E0048C2B2 /* SettingsViewController.swift in Sources */,
 				2BEA81E024B4F94B00B49344 /* RemoveEventViewController.swift in Sources */,
 				2B7CAA2124C22A690029CB68 /* LoginViewController.swift in Sources */,
 				2BA7A0FD24B1349300AEF8B8 /* EventData.swift in Sources */,
