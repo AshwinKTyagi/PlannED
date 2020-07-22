@@ -17,11 +17,19 @@
 		2B064AC824A26859008791AF /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B064AC724A26859008791AF /* Calendar.storyboard */; };
 		2B5889B024B8D4AD0040E006 /* collegeData.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B5889AF24B8D4AD0040E006 /* collegeData.json */; };
 		2B5889B324B8EC3C0040E006 /* College.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5889B224B8EC3C0040E006 /* College.swift */; };
-		2B5889B524BE1CF00040E006 /* CollegePlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5889B424BE1CF00040E006 /* CollegePlanningViewController.swift */; };
+		2B5C36AB24C8C3A300930B77 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C36AA24C8C3A300930B77 /* User.swift */; };
+		2B5C36AD24C8C60100930B77 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C36AC24C8C60100930B77 /* UserData.swift */; };
+		2B5C36AF24C8C65000930B77 /* userData.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B5C36AE24C8C65000930B77 /* userData.json */; };
+		2B5C36B524C8CB0A00930B77 /* SATPlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C36B224C8CB0900930B77 /* SATPlanningViewController.swift */; };
+		2B5C36B624C8CB0A00930B77 /* ACTPlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C36B324C8CB0900930B77 /* ACTPlanningViewController.swift */; };
+		2B5C36B724C8CB0A00930B77 /* CollegePlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C36B424C8CB0A00930B77 /* CollegePlanningViewController.swift */; };
+		2B5C36BC24C8CB5400930B77 /* RemoveEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C36B824C8CB5300930B77 /* RemoveEventViewController.swift */; };
+		2B5C36BD24C8CB5400930B77 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C36B924C8CB5300930B77 /* AddEventViewController.swift */; };
+		2B5C36BE24C8CB5400930B77 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C36BA24C8CB5300930B77 /* CalendarViewController.swift */; };
+		2B5C36BF24C8CB5400930B77 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C36BB24C8CB5300930B77 /* TableViewController.swift */; };
 		2B5ECBA724B7BDB10051BCE2 /* CollegeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5ECBA624B7BDB10051BCE2 /* CollegeData.swift */; };
 		2B60B9EC24C610B70048C2B2 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B60B9EB24C610B70048C2B2 /* Settings.storyboard */; };
 		2B60B9EE24C6134E0048C2B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B60B9ED24C6134E0048C2B2 /* SettingsViewController.swift */; };
-		2B6BA3BD24B63D7A00433937 /* ACTPlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6BA3BC24B63D7A00433937 /* ACTPlanningViewController.swift */; };
 		2B6BA3BF24B6430200433937 /* ACTEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6BA3BE24B6430200433937 /* ACTEvent.swift */; };
 		2B7CAA1B24C229DE0029CB68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7CAA1A24C229DE0029CB68 /* Main.storyboard */; };
 		2B7CAA1D24C22A400029CB68 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7CAA1C24C22A400029CB68 /* StartViewController.swift */; };
@@ -29,18 +37,14 @@
 		2B7CAA2124C22A690029CB68 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7CAA2024C22A690029CB68 /* LoginViewController.swift */; };
 		2B7CAA2324C22FF80029CB68 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B7CAA2224C22FF80029CB68 /* GoogleService-Info.plist */; };
 		2BA7A0EE24AD36BC00AEF8B8 /* Planning.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BA7A0ED24AD36BC00AEF8B8 /* Planning.storyboard */; };
-		2BA7A0F224AD399800AEF8B8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7A0F124AD399800AEF8B8 /* CalendarViewController.swift */; };
 		2BA7A0F424AFB6D400AEF8B8 /* SATPlanning.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BA7A0F324AFB6D400AEF8B8 /* SATPlanning.storyboard */; };
 		2BA7A0F624AFB6EB00AEF8B8 /* ACTPlanning.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BA7A0F524AFB6EB00AEF8B8 /* ACTPlanning.storyboard */; };
 		2BA7A0F824AFB96B00AEF8B8 /* CollegeAppPlanning.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BA7A0F724AFB96B00AEF8B8 /* CollegeAppPlanning.storyboard */; };
-		2BA7A0FA24AFD16E00AEF8B8 /* SATPlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7A0F924AFD16E00AEF8B8 /* SATPlanningViewController.swift */; };
 		2BA7A0FD24B1349300AEF8B8 /* EventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7A0FC24B1349300AEF8B8 /* EventData.swift */; };
 		2BA7A0FF24B1390200AEF8B8 /* eventData.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BA7A0FE24B1390200AEF8B8 /* eventData.json */; };
 		2BA7A10124B1459000AEF8B8 /* SATEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7A10024B1459000AEF8B8 /* SATEvent.swift */; };
-		2BD6C1EB24A547D100D8652D /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD6C1EA24A547D100D8652D /* AddEventViewController.swift */; };
-		2BD6C1ED24A677D800D8652D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD6C1EC24A677D800D8652D /* UserData.swift */; };
+		2BD6C1ED24A677D800D8652D /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD6C1EC24A677D800D8652D /* Helper.swift */; };
 		2BD6C1FB24A68EC500D8652D /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD6C1FA24A68EC500D8652D /* Event.swift */; };
-		2BEA81E024B4F94B00B49344 /* RemoveEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEA81DF24B4F94B00B49344 /* RemoveEventViewController.swift */; };
 		D2B11C35D207BA3852C21372 /* Pods_PlannED.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E36B2C0EC406BAEB0B759BCA /* Pods_PlannED.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,11 +74,19 @@
 		2B064AC724A26859008791AF /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		2B5889AF24B8D4AD0040E006 /* collegeData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = collegeData.json; sourceTree = "<group>"; };
 		2B5889B224B8EC3C0040E006 /* College.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = College.swift; sourceTree = "<group>"; };
-		2B5889B424BE1CF00040E006 /* CollegePlanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollegePlanningViewController.swift; path = PlannED/Helpers/Models/CollegePlanningViewController.swift; sourceTree = SOURCE_ROOT; };
+		2B5C36AA24C8C3A300930B77 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2B5C36AC24C8C60100930B77 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		2B5C36AE24C8C65000930B77 /* userData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = userData.json; sourceTree = "<group>"; };
+		2B5C36B224C8CB0900930B77 /* SATPlanningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SATPlanningViewController.swift; path = PlannED/Screens/Planning/ViewControllers/SATPlanningViewController.swift; sourceTree = SOURCE_ROOT; };
+		2B5C36B324C8CB0900930B77 /* ACTPlanningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ACTPlanningViewController.swift; path = PlannED/Screens/Planning/ViewControllers/ACTPlanningViewController.swift; sourceTree = SOURCE_ROOT; };
+		2B5C36B424C8CB0A00930B77 /* CollegePlanningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollegePlanningViewController.swift; path = PlannED/Screens/Planning/ViewControllers/CollegePlanningViewController.swift; sourceTree = SOURCE_ROOT; };
+		2B5C36B824C8CB5300930B77 /* RemoveEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveEventViewController.swift; sourceTree = "<group>"; };
+		2B5C36B924C8CB5300930B77 /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		2B5C36BA24C8CB5300930B77 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		2B5C36BB24C8CB5300930B77 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		2B5ECBA624B7BDB10051BCE2 /* CollegeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollegeData.swift; sourceTree = "<group>"; };
 		2B60B9EB24C610B70048C2B2 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		2B60B9ED24C6134E0048C2B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		2B6BA3BC24B63D7A00433937 /* ACTPlanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ACTPlanningViewController.swift; path = PlannED/Calender/ViewControllers/ACTPlanningViewController.swift; sourceTree = SOURCE_ROOT; };
 		2B6BA3BE24B6430200433937 /* ACTEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTEvent.swift; sourceTree = "<group>"; };
 		2B7CAA1A24C229DE0029CB68 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2B7CAA1C24C22A400029CB68 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
@@ -82,18 +94,14 @@
 		2B7CAA2024C22A690029CB68 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2B7CAA2224C22FF80029CB68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2BA7A0ED24AD36BC00AEF8B8 /* Planning.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Planning.storyboard; sourceTree = "<group>"; };
-		2BA7A0F124AD399800AEF8B8 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = PlannED/Calender/Storyboards/CalendarViewController.swift; sourceTree = SOURCE_ROOT; };
 		2BA7A0F324AFB6D400AEF8B8 /* SATPlanning.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SATPlanning.storyboard; sourceTree = "<group>"; };
 		2BA7A0F524AFB6EB00AEF8B8 /* ACTPlanning.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ACTPlanning.storyboard; sourceTree = "<group>"; };
 		2BA7A0F724AFB96B00AEF8B8 /* CollegeAppPlanning.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CollegeAppPlanning.storyboard; sourceTree = "<group>"; };
-		2BA7A0F924AFD16E00AEF8B8 /* SATPlanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SATPlanningViewController.swift; path = PlannED/Planning/Storyboards/SATPlanningViewController.swift; sourceTree = SOURCE_ROOT; };
 		2BA7A0FC24B1349300AEF8B8 /* EventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventData.swift; sourceTree = "<group>"; };
 		2BA7A0FE24B1390200AEF8B8 /* eventData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = eventData.json; sourceTree = "<group>"; };
 		2BA7A10024B1459000AEF8B8 /* SATEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SATEvent.swift; sourceTree = "<group>"; };
-		2BD6C1EA24A547D100D8652D /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
-		2BD6C1EC24A677D800D8652D /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		2BD6C1EC24A677D800D8652D /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		2BD6C1FA24A68EC500D8652D /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		2BEA81DF24B4F94B00B49344 /* RemoveEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveEventViewController.swift; sourceTree = "<group>"; };
 		8EF3A7DF9D8B261445459A78 /* Pods-PlannEDTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlannEDTests.debug.xcconfig"; path = "Target Support Files/Pods-PlannEDTests/Pods-PlannEDTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC7833266B3393723250F94A /* Pods-PlannED.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlannED.debug.xcconfig"; path = "Target Support Files/Pods-PlannED/Pods-PlannED.debug.xcconfig"; sourceTree = "<group>"; };
 		E36B2C0EC406BAEB0B759BCA /* Pods_PlannED.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlannED.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,10 +151,7 @@
 		2B064AA324A26191008791AF /* PlannED */ = {
 			isa = PBXGroup;
 			children = (
-				2B7CAA1724C229580029CB68 /* Login */,
-				2BD6C20024AD2E1F00D8652D /* Calender */,
-				2B60B9E824C6106C0048C2B2 /* Settings */,
-				2BD6C20124AD2E4100D8652D /* Planning */,
+				2B5C36A824C8C25000930B77 /* Screens */,
 				2BD6C1EF24A6792700D8652D /* Resources */,
 				2BD6C1EE24A677DE00D8652D /* Helpers */,
 				2B064AA424A26191008791AF /* AppDelegate.swift */,
@@ -183,8 +188,20 @@
 				2B6BA3BE24B6430200433937 /* ACTEvent.swift */,
 				2BD6C1FA24A68EC500D8652D /* Event.swift */,
 				2B5889B224B8EC3C0040E006 /* College.swift */,
+				2B5C36AA24C8C3A300930B77 /* User.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		2B5C36A824C8C25000930B77 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				2B7CAA1724C229580029CB68 /* Login */,
+				2BD6C20124AD2E4100D8652D /* Planning */,
+				2BD6C20024AD2E1F00D8652D /* Calender */,
+				2B60B9E824C6106C0048C2B2 /* Settings */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		2B5ECBA524B7BD900051BCE2 /* DecodingModels */ = {
@@ -192,6 +209,7 @@
 			children = (
 				2BA7A0FC24B1349300AEF8B8 /* EventData.swift */,
 				2B5ECBA624B7BDB10051BCE2 /* CollegeData.swift */,
+				2B5C36AC24C8C60100930B77 /* UserData.swift */,
 			);
 			path = DecodingModels;
 			sourceTree = "<group>";
@@ -252,7 +270,7 @@
 		2BD6C1EE24A677DE00D8652D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				2BD6C1EC24A677D800D8652D /* UserData.swift */,
+				2BD6C1EC24A677D800D8652D /* Helper.swift */,
 				2B5ECBA524B7BD900051BCE2 /* DecodingModels */,
 				2B5889B124B8EBA80040E006 /* Models */,
 			);
@@ -264,6 +282,7 @@
 			children = (
 				2BA7A0FE24B1390200AEF8B8 /* eventData.json */,
 				2B5889AF24B8D4AD0040E006 /* collegeData.json */,
+				2B5C36AE24C8C65000930B77 /* userData.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -271,9 +290,10 @@
 		2BD6C1F924A67B4400D8652D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2BA7A0F124AD399800AEF8B8 /* CalendarViewController.swift */,
-				2BD6C1EA24A547D100D8652D /* AddEventViewController.swift */,
-				2BEA81DF24B4F94B00B49344 /* RemoveEventViewController.swift */,
+				2B5C36B924C8CB5300930B77 /* AddEventViewController.swift */,
+				2B5C36BA24C8CB5300930B77 /* CalendarViewController.swift */,
+				2B5C36B824C8CB5300930B77 /* RemoveEventViewController.swift */,
+				2B5C36BB24C8CB5300930B77 /* TableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -310,9 +330,9 @@
 		2BD6C20324AD2E6000D8652D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2BA7A0F924AFD16E00AEF8B8 /* SATPlanningViewController.swift */,
-				2B6BA3BC24B63D7A00433937 /* ACTPlanningViewController.swift */,
-				2B5889B424BE1CF00040E006 /* CollegePlanningViewController.swift */,
+				2B5C36B324C8CB0900930B77 /* ACTPlanningViewController.swift */,
+				2B5C36B424C8CB0A00930B77 /* CollegePlanningViewController.swift */,
+				2B5C36B224C8CB0900930B77 /* SATPlanningViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -426,6 +446,7 @@
 				2BA7A0FF24B1390200AEF8B8 /* eventData.json in Resources */,
 				2B5889B024B8D4AD0040E006 /* collegeData.json in Resources */,
 				2B064AB124A26192008791AF /* LaunchScreen.storyboard in Resources */,
+				2B5C36AF24C8C65000930B77 /* userData.json in Resources */,
 				2B60B9EC24C610B70048C2B2 /* Settings.storyboard in Resources */,
 				2B7CAA1B24C229DE0029CB68 /* Main.storyboard in Resources */,
 				2B064AAE24A26192008791AF /* Assets.xcassets in Resources */,
@@ -514,26 +535,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BA7A0FA24AFD16E00AEF8B8 /* SATPlanningViewController.swift in Sources */,
+				2B5C36B724C8CB0A00930B77 /* CollegePlanningViewController.swift in Sources */,
+				2B5C36BD24C8CB5400930B77 /* AddEventViewController.swift in Sources */,
+				2B5C36B624C8CB0A00930B77 /* ACTPlanningViewController.swift in Sources */,
+				2B5C36BC24C8CB5400930B77 /* RemoveEventViewController.swift in Sources */,
 				2BD6C1FB24A68EC500D8652D /* Event.swift in Sources */,
+				2B5C36BE24C8CB5400930B77 /* CalendarViewController.swift in Sources */,
 				2BA7A10124B1459000AEF8B8 /* SATEvent.swift in Sources */,
 				2B60B9EE24C6134E0048C2B2 /* SettingsViewController.swift in Sources */,
-				2BEA81E024B4F94B00B49344 /* RemoveEventViewController.swift in Sources */,
+				2B5C36B524C8CB0A00930B77 /* SATPlanningViewController.swift in Sources */,
 				2B7CAA2124C22A690029CB68 /* LoginViewController.swift in Sources */,
 				2BA7A0FD24B1349300AEF8B8 /* EventData.swift in Sources */,
 				2B5889B324B8EC3C0040E006 /* College.swift in Sources */,
 				2B7CAA1F24C22A530029CB68 /* SignUpViewController.swift in Sources */,
-				2B6BA3BD24B63D7A00433937 /* ACTPlanningViewController.swift in Sources */,
-				2B5889B524BE1CF00040E006 /* CollegePlanningViewController.swift in Sources */,
-				2BD6C1ED24A677D800D8652D /* UserData.swift in Sources */,
+				2B5C36BF24C8CB5400930B77 /* TableViewController.swift in Sources */,
+				2B5C36AD24C8C60100930B77 /* UserData.swift in Sources */,
+				2BD6C1ED24A677D800D8652D /* Helper.swift in Sources */,
 				2B064AA924A26191008791AF /* HomeViewController.swift in Sources */,
 				2B7CAA1D24C22A400029CB68 /* StartViewController.swift in Sources */,
-				2BD6C1EB24A547D100D8652D /* AddEventViewController.swift in Sources */,
-				2BA7A0F224AD399800AEF8B8 /* CalendarViewController.swift in Sources */,
 				2B064AA524A26191008791AF /* AppDelegate.swift in Sources */,
 				2B5ECBA724B7BDB10051BCE2 /* CollegeData.swift in Sources */,
 				2B064AA724A26191008791AF /* SceneDelegate.swift in Sources */,
 				2B6BA3BF24B6430200433937 /* ACTEvent.swift in Sources */,
+				2B5C36AB24C8C3A300930B77 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

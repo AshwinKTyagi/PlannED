@@ -38,6 +38,8 @@ final class College: ObservableObject {
     private var shelterID =  String()
     
     private var applicationDate = String()
+    private var averageSat = Int()
+    private var averageAct = Int()
     
     //MARK: intializeEvent
     func initializeEvent(objectid: Int, ipedsid: String, name: String, address: String, city: String, state: String, zip: String, zip4: String, telephone: String, type: String, population: Int, county: String, countyfips: String, country: String, naicsCode: String, naicsDesc: String, source: String, website: String, alias: String, ptEnroll: Int, ftEnroll: Int, totEnroll: Int, housing: String, dormCap: Int, totEmp: Int, shelterID: String) {
@@ -184,5 +186,13 @@ final class College: ObservableObject {
     
     func getShelterID() -> String{
         return shelterID
+    }
+    
+    func getAverageSat() -> Int {
+        return averageSat
+    }
+    
+    func getAverageAct() -> Int {
+        return averageAct
     }
 }
