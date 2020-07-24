@@ -425,6 +425,8 @@
                     <connections>
                         <segue destination="kLN-Zg-QeB" kind="relationship" relationship="viewControllers" id="ZEz-sQ-BDT"/>
                         <segue destination="bET-Y7-Cw6" kind="relationship" relationship="viewControllers" id="cg2-6d-6dJ"/>
+                        <segue destination="9qP-FR-J1H" kind="relationship" relationship="viewControllers" id="U1c-jB-wRe"/>
+                        <segue destination="kwz-UU-wtq" kind="relationship" relationship="viewControllers" id="eWW-a8-Pee"/>
                         <segue destination="Ui1-yW-bJl" kind="relationship" relationship="viewControllers" id="b8d-ru-bka"/>
                     </connections>
                 </tabBarController>
@@ -440,7 +442,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZT-am-yhY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3667" y="-50"/>
+            <point key="canvasLocation" x="3662" y="-47"/>
         </scene>
         <!--Planning-->
         <scene sceneID="rFx-4A-OTS">
@@ -450,7 +452,27 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ufq-Yd-gqG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3666" y="60"/>
+            <point key="canvasLocation" x="3662" y="5"/>
+        </scene>
+        <!--User-->
+        <scene sceneID="4gc-Qw-gNr">
+            <objects>
+                <viewControllerPlaceholder storyboardName="User" id="9qP-FR-J1H" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="6uP-fc-AGj"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZUw-19-aZ4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3662" y="60"/>
+        </scene>
+        <!--Checklist-->
+        <scene sceneID="Yey-lw-gV6">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Checklist" id="kwz-UU-wtq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="ysx-9W-df3"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fi6-EH-QJf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3662" y="108"/>
         </scene>
         <!--Settings-->
         <scene sceneID="VME-hZ-QZb">
@@ -460,7 +482,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FyQ-Qe-VjI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3666" y="165"/>
+            <point key="canvasLocation" x="3663" y="165"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

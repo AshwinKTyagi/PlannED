@@ -31,6 +31,9 @@
 		2B60B9EC24C610B70048C2B2 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B60B9EB24C610B70048C2B2 /* Settings.storyboard */; };
 		2B60B9EE24C6134E0048C2B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B60B9ED24C6134E0048C2B2 /* SettingsViewController.swift */; };
 		2B6BA3BF24B6430200433937 /* ACTEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6BA3BE24B6430200433937 /* ACTEvent.swift */; };
+		2B6E42E724CA12CE00EFAD3E /* Checklist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B6E42E624CA12CE00EFAD3E /* Checklist.storyboard */; };
+		2B6E42EC24CA173300EFAD3E /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B6E42EB24CA173300EFAD3E /* User.storyboard */; };
+		2B6E42EE24CB48CD00EFAD3E /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6E42ED24CB48CD00EFAD3E /* UserViewController.swift */; };
 		2B7CAA1B24C229DE0029CB68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7CAA1A24C229DE0029CB68 /* Main.storyboard */; };
 		2B7CAA1D24C22A400029CB68 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7CAA1C24C22A400029CB68 /* StartViewController.swift */; };
 		2B7CAA1F24C22A530029CB68 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7CAA1E24C22A530029CB68 /* SignUpViewController.swift */; };
@@ -88,6 +91,9 @@
 		2B60B9EB24C610B70048C2B2 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		2B60B9ED24C6134E0048C2B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2B6BA3BE24B6430200433937 /* ACTEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTEvent.swift; sourceTree = "<group>"; };
+		2B6E42E624CA12CE00EFAD3E /* Checklist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Checklist.storyboard; sourceTree = "<group>"; };
+		2B6E42EB24CA173300EFAD3E /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
+		2B6E42ED24CB48CD00EFAD3E /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		2B7CAA1A24C229DE0029CB68 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2B7CAA1C24C22A400029CB68 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		2B7CAA1E24C22A530029CB68 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -197,8 +203,10 @@
 			isa = PBXGroup;
 			children = (
 				2B7CAA1724C229580029CB68 /* Login */,
-				2BD6C20124AD2E4100D8652D /* Planning */,
 				2BD6C20024AD2E1F00D8652D /* Calender */,
+				2BD6C20124AD2E4100D8652D /* Planning */,
+				2B6E42E824CA16D500EFAD3E /* UserTab */,
+				2B6E42E324CA11FD00EFAD3E /* Checklist */,
 				2B60B9E824C6106C0048C2B2 /* Settings */,
 			);
 			path = Screens;
@@ -235,6 +243,55 @@
 			isa = PBXGroup;
 			children = (
 				2B60B9EB24C610B70048C2B2 /* Settings.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		2B6E42E324CA11FD00EFAD3E /* Checklist */ = {
+			isa = PBXGroup;
+			children = (
+				2B6E42E424CA120E00EFAD3E /* Storyboards */,
+				2B6E42E524CA121D00EFAD3E /* ViewControllers */,
+			);
+			path = Checklist;
+			sourceTree = "<group>";
+		};
+		2B6E42E424CA120E00EFAD3E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				2B6E42E624CA12CE00EFAD3E /* Checklist.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		2B6E42E524CA121D00EFAD3E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2B6E42E824CA16D500EFAD3E /* UserTab */ = {
+			isa = PBXGroup;
+			children = (
+				2B6E42EA24CA170E00EFAD3E /* Storyboards */,
+				2B6E42E924CA170A00EFAD3E /* ViewControllers */,
+			);
+			path = UserTab;
+			sourceTree = "<group>";
+		};
+		2B6E42E924CA170A00EFAD3E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2B6E42ED24CB48CD00EFAD3E /* UserViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2B6E42EA24CA170E00EFAD3E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				2B6E42EB24CA173300EFAD3E /* User.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -280,9 +337,9 @@
 		2BD6C1EF24A6792700D8652D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2BA7A0FE24B1390200AEF8B8 /* eventData.json */,
 				2B5889AF24B8D4AD0040E006 /* collegeData.json */,
 				2B5C36AE24C8C65000930B77 /* userData.json */,
+				2BA7A0FE24B1390200AEF8B8 /* eventData.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -446,11 +503,13 @@
 				2BA7A0FF24B1390200AEF8B8 /* eventData.json in Resources */,
 				2B5889B024B8D4AD0040E006 /* collegeData.json in Resources */,
 				2B064AB124A26192008791AF /* LaunchScreen.storyboard in Resources */,
+				2B6E42E724CA12CE00EFAD3E /* Checklist.storyboard in Resources */,
 				2B5C36AF24C8C65000930B77 /* userData.json in Resources */,
 				2B60B9EC24C610B70048C2B2 /* Settings.storyboard in Resources */,
 				2B7CAA1B24C229DE0029CB68 /* Main.storyboard in Resources */,
 				2B064AAE24A26192008791AF /* Assets.xcassets in Resources */,
 				2BA7A0F624AFB6EB00AEF8B8 /* ACTPlanning.storyboard in Resources */,
+				2B6E42EC24CA173300EFAD3E /* User.storyboard in Resources */,
 				2B7CAA2324C22FF80029CB68 /* GoogleService-Info.plist in Resources */,
 				2BA7A0F424AFB6D400AEF8B8 /* SATPlanning.storyboard in Resources */,
 				2BA7A0EE24AD36BC00AEF8B8 /* Planning.storyboard in Resources */,
@@ -536,6 +595,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B5C36B724C8CB0A00930B77 /* CollegePlanningViewController.swift in Sources */,
+				2B6E42EE24CB48CD00EFAD3E /* UserViewController.swift in Sources */,
 				2B5C36BD24C8CB5400930B77 /* AddEventViewController.swift in Sources */,
 				2B5C36B624C8CB0A00930B77 /* ACTPlanningViewController.swift in Sources */,
 				2B5C36BC24C8CB5400930B77 /* RemoveEventViewController.swift in Sources */,

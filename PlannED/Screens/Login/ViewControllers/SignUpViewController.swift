@@ -67,6 +67,17 @@ class SignUpViewController: UIViewController{
         else{
             Auth.auth().createUser(withEmail: email.text!, password: password.text!){ (user, error) in
                 if error == nil {
+                    let userData = ["firstName": self.firstName.text,
+                                    "lastName": self.lastName.text,
+                                    "email": self.email.text
+                                    ]
+                    
+                    self.ref.child("users").child((user?.user.uid)!).setValue(userData)
+                    
+                    User.setEmail(email: self.email.text!)
+                    User.setFirstName(firstName: self.firstName.text!)
+                    User.setLastName(lastName: self.lastName.text!)
+                    
                     self.performSegue(withIdentifier: "signupToHomeSegue", sender: self)
                 }
                 else{
@@ -99,7 +110,9 @@ class SignUpViewController: UIViewController{
         }
         else {
             passwordConfirm.isSecureTextEntry = true
-            btnViewConfirmPassword.tintColor = UIColor.init(red: 40/255, green: 1/255, blue: 55/255, alpha: 1)        }
+            btnViewConfirmPassword.tintColor = UIColor.init(red: 40/255, green: 1/255, blue: 55/255, alpha: 1)
+        }
     }
+    
 }
 

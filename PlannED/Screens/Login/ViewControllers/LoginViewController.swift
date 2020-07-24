@@ -10,12 +10,15 @@ import UIKit
 import SwiftUI
 import FirebaseCore
 import FirebaseAuth
+import FirebaseDatabase
 
 class LoginViewController: UIViewController{
 
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var btnViewPassword: UIButton!
+    
+    let ref = Database.database().reference()
     
     override func viewDidLoad() {
         btnViewPassword.tintColor = UIColor.init(red: 40/255, green: 1/255, blue: 55/255, alpha: 1)
@@ -26,6 +29,15 @@ class LoginViewController: UIViewController{
     @IBAction func onLoginClick(_ sender: Any){
         Auth.auth().signIn(withEmail: email.text!, password: password.text!) { (user, error) in
             if error == nil{
+                self.ref.child("users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    // Get user value
+                    let value = snapshot.value as? NSDictionary
+                    User.setEmail(email: value?["email"] as? String ?? "")
+                    User.setFirstName(firstName: value?["firstName"] as? String ?? "")
+                    User.setLastName(lastName: value?["lastName"] as? String ?? "")
+                  }) { (error) in
+                    print(error.localizedDescription)
+                }
                 self.performSegue(withIdentifier: "loginToHomeSegue", sender: self)
             }
             else{

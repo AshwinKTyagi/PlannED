@@ -10,10 +10,14 @@ import UIKit
 import SwiftUI
 import FirebaseCore
 import FirebaseAuth
+import FirebaseDatabase
+
 class StartViewController: UIViewController{
     
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnSignUp: UIButton!
+    
+    let ref = Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +27,21 @@ class StartViewController: UIViewController{
 
     }
     
-    
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated)
         
         if Auth.auth().currentUser != nil {
+            let userID = Auth.auth().currentUser?.uid
+            ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                User.setEmail(email: value?["email"] as? String ?? "")
+                User.setFirstName(firstName: value?["firstName"] as? String ?? "")
+                User.setLastName(lastName: value?["lastName"] as? String ?? "")
+              }) { (error) in
+                print(error.localizedDescription)
+            }
+            
             self.performSegue(withIdentifier: "alreadyLoggedIn", sender: nil)
         }
     }
