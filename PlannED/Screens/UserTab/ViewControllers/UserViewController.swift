@@ -59,20 +59,160 @@ class UserViewController: UIViewController {
     }
     
     @IBAction func doneAddbtnPressed(_ sender: Any) {
+        
         if addEventLabel.text == "Add SAT"{
-            if englishTextField.text == nil  || (englishTextField as? Int ?? 0) > 800{
+            ifAddSAT()
+        }
+        else if addEventLabel.text == "Add ACT"{
+            ifAddACT()
+        }
+        
+        tableView.reloadData()
+    }
+    
+    func ifAddSAT() {
+        let formatter = NumberFormatter()
+        
+        var satEnglish = Int()
+        var satMath = Int()
+        var satWriting = Int()
+        
+        if englishTextField.text != nil{
+            let n = formatter.number(from: englishTextField.text!) as! Double
+            if n > 800.0 && n < 200.0 && n.truncatingRemainder(dividingBy: 10) != 0 && n != 0.0 {
+                let alert = UIAlertController(title:"Out of SAT Range", message: "The number you typed is impossible to get on an SAT", preferredStyle: .alert)
                 
-            }
-            else if mathTextField.text == nil {
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 
+                self.present(alert, animated: true)
+            } else {
+                satEnglish = Int(n)
             }
-            else {
+        }
+        if mathTextField.text != nil {
+            let n = formatter.number(from: mathTextField.text!) as! Double
+            if  n > 800.0 && n < 200.0 && n.truncatingRemainder(dividingBy: 10) != 0 && n != 0.0 {
+                let alert = UIAlertController(title:"Out of SAT Range", message: "The number you typed is impossible to get on an SAT", preferredStyle: .alert)
                 
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                
+                self.present(alert, animated: true)
+            } else {
+                satMath = Int(n)
             }
+        }
+            
+        if writingTextField.text != nil && writingTextField.text! != "" {
+            let n = formatter.number(from: writingTextField.text!) as! Double
+            if n > 18 && n < 6 {
+                let alert = UIAlertController(title: "Out of SAT Range", message: "The number you typed is impossible to get on an SAT", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                
+                self.present(alert, animated: true)
+            } else {
+                satWriting = Int(n)
+            }
+        }
+        
+        
+        if englishTextField.text == nil || mathTextField.text == nil {
+            let alert = UIAlertController(title:"Invalid Score", message: "Please type in a valid score.", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            
+            self.present(alert, animated: true)
+        } else {
+            cancelAddbtnPressed(self)
+            User.addTakenSAT(english: satEnglish, math: satMath, writing: satWriting)
         }
     }
     
-    @IBAction func cancellAddbtnPressed(_ sender: Any){
+    func ifAddACT() {
+        let formatter = NumberFormatter()
+        
+        var actEnglish = Double()
+        var actReading = Double()
+        var actMath    = Double()
+        var actWriting = Double()
+        var actScience = Double()
+        
+        if englishTextField.text != nil{
+            let n = formatter.number(from: englishTextField.text!) as! Double
+            if n > 36 && n < 1 && n != 0.0 {
+                let alert = UIAlertController(title:"Out of ACT Range", message: "The number you typed is impossible to get on an ACT", preferredStyle: .alert)
+               
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+               
+                self.present(alert, animated: true)
+            } else {
+                actEnglish = n
+            }
+        }
+        if readingTextField.text != nil{
+            let n = formatter.number(from: readingTextField.text!) as! Double
+            if n > 36 && n < 1 && n != 0.0 {
+                let alert = UIAlertController(title:"Out of ACT Range", message: "The number you typed is impossible to get on an ACT", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                      
+                self.present(alert, animated: true)
+            } else {
+                actReading = n
+            }
+        }
+        if mathTextField.text != nil {
+            let n = formatter.number(from: mathTextField.text!) as! Double
+            if  n > 36 && n < 1 && n != 0.0 {
+                let alert = UIAlertController(title:"Out of ACT Range", message: "The number you typed is impossible to get on an ACT", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                
+                self.present(alert, animated: true)
+            } else {
+                actMath = n
+            }
+        }
+        if scienceTextField.text != nil{
+            let n = formatter.number(from: scienceTextField.text!) as! Double
+            if n > 36 && n < 1 && n != 0.0 {
+                let alert = UIAlertController(title:"Out of ACT Range", message: "The number you typed is impossible to get on an ACT", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                      
+                self.present(alert, animated: true)
+            } else {
+                actScience = n
+            }
+        }
+        if writingTextField.text != nil {
+            let n = formatter.number(from: writingTextField.text!) as! Double
+            if n > 36 && n < 1 {
+                let alert = UIAlertController(title: "Out of SAT Range", message: "The number you typed is impossible to get on an SAT", preferredStyle: .alert)
+                    
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                
+                self.present(alert, animated: true)
+            } else {
+                actWriting = n
+            }
+        }
+           
+           
+        if englishTextField.text == nil || mathTextField.text == nil {
+            let alert = UIAlertController(title:"Invalid Score", message: "Please type in a valid score.", preferredStyle: .alert)
+           
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+           
+            self.present(alert, animated: true)
+        } else {
+            User.addTakenACTs(english: actEnglish, reading: actReading, math: actMath, science: actScience, writing: actWriting)
+            cancelAddbtnPressed(self)
+        }
+    }
+    
+    
+    @IBAction func cancelAddbtnPressed(_ sender: Any){
         UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
             self.transparentView.alpha = 0.0
         }, completion: nil)
@@ -100,6 +240,10 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
+        if indexPath.section == 1 {
+            cell.textLabel!.text = "SAT - English: \(User.getTakenSATs()[indexPath.row].english)  Math: \(User.getTakenSATs()[indexPath.row].math)  Total: \(User.getTakenSATs()[indexPath.row].total)"
+        }
         
         return cell
     }
@@ -130,7 +274,7 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50.0
+        return 20
     }
     
     @objc func addBtnPressed(_ sender: UIButton?) {
@@ -158,10 +302,33 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) != nil {
-            return true
-        } else {
-            return false
+        
+        if string.isEmpty{ return true }
+        
+        let currentText = textField.text ?? ""
+        let replacementText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        
+        
+        return replacementText.isValidDouble(maxDecimalPlaces: 2)
+        
+    }
+}
+
+extension String {
+    func isValidDouble(maxDecimalPlaces: Int) -> Bool {
+        
+        let formatter = NumberFormatter()
+        formatter.allowsFloats = true
+        let decimalSeparator = formatter.decimalSeparator ?? "."
+        
+        if formatter.number(from: self) != nil {
+            let split = self.components(separatedBy: decimalSeparator)
+            
+            let digits = split.count == 2 ? split.last ?? "" : ""
+            
+            return digits.count <= maxDecimalPlaces
         }
+        
+        return false
     }
 }

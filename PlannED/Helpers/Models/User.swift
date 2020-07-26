@@ -60,7 +60,7 @@ final class User: ObservableObject {
         takenSATs.append(sat)
     }
     
-    static func addTakenACTs(english: Int, reading: Int, math: Int, science: Int, writing: Int) {
+    static func addTakenACTs(english: Double, reading: Double, math: Double, science: Double, writing: Double) {
         let act = ACT.init(e: english, r: reading, m: math, s: science, w: writing)
         takenACTs.append(act)
     }
@@ -83,20 +83,28 @@ struct SAT {
 }
 
 struct ACT {
-    var english: Int
-    var reading: Int
-    var math: Int
-    var science: Int
-    var writing: Int
+    var english: Double
+    var reading: Double
+    var math   : Double
+    var science: Double
+    var writing: Double
     var total: Int
     
-    init(e: Int, r: Int, m: Int, s: Int, w: Int) {
+    init(e: Double, r: Double, m: Double, s: Double, w: Double) {
         self.english = e
         self.reading = r
         self.math = m
         self.science = s
         self.writing = w
-        self.total = e + r + m + s
+        
+        if self.writing == 0 {
+            let t = ((e + r + m + s) / 4)
+            self.total = Int(t.rounded())
+        }
+        else {
+            let t = ((e + r + m + s + w) / 5)
+            self.total = Int(t.rounded())
+        }
         
     }
 }
