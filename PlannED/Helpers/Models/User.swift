@@ -55,16 +55,23 @@ final class User: ObservableObject {
         return chosenColleges
     }
     
-    static func addTakenSAT(english: Int, math: Int, writing: Int) {
-        let sat = SAT.init(e: english, m: math, w: writing)
+    static func addTakenSAT(english: Int, math: Int, writing: Int, date: Date) {
+        let sat = SAT.init(e: english, m: math, w: writing, d: date)
         takenSATs.append(sat)
     }
     
-    static func addTakenACTs(english: Double, reading: Double, math: Double, science: Double, writing: Double) {
-        let act = ACT.init(e: english, r: reading, m: math, s: science, w: writing)
+    static func addTakenACT(english: Double, reading: Double, math: Double, science: Double, writing: Double, date: Date) {
+        let act = ACT.init(e: english, r: reading, m: math, s: science, w: writing, d: date)
         takenACTs.append(act)
     }
     
+    static func removeTakenSAT(satIndex: Int) {
+        takenSATs.remove(at: satIndex)
+    }
+    
+    static func removeTakenACT(actIndex: Int) {
+        takenACTs.remove(at: actIndex)
+    }
     
 }
 
@@ -73,11 +80,13 @@ struct SAT {
     var math: Int
     var writing: Int
     var total: Int
+    var date: Date
     
-    init(e: Int, m: Int, w: Int) {
+    init(e: Int, m: Int, w: Int, d: Date) {
         self.english = e
         self.math = m
         self.writing = w
+        self.date = d
         self.total = e + m
     }
 }
@@ -88,13 +97,15 @@ struct ACT {
     var math   : Double
     var science: Double
     var writing: Double
+    var date: Date
     var total: Int
     
-    init(e: Double, r: Double, m: Double, s: Double, w: Double) {
+    init(e: Double, r: Double, m: Double, s: Double, w: Double, d: Date) {
         self.english = e
         self.reading = r
         self.math = m
         self.science = s
+        self.date = d
         self.writing = w
         
         if self.writing == 0 {

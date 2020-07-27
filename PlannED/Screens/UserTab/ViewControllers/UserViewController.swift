@@ -31,12 +31,13 @@ class UserViewController: UIViewController {
     @IBOutlet weak var scienceStackView: UIStackView!
     @IBOutlet weak var writingStackView: UIStackView!
     
-    
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     let ref = Database.database().reference()
     
     let headerTitles = ["Colleges", "SATs", "ACTs"]
     
+    // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,9 +56,10 @@ class UserViewController: UIViewController {
         scienceTextField.delegate = self
         writingTextField.delegate = self
         
-        
+        datePicker.maximumDate = Date()
     }
     
+    // MARK: doneAddbtnPressed
     @IBAction func doneAddbtnPressed(_ sender: Any) {
         
         if addEventLabel.text == "Add SAT"{
@@ -70,6 +72,7 @@ class UserViewController: UIViewController {
         tableView.reloadData()
     }
     
+    // MARK: ifAddSAT
     func ifAddSAT() {
         let formatter = NumberFormatter()
         
@@ -77,9 +80,11 @@ class UserViewController: UIViewController {
         var satMath = Int()
         var satWriting = Int()
         
-        if englishTextField.text != nil{
+        var i = Int()
+        
+        if englishTextField.text != "" {
             let n = formatter.number(from: englishTextField.text!) as! Double
-            if n > 800.0 && n < 200.0 && n.truncatingRemainder(dividingBy: 10) != 0 && n != 0.0 {
+            if n > 800.0 || n < 200.0 || n.truncatingRemainder(dividingBy: 10) > 0{
                 let alert = UIAlertController(title:"Out of SAT Range", message: "The number you typed is impossible to get on an SAT", preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -87,11 +92,12 @@ class UserViewController: UIViewController {
                 self.present(alert, animated: true)
             } else {
                 satEnglish = Int(n)
+                i += 1
             }
         }
-        if mathTextField.text != nil {
+        if mathTextField.text != "" {
             let n = formatter.number(from: mathTextField.text!) as! Double
-            if  n > 800.0 && n < 200.0 && n.truncatingRemainder(dividingBy: 10) != 0 && n != 0.0 {
+            if  n > 800.0 || n < 200.0 || n.truncatingRemainder(dividingBy: 10) > 0 {
                 let alert = UIAlertController(title:"Out of SAT Range", message: "The number you typed is impossible to get on an SAT", preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -99,35 +105,44 @@ class UserViewController: UIViewController {
                 self.present(alert, animated: true)
             } else {
                 satMath = Int(n)
+                i += 1
             }
         }
             
-        if writingTextField.text != nil && writingTextField.text! != "" {
+        if writingTextField.text != "" {
             let n = formatter.number(from: writingTextField.text!) as! Double
-            if n > 18 && n < 6 {
-                let alert = UIAlertController(title: "Out of SAT Range", message: "The number you typed is impossible to get on an SAT", preferredStyle: .alert)
+            if n > 24 || n < 6 {
+                let alert = UIAlertController(title: "Out of SAT Range", message: "The number you typed is impossible to get on an SAT. ", preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 
                 self.present(alert, animated: true)
+                
+                i += 1
+                
             } else {
                 satWriting = Int(n)
             }
         }
         
         
-        if englishTextField.text == nil || mathTextField.text == nil {
+        if englishTextField.text == "" || mathTextField.text == "" {
             let alert = UIAlertController(title:"Invalid Score", message: "Please type in a valid score.", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             
             self.present(alert, animated: true)
-        } else {
+        } else if i == 2 {
             cancelAddbtnPressed(self)
-            User.addTakenSAT(english: satEnglish, math: satMath, writing: satWriting)
+            User.addTakenSAT(english: satEnglish, math: satMath, writing: satWriting, date: datePicker.date)
+        } else if i == 3 {
+            satWriting = 0
+            cancelAddbtnPressed(self)
+            User.addTakenSAT(english: satEnglish, math: satMath, writing: satWriting, date: datePicker.date)
         }
     }
     
+    // MARK: ifAddACT
     func ifAddACT() {
         let formatter = NumberFormatter()
         
@@ -137,9 +152,11 @@ class UserViewController: UIViewController {
         var actWriting = Double()
         var actScience = Double()
         
-        if englishTextField.text != nil{
+        var i = Int()
+        
+        if englishTextField.text != ""{
             let n = formatter.number(from: englishTextField.text!) as! Double
-            if n > 36 && n < 1 && n != 0.0 {
+            if n > 36 || n < 1 {
                 let alert = UIAlertController(title:"Out of ACT Range", message: "The number you typed is impossible to get on an ACT", preferredStyle: .alert)
                
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -147,11 +164,12 @@ class UserViewController: UIViewController {
                 self.present(alert, animated: true)
             } else {
                 actEnglish = n
+                i += 1
             }
         }
-        if readingTextField.text != nil{
+        if readingTextField.text != ""{
             let n = formatter.number(from: readingTextField.text!) as! Double
-            if n > 36 && n < 1 && n != 0.0 {
+            if n > 36 || n < 1 {
                 let alert = UIAlertController(title:"Out of ACT Range", message: "The number you typed is impossible to get on an ACT", preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -159,11 +177,12 @@ class UserViewController: UIViewController {
                 self.present(alert, animated: true)
             } else {
                 actReading = n
+                i += 1
             }
         }
-        if mathTextField.text != nil {
+        if mathTextField.text != "" {
             let n = formatter.number(from: mathTextField.text!) as! Double
-            if  n > 36 && n < 1 && n != 0.0 {
+            if  n > 36 || n < 1 {
                 let alert = UIAlertController(title:"Out of ACT Range", message: "The number you typed is impossible to get on an ACT", preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -171,11 +190,12 @@ class UserViewController: UIViewController {
                 self.present(alert, animated: true)
             } else {
                 actMath = n
+                i += 1
             }
         }
-        if scienceTextField.text != nil{
+        if scienceTextField.text != ""{
             let n = formatter.number(from: scienceTextField.text!) as! Double
-            if n > 36 && n < 1 && n != 0.0 {
+            if n > 36 || n < 1 {
                 let alert = UIAlertController(title:"Out of ACT Range", message: "The number you typed is impossible to get on an ACT", preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -183,35 +203,42 @@ class UserViewController: UIViewController {
                 self.present(alert, animated: true)
             } else {
                 actScience = n
+                i += 1
             }
         }
-        if writingTextField.text != nil {
+        if writingTextField.text != "" {
             let n = formatter.number(from: writingTextField.text!) as! Double
-            if n > 36 && n < 1 {
+            if n > 36 || n < 1 {
                 let alert = UIAlertController(title: "Out of SAT Range", message: "The number you typed is impossible to get on an SAT", preferredStyle: .alert)
                     
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 
                 self.present(alert, animated: true)
+                
+                i += 1
             } else {
                 actWriting = n
             }
         }
            
            
-        if englishTextField.text == nil || mathTextField.text == nil {
+        if englishTextField.text == "" || mathTextField.text == "" {
             let alert = UIAlertController(title:"Invalid Score", message: "Please type in a valid score.", preferredStyle: .alert)
            
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
            
             self.present(alert, animated: true)
-        } else {
-            User.addTakenACTs(english: actEnglish, reading: actReading, math: actMath, science: actScience, writing: actWriting)
+        } else if i == 4{
+            User.addTakenACT(english: actEnglish, reading: actReading, math: actMath, science: actScience, writing: actWriting, date: datePicker.date)
             cancelAddbtnPressed(self)
+        } else if i == 5 {
+            actWriting = 0
+            User.addTakenACT(english: actEnglish, reading: actReading, math: actMath, science: actScience, writing: actWriting, date: datePicker.date)
         }
+        
     }
     
-    
+    // MARK: cancelAddbtnPressed
     @IBAction func cancelAddbtnPressed(_ sender: Any){
         UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
             self.transparentView.alpha = 0.0
@@ -223,7 +250,11 @@ class UserViewController: UIViewController {
     
 }
 
+// MARK: EXTENSION W/ UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate
 extension UserViewController: UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+    
+    
+    // MARK: tableView: numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rowCount = 0
         if section == 0 {
@@ -238,32 +269,57 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
         return rowCount
     }
     
+    // MARK: tableView: cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let frame = tableView.frame
+        
+        cell.backgroundColor = .systemIndigo
+        cell.textLabel?.textColor = .white
         
         if indexPath.section == 1 {
-            cell.textLabel!.text = "SAT - English: \(User.getTakenSATs()[indexPath.row].english)  Math: \(User.getTakenSATs()[indexPath.row].math)  Total: \(User.getTakenSATs()[indexPath.row].total)"
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM-dd-YYYY"
+            let string = formatter.string(from: User.getTakenSATs()[indexPath.row].date)
+            
+            cell.textLabel!.text = "SAT - Date: \(string)  Total: \(User.getTakenSATs()[indexPath.row].total)"
+        
         }
+        else if indexPath.section == 2 {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM-dd-YYYY"
+            let string = formatter.string(from: User.getTakenACTs()[indexPath.row].date)
+            
+            cell.textLabel!.text = "ACT - Date: \(string)  Total: \(User.getTakenACTs()[indexPath.row].total)"
+        }
+        
+        let removeBtn = UIButton(frame: CGRect(x: frame.size.width - 30, y: 25, width: 20, height: 20))
+        removeBtn.setTitle("-", for: .normal)
+        removeBtn.accessibilityLabel = "\(indexPath.section).\(indexPath.row)"
+        removeBtn.addTarget(self, action: #selector(removeBtnPressed), for: .touchUpInside)
+        
+        cell.addSubview(removeBtn)
         
         return cell
     }
     
+    // MARK: tableView: numberOfSections
     func numberOfSections(in tableView: UITableView) -> Int {
         return headerTitles.count
     }
     
-    
+    // MARK: tableView: viewForHeaderInSection
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let frame: CGRect = tableView.frame
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
         
-        let headerTitle = UILabel(frame: CGRect(x: 10, y: 0, width: frame.size.width - 40, height: 20))
+        let headerTitle = UILabel(frame: CGRect(x: 10, y: 10, width: frame.size.width - 40, height: 20))
         headerTitle.text = headerTitles[section]
         headerTitle.textColor = .white
         
         headerView.addSubview(headerTitle)
         
-        let btnAdd = UIButton(frame: CGRect(x: frame.size.width - 30, y: 0, width: 20, height: 20))
+        let btnAdd = UIButton(frame: CGRect(x: frame.size.width - 30, y: 10, width: 20, height: 20))
         btnAdd.setTitle("+", for: .normal)
         btnAdd.accessibilityIdentifier = "\(section)"
         btnAdd.addTarget(self, action: #selector(addBtnPressed) , for: .touchUpInside)
@@ -273,10 +329,41 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
         return headerView
     }
     
+    // MARK: tableView: heightForHeaderInSection
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
+        return 40
     }
     
+    // MARK: removeBtnPressed
+    @objc func removeBtnPressed(_ sender: UIButton?) {
+        let formatter = NumberFormatter()
+        formatter.allowsFloats = true
+        
+        var section = Int()
+        var row = Int()
+        
+        print("\(sender?.accessibilityLabel ?? "no")")
+        if formatter.number(from: (sender?.accessibilityLabel)!) != nil {
+            let digits = sender?.accessibilityLabel?.split(separator: ".")
+            
+            section = formatter.number(from: String(digits![0])) as! Int
+            row = formatter.number(from: String(digits![1])) as! Int
+        }
+        
+        if section == 0 {
+            //do college remove
+        }
+        else if section == 1 {
+            User.removeTakenSAT(satIndex: row)
+        }
+        else if section == 2 {
+            User.removeTakenACT(actIndex: row)
+        }
+        
+        tableView.reloadData()
+    }
+    
+    // MARK: addBtnPressed
     @objc func addBtnPressed(_ sender: UIButton?) {
         
         if sender?.accessibilityIdentifier == "0" /*colleges*/ {
@@ -301,9 +388,12 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
         }
     }
 
+    // MARK: textField: shouldChangeCharactersIn
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        if string.isEmpty{ return true }
+        if string.isEmpty{
+            return true
+        }
         
         let currentText = textField.text ?? ""
         let replacementText = (currentText as NSString).replacingCharacters(in: range, with: string)
@@ -314,7 +404,11 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
     }
 }
 
+// MARK: STRING EXTENSION
 extension String {
+    
+    
+    // MARK: isValidDouble
     func isValidDouble(maxDecimalPlaces: Int) -> Bool {
         
         let formatter = NumberFormatter()
