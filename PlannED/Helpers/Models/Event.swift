@@ -17,6 +17,7 @@ final class Event: ObservableObject {
     
     private static var idList = ["Normal", "SAT", "ACT", "College"]
     
+    // MARK: initializeEvent
     func initializeEvent(eventType: String, eventName: String, eventDescription: String, eventDate: String) {
         id = eventType
         name = eventName
@@ -24,6 +25,7 @@ final class Event: ObservableObject {
         date = eventDate
     }
     
+    // MARK: getter functions
     static func getEventTypeList() -> [String] {
         return Event.idList
     }

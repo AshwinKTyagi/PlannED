@@ -292,8 +292,8 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
             
             cell.textLabel!.text = "ACT - Date: \(string)  Total: \(User.getTakenACTs()[indexPath.row].total)"
         }
-        
-        let removeBtn = UIButton(frame: CGRect(x: frame.size.width - 30, y: 25, width: 20, height: 20))
+                
+        let removeBtn = UIButton(frame: CGRect(x: frame.size.width - 30, y: 12.5, width: 20, height: 20))
         removeBtn.setTitle("-", for: .normal)
         removeBtn.accessibilityLabel = "\(indexPath.section).\(indexPath.row)"
         removeBtn.addTarget(self, action: #selector(removeBtnPressed), for: .touchUpInside)
@@ -306,6 +306,10 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
     // MARK: tableView: numberOfSections
     func numberOfSections(in tableView: UITableView) -> Int {
         return headerTitles.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
     
     // MARK: tableView: viewForHeaderInSection

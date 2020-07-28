@@ -15,6 +15,7 @@ final class SATEvent: ObservableObject {
     private var SATDate = String()
     private var registrationDate = String()
     
+    // MARK: initializeEvent
     func initializeEvent(dID: String, rID: String, satDate: String, registration: String) {
         dateID = dID
         regID = rID
@@ -22,6 +23,7 @@ final class SATEvent: ObservableObject {
         registrationDate = registration
     }
     
+    // MARK: getter functions
     func getDateID() -> String{
         return dateID
     }
