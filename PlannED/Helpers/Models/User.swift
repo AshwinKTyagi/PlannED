@@ -119,26 +119,24 @@ final class User: ObservableObject {
     static func addTakenSAT(english: Int, math: Int, writing: Int, date: Date) {
         let sat = SAT.init(e: english, m: math, w: writing, d: date)
         takenSATs.append(sat)
-        
-        self.ref.child("users").child((Auth.auth().currentUser?.uid)!).setValue(["takenSATs": getTakenSATsAsAnyObjects()])
+        saveDataToFirebase()
     }
     
     static func addTakenACT(english: Double, reading: Double, math: Double, science: Double, writing: Double, date: Date) {
         let act = ACT.init(e: english, r: reading, m: math, s: science, w: writing, d: date)
         takenACTs.append(act)
-        
-        self.ref.child("users").child((Auth.auth().currentUser?.uid)!).setValue(["takenACTs": getTakenACTsAsAnyObjects()])
+        saveDataToFirebase()
     }
     
     // MARK: remove functions
     static func removeTakenSAT(satIndex: Int) {
         takenSATs.remove(at: satIndex)
-        self.ref.child("users").child((Auth.auth().currentUser?.uid)!).setValue(["takenSATs": getTakenSATsAsAnyObjects()])
+        saveDataToFirebase()
     }
     
     static func removeTakenACT(actIndex: Int) {
         takenACTs.remove(at: actIndex)
-        self.ref.child("users").child((Auth.auth().currentUser?.uid)!).setValue(["takenACTs": getTakenACTsAsAnyObjects()])
+        saveDataToFirebase()
     }
     
     static func saveDataToFirebase() {
@@ -185,7 +183,7 @@ struct SAT {
             "english": english,
             "math": math,
             "writing": writing,
-            "date": date,
+            "date": "\(date)",
             "total": total
         ]
      }
@@ -239,7 +237,7 @@ struct ACT {
             "math": math,
             "science": science,
             "writing": writing,
-            "date": date,
+            "date": "\(date)",
             "total": total
         ]
      }
