@@ -7,6 +7,9 @@
 //
 import UIKit
 import SwiftUI
+import FirebaseDatabase
+import FirebaseAuth
+import FirebaseCore
 
 class CollegePlanningViewController: UIViewController{
     
@@ -15,15 +18,33 @@ class CollegePlanningViewController: UIViewController{
         
     let helper = Helper()
     
+    let ref = Database.database().reference()
+    
     var searchActive : Bool = false
+    var collegeData = [tempCollege]()
     var collegeNameData = [String]()
     var filtered = [String]()
+    
+
     
     // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        collegeNameData = helper.getCollegeNames()
+                       
+        ref.child("colleges").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            for child in snapshot.children  {
+                let snap = child as! DataSnapshot
+                let name = snap.childSnapshot(forPath: "INSTNM").value as? String ?? ""
+                let alias = snap.childSnapshot(forPath: "ALIAS").value as? String ?? ""
+                
+                self.collegeData.append(tempCollege.init(uid: snap.key, name: name, alias: alias))
+                self.collegeNameData.append(name)
+                }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+            
         
         configureCollegeSearchBar()
         
@@ -63,7 +84,7 @@ extension CollegePlanningViewController: UITableViewDataSource, UITableViewDeleg
         if searchActive{
             return filtered.count
         }
-        return collegeNameData.count
+        return collegeData.count
     }
 
     // MARK: tableView: cellForRowAt
@@ -95,6 +116,13 @@ extension CollegePlanningViewController: UITableViewDataSource, UITableViewDeleg
         })
     }
     
+    // MARK: didSelectRowAt
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Helper.tempCollegeID = collegeData[indexPath.row].uid
+        
+        performSegue(withIdentifier: "toCollege", sender: self)
+    }
+    
     // MARK: searchBarTextDidBeginEditing
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchActive = true
@@ -115,6 +143,7 @@ extension CollegePlanningViewController: UITableViewDataSource, UITableViewDeleg
         searchActive = false
     }
     
+    
     // MARK: searchBar: textDidChange
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -122,14 +151,20 @@ extension CollegePlanningViewController: UITableViewDataSource, UITableViewDeleg
         filtered = collegeNameData.filter({ (text) -> Bool in
             
             let tmp: NSString = text as NSString
-            let tmpAlias = helper.getColleges()[i].getAlias() as NSString
+            let str: NSString = self.collegeData[i].alias as NSString
+            let tmpAlias = str.components(separatedBy: "|")
             
-                        
             let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-            let rangeAlias = tmpAlias.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
- 
+            var tmpBool = true
+            for a in tmpAlias{
+                let rangeAlias = (a as NSString).range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+                
+                if (rangeAlias.location == NSNotFound) {
+                    tmpBool = false
+                }
+            }
             i += 1
-            return (range.location != NSNotFound || rangeAlias.location != NSNotFound)
+            return (range.location != NSNotFound || tmpBool)
         })
         
         
@@ -145,5 +180,6 @@ extension CollegePlanningViewController: UITableViewDataSource, UITableViewDeleg
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
+    
 }
 

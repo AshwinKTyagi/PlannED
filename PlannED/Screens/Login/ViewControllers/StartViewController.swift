@@ -19,8 +19,14 @@ class StartViewController: UIViewController{
     
     let ref = Database.database().reference()
     
+    let helper = Helper()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let localEventData = helper.readLocalJsonFile(forName: "eventData"){
+            helper.parseForDates(eventJsonData: localEventData)
+        }
     }
     
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {

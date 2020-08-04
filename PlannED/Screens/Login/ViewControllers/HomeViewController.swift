@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UITabBarController{
 
-    let userData = Helper()
+    let helper = Helper()
     
     override func viewDidLoad() {
         super.viewDidLoad()

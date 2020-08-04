@@ -13,11 +13,11 @@ import FirebaseCore
 
 class UserViewController: UIViewController {
  
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var addEventLabel: UILabel!
-    @IBOutlet weak var email: UILabel!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var transparentView: UIView!
+    @IBOutlet weak var nameLabel       : UILabel!
+    @IBOutlet weak var addEventLabel   : UILabel!
+    @IBOutlet weak var email           : UILabel!
+    @IBOutlet weak var tableView       : UITableView!
+    @IBOutlet weak var transparentView : UIView!
     
     @IBOutlet weak var englishTextField: UITextField!
     @IBOutlet weak var readingTextField: UITextField!

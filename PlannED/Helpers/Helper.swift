@@ -18,6 +18,7 @@ final class Helper: ObservableObject {
     private static var satEvents = [SATEvent]()
     private static var actEvents = [ACTEvent]()
     private static var colleges = [College]()
+    static var tempCollegeID = String()
     
     
     //generic addEvent method that accepts date as a Date and formats it into a String
@@ -383,7 +384,7 @@ final class Helper: ObservableObject {
         var collegeNames = [String]()
     
         for c in Helper.colleges {
-            collegeNames.append(c.getName())
+            collegeNames.append(c.instnm)
         }
         
         return collegeNames
@@ -391,7 +392,7 @@ final class Helper: ObservableObject {
     
     //parses through a json to initialize data for the app (currently only initializes SAT information)
     // MARK: parseForDates
-    func parseForDates(eventJsonData: Data, collegeJsonData: Data) {
+    func parseForDates(eventJsonData: Data) {
         do {
             let decodedEventData = try EventData(data: eventJsonData)
             
@@ -405,21 +406,6 @@ final class Helper: ObservableObject {
             print("event decode success")
         } catch {
             print("event decode error")
-        }
-        do {
-            let decodedCollegeData = try CollegeData(data: collegeJsonData)
-            
-            for d in decodedCollegeData.collegeData.features {
-                let c = College()
-                c.initializeEvent(objectid: d.properties.objectid, ipedsid: d.properties.ipedsid, name: d.properties.name, address: d.properties.address, city: d.properties.city, state: d.properties.state, zip: d.properties.zip, zip4: d.properties.zip4, telephone: d.properties.telephone, type: d.properties.type, population: d.properties.population, county: d.properties.county, countyfips: d.properties.countyfips, country: d.properties.country, naicsCode: d.properties.naicsCode, naicsDesc: d.properties.naicsDesc, source: d.properties.source, website: d.properties.website, alias: d.properties.alias, ptEnroll: d.properties.ptEnroll, ftEnroll: d.properties.ftEnroll, totEnroll: d.properties.totEnroll, housing: d.properties.housing, dormCap: d.properties.dormCap, totEmp: d.properties.totEnroll, shelterID: d.properties.shelterID)
-                Helper.colleges.append(c)
-            }
-            
-            
-            print("college decode success")
-        }
-        catch {
-            print("college decode error")
         }
     }
     
@@ -499,4 +485,16 @@ extension String {
     }
     return date
   }
+}
+
+struct tempCollege {
+    let uid: String
+    let name: String
+    let alias: String
+    
+    init(uid: String, name: String, alias: String) {
+        self.uid = uid
+        self.name = name
+        self.alias = alias
+    }
 }

@@ -44,9 +44,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         transparentView.alpha = 0
         transparentView.isHidden = true
         
-        if let localEventData = helper.readLocalJsonFile(forName: "eventData"), let localCollegeData = helper.readLocalJsonFile(forName: "collegeData"){
-            helper.parseForDates(eventJsonData: localEventData, collegeJsonData: localCollegeData)
-        }
+        
     }
     
     // MARK: viewWillAppear
