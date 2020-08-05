@@ -15,7 +15,8 @@ class CollegePlanningViewController: UIViewController{
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collegeSearchBar: UISearchBar!
-        
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     let helper = Helper()
     
     let ref = Database.database().reference()
@@ -25,32 +26,43 @@ class CollegePlanningViewController: UIViewController{
     var collegeNameData = [String]()
     var filtered = [String]()
     
-
     
     // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-                       
-        ref.child("colleges").observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            for child in snapshot.children  {
-                let snap = child as! DataSnapshot
-                let name = snap.childSnapshot(forPath: "INSTNM").value as? String ?? ""
-                let alias = snap.childSnapshot(forPath: "ALIAS").value as? String ?? ""
-                
-                self.collegeData.append(tempCollege.init(uid: snap.key, name: name, alias: alias))
-                self.collegeNameData.append(name)
-                }
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-            
         
         configureCollegeSearchBar()
         
         tableView.delegate = self
         tableView.dataSource = self
         
+        fetchData()
+    }
+    
+    // MARK: fetchData
+    func fetchData() {
+        activityIndicator.startAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute:  {
+            
+            self.ref.child("colleges").observeSingleEvent(of: .value, with: { (snapshot) in
+                var i: Int = 0
+                for child in snapshot.children  {
+                    let snap = child as! DataSnapshot
+                    let name = snap.childSnapshot(forPath: "INSTNM").value as? String ?? ""
+                    let alias = snap.childSnapshot(forPath: "ALIAS").value as? String ?? ""
+                    
+                    self.collegeData.append(tempCollege.init(uid: snap.key, name: name, alias: alias))
+                    self.collegeNameData.append(name)
+                    
+                    i += 1
+                }
+                print(i)
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+        })
+        tableView.reloadData()
+        activityIndicator.stopAnimating()
     }
     
     // MARK: configureCollegeSearchBar
@@ -118,7 +130,13 @@ extension CollegePlanningViewController: UITableViewDataSource, UITableViewDeleg
     
     // MARK: didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Helper.tempCollegeID = collegeData[indexPath.row].uid
+        let tempCollegeName = filtered[indexPath.row]
+        
+        for c in collegeData {
+            if tempCollegeName == c.name {
+                Helper.tempCollegeID = c.uid
+            }
+        }
         
         performSegue(withIdentifier: "toCollege", sender: self)
     }
@@ -159,9 +177,7 @@ extension CollegePlanningViewController: UITableViewDataSource, UITableViewDeleg
             for a in tmpAlias{
                 let rangeAlias = (a as NSString).range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
                 
-                if (rangeAlias.location == NSNotFound) {
-                    tmpBool = false
-                }
+                tmpBool = rangeAlias.location != NSNotFound
             }
             i += 1
             return (range.location != NSNotFound || tmpBool)
