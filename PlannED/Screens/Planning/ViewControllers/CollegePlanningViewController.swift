@@ -22,8 +22,6 @@ class CollegePlanningViewController: UIViewController{
     let ref = Database.database().reference()
     
     var searchActive : Bool = false
-    var collegeData = [tempCollege]()
-    var collegeNameData = [String]()
     var filtered = [String]()
     
     
@@ -36,12 +34,15 @@ class CollegePlanningViewController: UIViewController{
         tableView.delegate = self
         tableView.dataSource = self
         
-        fetchData()
+        if Helper.collegeNameData.count == 0 {
+            fetchData()
+        }
     }
     
     // MARK: fetchData
     func fetchData() {
         activityIndicator.startAnimating()
+        collegeSearchBar.isHidden = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute:  {
             
             self.ref.child("colleges").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -51,18 +52,19 @@ class CollegePlanningViewController: UIViewController{
                     let name = snap.childSnapshot(forPath: "INSTNM").value as? String ?? ""
                     let alias = snap.childSnapshot(forPath: "ALIAS").value as? String ?? ""
                     
-                    self.collegeData.append(tempCollege.init(uid: snap.key, name: name, alias: alias))
-                    self.collegeNameData.append(name)
+                    Helper.collegeData.append(tempCollege.init(uid: snap.key, name: name, alias: alias))
+                    Helper.collegeNameData.append(name)
                     
                     i += 1
                 }
                 print(i)
+                self.activityIndicator.stopAnimating()
+                self.collegeSearchBar.isHidden = false
             }) { (error) in
                 print(error.localizedDescription)
             }
         })
         tableView.reloadData()
-        activityIndicator.stopAnimating()
     }
     
     // MARK: configureCollegeSearchBar
@@ -96,7 +98,7 @@ extension CollegePlanningViewController: UITableViewDataSource, UITableViewDeleg
         if searchActive{
             return filtered.count
         }
-        return collegeData.count
+        return Helper.collegeData.count
     }
 
     // MARK: tableView: cellForRowAt
@@ -109,7 +111,7 @@ extension CollegePlanningViewController: UITableViewDataSource, UITableViewDeleg
         if searchActive {
             cell.textLabel?.text = filtered[indexPath.row]
         } else {
-            cell.textLabel?.text = collegeNameData[indexPath.row]
+            cell.textLabel?.text = Helper.collegeNameData[indexPath.row]
         }
         
         return cell
@@ -132,7 +134,7 @@ extension CollegePlanningViewController: UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let tempCollegeName = filtered[indexPath.row]
         
-        for c in collegeData {
+        for c in Helper.collegeData {
             if tempCollegeName == c.name {
                 Helper.tempCollegeID = c.uid
             }
@@ -166,10 +168,10 @@ extension CollegePlanningViewController: UITableViewDataSource, UITableViewDeleg
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         var i = Int()
-        filtered = collegeNameData.filter({ (text) -> Bool in
+        filtered = Helper.collegeNameData.filter({ (text) -> Bool in
             
             let tmp: NSString = text as NSString
-            let str: NSString = self.collegeData[i].alias as NSString
+            let str: NSString = Helper.collegeData[i].alias as NSString
             let tmpAlias = str.components(separatedBy: "|")
             
             let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)

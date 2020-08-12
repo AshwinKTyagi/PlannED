@@ -17,8 +17,9 @@ final class Helper: ObservableObject {
     private static var events = [Event]()
     private static var satEvents = [SATEvent]()
     private static var actEvents = [ACTEvent]()
-    private static var colleges = [College]()
     static var tempCollegeID = String()
+    static var collegeNameData = [String]()
+    static var collegeData = [tempCollege]()
     
     
     //generic addEvent method that accepts date as a Date and formats it into a String
@@ -374,20 +375,14 @@ final class Helper: ObservableObject {
     }
     
     // MARK: getColleges
-    func getColleges() -> [College] {
-        return Helper.colleges
+    func getColleges() -> [tempCollege] {
+        return Helper.collegeData
     }
     
     // MARK: getCollegeNames
     func getCollegeNames() -> [String] {
-         
-        var collegeNames = [String]()
-    
-        for c in Helper.colleges {
-            collegeNames.append(c.instnm)
-        }
         
-        return collegeNames
+        return Helper.collegeNameData
     }
     
     //parses through a json to initialize data for the app (currently only initializes SAT information)
