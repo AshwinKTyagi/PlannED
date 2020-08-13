@@ -29,11 +29,11 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <state key="normal" title="     Item 1">
+                                                    <state key="normal" title="     Start Planning">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="signOutBtnPressed:" destination="9aW-iD-Zfu" eventType="touchUpInside" id="ATz-zi-Dc7"/>
+                                                        <action selector="planningBtnPressed:" destination="9aW-iD-Zfu" eventType="touchUpInside" id="NNj-mi-IN2"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -56,9 +56,6 @@
                                                     <state key="normal" title="     Item 2">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="signOutBtnPressed:" destination="9aW-iD-Zfu" eventType="touchUpInside" id="eUf-SR-Wx9"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -106,12 +103,23 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="IBI-f8-v4q" kind="unwind" identifier="unwindToStartController" unwindAction="prepareForUnwindWithSegue:" id="OfA-qn-amV"/>
+                        <segue destination="UuO-t0-bWQ" kind="show" identifier="toPlanning" id="Gw6-CM-HKR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aEr-yf-f0b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="IBI-f8-v4q" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="415.94202898550731" y="121.875"/>
+        </scene>
+        <!--Planning-->
+        <scene sceneID="YmC-Xp-Tr8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Planning" id="UuO-t0-bWQ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="5Pz-oR-O84"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ofA-xM-JTA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1154" y="122"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hnn-8c-eEE">

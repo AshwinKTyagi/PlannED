@@ -14,6 +14,7 @@ import FirebaseDatabase
 class CollegeViewController: UIViewController{
     
     @IBOutlet weak var instName: UILabel!
+    @IBOutlet weak var favoritesBtn: UIButton!
     
     @IBOutlet weak var satTextView: UIView!
     @IBOutlet weak var satView: UIView!
@@ -67,8 +68,17 @@ class CollegeViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        favoritesBtn.setImage(UIImage(systemName: "star"), for: .normal)
+        favoritesBtn.setImage(UIImage(systemName: "star.fill"), for: .selected)
+        
+        favoritesBtn.isHidden = false
+        
         instName.adjustsFontSizeToFitWidth = true
         instName.minimumScaleFactor = 0.2
+        
+        if User.getChosenColleges().contains(Helper.tempCollegeID){
+            favoritesBtn.isSelected = true
+        }
         
         ref.child("colleges").child(Helper.tempCollegeID).observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -330,6 +340,18 @@ class CollegeViewController: UIViewController{
                 self.degTextView.isHidden = true
             }
         })
+    }
+    
+    @IBAction func favoritesBtnPressed(_ sender: UIButton) {
+        if sender.isSelected {
+            User.removeChosenCollege(ipsed: Helper.tempCollegeID)
+            sender.isSelected = false
+        }
+        else {
+            User.addChosenCollege(ipsed: Helper.tempCollegeID)
+            sender.isSelected = true
+        }
+        
     }
 }
 

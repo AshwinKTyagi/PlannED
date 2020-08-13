@@ -27,4 +27,8 @@ class SettingsViewController: UITableViewController{
         
         
     }
+    
+    @IBAction func planningBtnPressed(_ sender: Any){
+        self.performSegue(withIdentifier: "toPlanning", sender: self)
+    }
 }

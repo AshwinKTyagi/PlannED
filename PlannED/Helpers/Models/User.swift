@@ -128,6 +128,11 @@ final class User: ObservableObject {
         saveDataToFirebase()
     }
     
+    static func addChosenCollege(ipsed: String) {
+        chosenColleges.append(ipsed)
+        saveDataToFirebase()
+    }
+    
     // MARK: remove functions
     static func removeTakenSAT(satIndex: Int) {
         takenSATs.remove(at: satIndex)
@@ -139,9 +144,22 @@ final class User: ObservableObject {
         saveDataToFirebase()
     }
     
+    static func removeChosenCollege(ipsed: String)
+    {
+        var i = Int()
+        for c in chosenColleges{
+            if c == ipsed {
+                chosenColleges.remove(at: i)
+            }
+            i += 1
+        }
+        saveDataToFirebase()
+    }
+    
     static func saveDataToFirebase() {
         let userData = ["firstName": User.getFirstName(),
                         "lastName": User.getLastName(),
+                        "email": User.getEmail(),
                         "takenSATs": User.getTakenSATsAsAnyObjects(),
                         "takenACTs": User.getTakenACTsAsAnyObjects(),
                         "chosenColleges": User.getChosenColleges()
