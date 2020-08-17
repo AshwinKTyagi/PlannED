@@ -238,6 +238,11 @@ class UserViewController: UIViewController {
         
     }
     
+    // MARK: ifAddCollege
+    func ifAddCollege() {
+        
+    }
+    
     // MARK: cancelAddbtnPressed
     @IBAction func cancelAddbtnPressed(_ sender: Any){
         UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
@@ -277,7 +282,10 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
         cell.backgroundColor = .systemIndigo
         cell.textLabel?.textColor = .white
         
-        if indexPath.section == 1 {
+        if indexPath.section == 0 {
+            cell.textLabel!.text = User.getChosenCollegeNames()[indexPath.row]
+        }
+        else if indexPath.section == 1 {
             let formatter = DateFormatter()
             formatter.dateFormat = "MM-dd-YYYY"
             let string = formatter.string(from: User.getTakenSATs()[indexPath.row].date)
@@ -308,6 +316,7 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
         return headerTitles.count
     }
     
+    // MARK: tableView: heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
@@ -355,7 +364,7 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
         }
         
         if section == 0 {
-            //do college remove
+            User.removeChosenCollege(collegeIndex: row)
         }
         else if section == 1 {
             User.removeTakenSAT(satIndex: row)
@@ -371,7 +380,7 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
     @objc func addBtnPressed(_ sender: UIButton?) {
         
         if sender?.accessibilityIdentifier == "0" /*colleges*/ {
-            
+            performSegue(withIdentifier: "toCollege", sender: self)
         }
         else /* sat and act */
         {

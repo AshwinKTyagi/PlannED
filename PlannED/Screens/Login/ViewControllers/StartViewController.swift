@@ -46,7 +46,7 @@ class StartViewController: UIViewController{
                 User.setLastName(lastName: value?["lastName"] as? String ?? "")
                 User.setTakenSATs(sats: value?["takenSATs"] as? [Any] ?? [])
                 User.setTakenACTs(acts: value?["takenACTs"] as? [Any] ?? [])
-                User.setChosenColleges(collegeIPEDSIDs: value?["chosenColleges"] as? [String] ?? [] )
+                User.setChosenColleges(colleges: value?["chosenColleges"] as? [Any] ?? [] )
               }) { (error) in
                 print(error.localizedDescription)
             }

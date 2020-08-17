@@ -19,7 +19,7 @@ final class User: ObservableObject {
     
     static private var takenSATs = [SAT]()
     static private var takenACTs = [ACT]()
-    static private var chosenColleges = [String]() //saved as colleges ipsed
+    static private var chosenColleges = [tempCollege]()
     
     static private var ref = Database.database().reference()
     
@@ -45,8 +45,10 @@ final class User: ObservableObject {
     static func setTakenSATs(sats: [Any]) {
         var tempSat = [SAT]()
         
+        print("\(sats)")
+        
         for s in sats{
-            tempSat.append(SAT.init(snapshot: s as! DataSnapshot))
+            tempSat.append(SAT.init(dict: s as! NSDictionary))
         }
         
         self.takenSATs = tempSat
@@ -60,14 +62,24 @@ final class User: ObservableObject {
         var tempAct = [ACT]()
         
         for a in acts{
-            tempAct.append(ACT.init(snapshot: a as! DataSnapshot))
+            tempAct.append(ACT.init(dict: a as! NSDictionary))
         }
         
         self.takenACTs = tempAct
     }
     
-    static func setChosenColleges(collegeIPEDSIDs: [String]) {
-        self.chosenColleges = collegeIPEDSIDs
+    static func setChosenColleges(colleges: [tempCollege]) {
+        self.chosenColleges = colleges
+    }
+    
+    static func setChosenColleges(colleges: [Any]) {
+        var tempColleges = [tempCollege]()
+        
+        for c in colleges{
+            tempColleges.append(tempCollege.init(dict: c as! NSDictionary))
+        }
+        
+        self.chosenColleges = tempColleges
     }
     
     // MARK: getter functions
@@ -111,8 +123,36 @@ final class User: ObservableObject {
         return acts
     }
     
-    static func getChosenColleges() -> [String] {
+    static func getChosenColleges() -> [tempCollege] {
         return chosenColleges
+    }
+    
+    static func getChosenCollegeNames() -> [String]{
+        var names = [String]()
+        
+        for c in chosenColleges {
+            names.append(c.name)
+        }
+        return names
+    }
+    
+    static func getChosenCollegeIPSEDs() -> [String] {
+        var ipseds = [String]()
+        
+        for c in chosenColleges {
+            ipseds.append(c.ipsed)
+        }
+        return ipseds
+    }
+    
+    static func getChosenCollegesAsAnyObjects() -> [Any] {
+        var colleges = [Any]()
+        
+        for c in chosenColleges{
+            colleges.append(c.toAnyObject())
+        }
+        
+        return colleges
     }
     
     // MARK: add functions
@@ -128,8 +168,8 @@ final class User: ObservableObject {
         saveDataToFirebase()
     }
     
-    static func addChosenCollege(ipsed: String) {
-        chosenColleges.append(ipsed)
+    static func addChosenCollege(college: tempCollege) {
+        chosenColleges.append(college)
         saveDataToFirebase()
     }
     
@@ -144,11 +184,16 @@ final class User: ObservableObject {
         saveDataToFirebase()
     }
     
-    static func removeChosenCollege(ipsed: String)
+    static func removeChosenCollege(collegeIndex: Int) {
+        chosenColleges.remove(at: collegeIndex)
+        saveDataToFirebase()
+    }
+    
+    static func removeChosenCollege(college: tempCollege)
     {
         var i = Int()
         for c in chosenColleges{
-            if c == ipsed {
+            if c.ipsed == college.ipsed {
                 chosenColleges.remove(at: i)
             }
             i += 1
@@ -156,13 +201,14 @@ final class User: ObservableObject {
         saveDataToFirebase()
     }
     
+    // MARK: saveDataToFireBase
     static func saveDataToFirebase() {
         let userData = ["firstName": User.getFirstName(),
                         "lastName": User.getLastName(),
                         "email": User.getEmail(),
                         "takenSATs": User.getTakenSATsAsAnyObjects(),
                         "takenACTs": User.getTakenACTsAsAnyObjects(),
-                        "chosenColleges": User.getChosenColleges()
+                        "chosenColleges": User.getChosenCollegesAsAnyObjects()
             ] as [String : Any]
         
         self.ref.child("users").child((Auth.auth().currentUser?.uid)!).setValue(userData)
@@ -194,7 +240,18 @@ struct SAT {
         date = (snapshotValue["date"] as! NSDate) as Date
         total = snapshotValue["total"] as! Int
     }
-
+    
+    init(dict: NSDictionary) {
+        english = dict["english"] as! Int
+        math = dict["math"] as! Int
+        writing = dict["writing"] as! Int
+        total = dict["total"] as! Int
+        
+        let d = dict["date"] as! String
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        date = dateFormatter.date(from: d)!
+    }
     // function for saving data
     func toAnyObject() -> Any {
         return [
@@ -246,7 +303,17 @@ struct ACT {
         date = (snapshotValue["date"] as! NSDate) as Date
         total = snapshotValue["total"] as! Int
     }
-
+    
+    init(dict: NSDictionary){
+        english = dict["english"] as! Double
+        reading = dict["reading"] as! Double
+        math = dict["math"] as! Double
+        science = dict["reading"] as! Double
+        writing = dict["writing"] as! Double
+        date = (dict["date"] as! NSDate) as Date
+        total = dict["total"] as! Int
+    }
+    
     // function for saving data
     func toAnyObject() -> Any {
         return [
@@ -260,3 +327,38 @@ struct ACT {
         ]
      }
 }
+
+// MARK: tempCollege struct
+struct tempCollege {
+    let ipsed: String
+    let name: String
+    let alias: String
+    
+    init(ipsed: String, name: String, alias: String) {
+        self.ipsed = ipsed
+        self.name = name
+        self.alias = alias
+    }
+    
+    init(snapshot: DataSnapshot) {
+        let snapshotValue = snapshot.value as! [String: AnyObject]
+        ipsed = snapshotValue["ipsed"] as! String
+        name = snapshotValue["name"] as! String
+        alias = snapshotValue["alias"] as! String
+    }
+    
+    init(dict: NSDictionary){
+        ipsed = dict["ipsed"] as! String
+        name = dict["name"] as! String
+        alias = dict["alias"] as! String
+    }
+    
+    func toAnyObject() -> Any {
+        return [
+            "ipsed": ipsed,
+            "name": name,
+            "alias": alias,
+        ]
+    }
+}
+

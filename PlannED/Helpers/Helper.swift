@@ -17,7 +17,7 @@ final class Helper: ObservableObject {
     private static var events = [Event]()
     private static var satEvents = [SATEvent]()
     private static var actEvents = [ACTEvent]()
-    static var tempCollegeID = String()
+    static var temporaryCollege = tempCollege(ipsed: "", name: "", alias: "")
     static var collegeNameData = [String]()
     static var collegeData = [tempCollege]()
     
@@ -477,19 +477,7 @@ extension String {
             print("fail")
             preconditionFailure("Take a look to your format")
             
-    }
-    return date
-  }
-}
-
-struct tempCollege {
-    let uid: String
-    let name: String
-    let alias: String
-    
-    init(uid: String, name: String, alias: String) {
-        self.uid = uid
-        self.name = name
-        self.alias = alias
+        }
+        return date
     }
 }

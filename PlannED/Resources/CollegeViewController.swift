@@ -64,7 +64,7 @@ class CollegeViewController: UIViewController{
     
     let ref = Database.database().reference()
     
-    
+    // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,11 +76,11 @@ class CollegeViewController: UIViewController{
         instName.adjustsFontSizeToFitWidth = true
         instName.minimumScaleFactor = 0.2
         
-        if User.getChosenColleges().contains(Helper.tempCollegeID){
+        if User.getChosenCollegeIPSEDs().contains(Helper.temporaryCollege.ipsed){
             favoritesBtn.isSelected = true
         }
         
-        ref.child("colleges").child(Helper.tempCollegeID).observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child("colleges").child(Helper.temporaryCollege.ipsed).observeSingleEvent(of: .value, with: { (snapshot) in
             
             let formatter = NumberFormatter()
             let value = snapshot.value as? NSDictionary
@@ -342,13 +342,15 @@ class CollegeViewController: UIViewController{
         })
     }
     
+    
+    // MARK: favoritesBtnPressed
     @IBAction func favoritesBtnPressed(_ sender: UIButton) {
         if sender.isSelected {
-            User.removeChosenCollege(ipsed: Helper.tempCollegeID)
+            User.removeChosenCollege(college: Helper.temporaryCollege)
             sender.isSelected = false
         }
         else {
-            User.addChosenCollege(ipsed: Helper.tempCollegeID)
+            User.addChosenCollege(college: Helper.temporaryCollege)
             sender.isSelected = true
         }
         
