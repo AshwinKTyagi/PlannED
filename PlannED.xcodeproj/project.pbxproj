@@ -15,6 +15,7 @@
 		2B064AB124A26192008791AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B064AAF24A26192008791AF /* LaunchScreen.storyboard */; };
 		2B064ABC24A26192008791AF /* PlannEDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B064ABB24A26192008791AF /* PlannEDTests.swift */; };
 		2B064AC824A26859008791AF /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B064AC724A26859008791AF /* Calendar.storyboard */; };
+		2B51EA6A24EC70FC00F66546 /* College.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B51EA6924EC70FC00F66546 /* College.storyboard */; };
 		2B5889B324B8EC3C0040E006 /* College.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5889B224B8EC3C0040E006 /* College.swift */; };
 		2B5C36AB24C8C3A300930B77 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C36AA24C8C3A300930B77 /* User.swift */; };
 		2B5C36AD24C8C60100930B77 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C36AC24C8C60100930B77 /* UserData.swift */; };
@@ -75,6 +76,7 @@
 		2B064ABB24A26192008791AF /* PlannEDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannEDTests.swift; sourceTree = "<group>"; };
 		2B064ABD24A26192008791AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B064AC724A26859008791AF /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
+		2B51EA6924EC70FC00F66546 /* College.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = College.storyboard; sourceTree = "<group>"; };
 		2B5889B224B8EC3C0040E006 /* College.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = College.swift; sourceTree = "<group>"; };
 		2B5C36AA24C8C3A300930B77 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2B5C36AC24C8C60100930B77 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -88,7 +90,7 @@
 		2B5ECBA624B7BDB10051BCE2 /* CollegeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollegeData.swift; sourceTree = "<group>"; };
 		2B60B9EB24C610B70048C2B2 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		2B60B9ED24C6134E0048C2B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		2B64383124D9EE8300F7F8E4 /* CollegeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollegeViewController.swift; path = PlannED/Resources/CollegeViewController.swift; sourceTree = SOURCE_ROOT; };
+		2B64383124D9EE8300F7F8E4 /* CollegeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollegeViewController.swift; path = PlannED/Screens/UserTab/ViewControllers/CollegeViewController.swift; sourceTree = SOURCE_ROOT; };
 		2B64383324D9FA9200F7F8E4 /* PlanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlanningViewController.swift; path = PlannED/Resources/PlanningViewController.swift; sourceTree = SOURCE_ROOT; };
 		2B6BA3BE24B6430200433937 /* ACTEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTEvent.swift; sourceTree = "<group>"; };
 		2B6E42E624CA12CE00EFAD3E /* Checklist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Checklist.storyboard; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				2B6E42ED24CB48CD00EFAD3E /* UserViewController.swift */,
+				2B64383124D9EE8300F7F8E4 /* CollegeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				2B6E42EB24CA173300EFAD3E /* User.storyboard */,
+				2B51EA6924EC70FC00F66546 /* College.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -388,7 +392,6 @@
 				2B5C36B324C8CB0900930B77 /* ACTPlanningViewController.swift */,
 				2B64383324D9FA9200F7F8E4 /* PlanningViewController.swift */,
 				2B5C36B424C8CB0A00930B77 /* CollegePlanningViewController.swift */,
-				2B64383124D9EE8300F7F8E4 /* CollegeViewController.swift */,
 				2B5C36B224C8CB0900930B77 /* SATPlanningViewController.swift */,
 			);
 			path = "View Controllers";
@@ -504,6 +507,7 @@
 				2B064AB124A26192008791AF /* LaunchScreen.storyboard in Resources */,
 				2B6E42E724CA12CE00EFAD3E /* Checklist.storyboard in Resources */,
 				2B60B9EC24C610B70048C2B2 /* Settings.storyboard in Resources */,
+				2B51EA6A24EC70FC00F66546 /* College.storyboard in Resources */,
 				2B7CAA1B24C229DE0029CB68 /* Main.storyboard in Resources */,
 				2B064AAE24A26192008791AF /* Assets.xcassets in Resources */,
 				2BA7A0F624AFB6EB00AEF8B8 /* ACTPlanning.storyboard in Resources */,

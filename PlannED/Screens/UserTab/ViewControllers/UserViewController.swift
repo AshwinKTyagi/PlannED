@@ -72,6 +72,12 @@ class UserViewController: UIViewController {
         tableView.reloadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
+    
     // MARK: ifAddSAT
     func ifAddSAT() {
         let formatter = NumberFormatter()
@@ -347,6 +353,15 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
         return 40
     }
     
+    // MARK: tableView: didSelectRowAt
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            Helper.temporaryCollege = User.getChosenColleges()[indexPath.row]
+            performSegue(withIdentifier: "toCollege", sender: self)
+        }
+    }
+    
+    
     // MARK: removeBtnPressed
     @objc func removeBtnPressed(_ sender: UIButton?) {
         let formatter = NumberFormatter()
@@ -380,7 +395,7 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
     @objc func addBtnPressed(_ sender: UIButton?) {
         
         if sender?.accessibilityIdentifier == "0" /*colleges*/ {
-            performSegue(withIdentifier: "toCollege", sender: self)
+            performSegue(withIdentifier: "toCollegeAppPlanning", sender: self)
         }
         else /* sat and act */
         {
@@ -415,6 +430,7 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
         return replacementText.isValidDouble(maxDecimalPlaces: 2)
         
     }
+
 }
 
 // MARK: STRING EXTENSION

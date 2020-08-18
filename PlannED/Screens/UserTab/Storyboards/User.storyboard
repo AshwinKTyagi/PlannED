@@ -308,6 +308,8 @@
                         <outlet property="transparentView" destination="FJZ-eM-QMy" id="Hh1-d9-d2l"/>
                         <outlet property="writingStackView" destination="9YA-02-BC1" id="gbi-Da-8kX"/>
                         <outlet property="writingTextField" destination="uPb-dr-Fga" id="Em0-Ap-FFS"/>
+                        <segue destination="ggf-bL-GGz" kind="show" identifier="toCollege" id="VAA-Id-dFn"/>
+                        <segue destination="1Sd-iw-WFm" kind="show" identifier="toCollegeAppPlanning" id="Mqg-cB-VcX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xic-W8-laZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -332,6 +334,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jYn-Gp-sAQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="118.84057971014494" y="153.34821428571428"/>
+        </scene>
+        <!--CollegeAppPlanning-->
+        <scene sceneID="REU-Vj-iMw">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CollegeAppPlanning" id="1Sd-iw-WFm" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="YdJ-ro-RLN"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pib-Me-zbZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1795" y="122"/>
+        </scene>
+        <!--College-->
+        <scene sceneID="nUZ-IJ-ugS">
+            <objects>
+                <viewControllerPlaceholder storyboardName="College" id="ggf-bL-GGz" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ayO-Dg-bth"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xky-Vh-C2V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1739" y="186"/>
         </scene>
     </scenes>
     <resources>

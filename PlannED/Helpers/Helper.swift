@@ -315,6 +315,12 @@ final class Helper: ObservableObject {
         return string
     }
     
+    // MARK: changeTempCollege
+    static func changeTempCollege(college: tempCollege) {
+        temporaryCollege = college
+    }
+    
+    
     //gets the event dates
     // MARK: getEventDates
     func getEventDates() -> [String]{

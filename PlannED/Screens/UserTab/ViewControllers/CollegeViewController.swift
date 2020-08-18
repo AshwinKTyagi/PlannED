@@ -52,8 +52,8 @@ class CollegeViewController: UIViewController{
     @IBOutlet weak var pctFemaleStackView: UIStackView!
     @IBOutlet weak var pctMale: UILabel!
     @IBOutlet weak var pctMaleStackView: UIStackView!
-    @IBOutlet weak var pctBornUS: UILabel!
-    @IBOutlet weak var pctBornUSStackView: UIStackView!
+    @IBOutlet weak var pctInternational: UILabel!
+    @IBOutlet weak var pctInternationalStackView: UIStackView!
     
     @IBOutlet weak var degTextView: UIView!
     @IBOutlet weak var degView: UIView!
@@ -61,6 +61,10 @@ class CollegeViewController: UIViewController{
     @IBOutlet weak var pctBAStackView: UIStackView!
     @IBOutlet weak var pctProDeg: UILabel!
     @IBOutlet weak var pctProDegStackView: UIStackView!
+    
+    @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var infoBtn: UIButton!
+    
     
     let ref = Database.database().reference()
     
@@ -70,6 +74,9 @@ class CollegeViewController: UIViewController{
         
         favoritesBtn.setImage(UIImage(systemName: "star"), for: .normal)
         favoritesBtn.setImage(UIImage(systemName: "star.fill"), for: .selected)
+        
+        infoBtn.setImage(UIImage(systemName: "info.circle"), for: .normal)
+        infoBtn.setImage(UIImage(systemName: "info.circle.fill"), for: .selected)
         
         favoritesBtn.isHidden = false
         
@@ -282,10 +289,10 @@ class CollegeViewController: UIViewController{
             string = value?["PCT_BORN_US"] as? String ?? ""
             if string != "NULL" && string != "PrivacySuppressed" {
                 v = formatter.number(from: string) as! Double
-                self.pctBornUS.text = String(format: "%.2f", v) + "%"
+                self.pctInternational.text = String(format: "%.2f", 1 - v) + "%"
             }
             else {
-                self.pctBornUSStackView.isHidden = true
+                self.pctInternationalStackView.isHidden = true
                 i += 1
             }
             
@@ -302,12 +309,12 @@ class CollegeViewController: UIViewController{
             else if self.demo1View.isHidden {
                 i += -4
                 i = 4 - i
-                self.demo2View.heightAnchor.constraint(equalToConstant: 20 + (CGFloat(i) * self.pctBornUSStackView.frame.height)).isActive = true
+                self.demo2View.heightAnchor.constraint(equalToConstant: 20 + (CGFloat(i) * self.pctInternationalStackView.frame.height)).isActive = true
             }
             else {
                 i = 4 - i
                 
-                self.demo2View.heightAnchor.constraint(equalToConstant: 20 + (CGFloat(i) * self.pctBornUSStackView.frame.height)).isActive = true
+                self.demo2View.heightAnchor.constraint(equalToConstant: 20 + (CGFloat(i) * self.pctInternationalStackView.frame.height)).isActive = true
             }
             i = 0
             
@@ -354,6 +361,18 @@ class CollegeViewController: UIViewController{
             sender.isSelected = true
         }
         
+    }
+    
+    // MARK: inforBtnPressed
+    @IBAction func infoBtnPressed(_ sender: UIButton) {
+        if sender.isSelected {
+            infoView.isHidden = true
+            sender.isSelected = false
+        }
+        else {
+            infoView.isHidden = false
+            sender.isSelected = true
+        }
     }
 }
 
