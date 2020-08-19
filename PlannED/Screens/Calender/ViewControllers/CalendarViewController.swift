@@ -124,11 +124,19 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let itemLbl  =  dayEventNames[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
+        let frame = tableView.frame
         
-
         cell.textLabel!.text = itemLbl
         cell.backgroundColor = UIColor.systemIndigo
         cell.textLabel!.textColor = UIColor.white
+        
+        let topSeperatorLineView = UIView(frame: CGRect(x: 10, y: 0, width: frame.width - 20, height: 0.5))
+        topSeperatorLineView.backgroundColor = .white
+        
+        if indexPath.row != 0 {
+            cell.addSubview(topSeperatorLineView)
+        }
+        
         return cell
     }
     

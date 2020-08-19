@@ -74,7 +74,7 @@ class CollegePlanningViewController: UIViewController{
         
         let textField = collegeSearchBar.searchTextField as UITextField
  
-        textField.backgroundColor = .systemIndigo
+        textField.backgroundColor = UIColor(red: 150/255, green: 1/255, blue: 190/255, alpha: 1)
         textField.textColor = .white
         
         let glassIconView = textField.leftView as! UIImageView
@@ -104,14 +104,21 @@ extension CollegePlanningViewController: UITableViewDataSource, UITableViewDeleg
     // MARK: tableView: cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let frame = tableView.frame
         
-        cell.backgroundColor = UIColor.systemIndigo
         cell.textLabel?.textColor = UIColor.white
         
         if searchActive {
             cell.textLabel?.text = filtered[indexPath.row]
         } else {
             cell.textLabel?.text = Helper.collegeNameData[indexPath.row]
+        }
+        
+        let topSeperatorLineView = UIView(frame: CGRect(x: 10, y: 0, width: frame.width - 20, height: 0.5))
+        topSeperatorLineView.backgroundColor = .white
+        
+        if indexPath.row != 0 {
+            cell.addSubview(topSeperatorLineView)
         }
         
         return cell

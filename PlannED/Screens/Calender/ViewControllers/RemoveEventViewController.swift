@@ -130,9 +130,15 @@ extension RemoveEventViewController: UITableViewDelegate, UITableViewDataSource{
     //sets each cell's text label to a date from the data source
     // MARK: cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let frame = tableView.frame
+        
+        let topSeperatorLineView = UIView(frame: CGRect(x: 10, y: 0, width: frame.width - 20, height: 0.5))
+        topSeperatorLineView.backgroundColor = .white
+        
+        if indexPath.row != 0 {
+            cell.addSubview(topSeperatorLineView)
+        }
         
         if (tableView == self.tableView){
             cell.textLabel?.text = dataSource[indexPath.row]

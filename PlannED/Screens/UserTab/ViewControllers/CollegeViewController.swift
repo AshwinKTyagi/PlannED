@@ -289,7 +289,7 @@ class CollegeViewController: UIViewController{
             string = value?["PCT_BORN_US"] as? String ?? ""
             if string != "NULL" && string != "PrivacySuppressed" {
                 v = formatter.number(from: string) as! Double
-                self.pctInternational.text = String(format: "%.2f", 1 - v) + "%"
+                self.pctInternational.text = String(format: "%.2f", 100 - v) + "%"
             }
             else {
                 self.pctInternationalStackView.isHidden = true

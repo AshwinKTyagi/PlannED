@@ -57,6 +57,7 @@ class UserViewController: UIViewController {
         writingTextField.delegate = self
         
         datePicker.maximumDate = Date()
+        
     }
     
     // MARK: doneAddbtnPressed
@@ -244,10 +245,6 @@ class UserViewController: UIViewController {
         
     }
     
-    // MARK: ifAddCollege
-    func ifAddCollege() {
-        
-    }
     
     // MARK: cancelAddbtnPressed
     @IBAction func cancelAddbtnPressed(_ sender: Any){
@@ -285,7 +282,7 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let frame = tableView.frame
         
-        cell.backgroundColor = .systemIndigo
+        cell.backgroundColor = .clear
         cell.textLabel?.textColor = .white
         
         if indexPath.section == 0 {
@@ -312,6 +309,13 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
         removeBtn.accessibilityLabel = "\(indexPath.section).\(indexPath.row)"
         removeBtn.addTarget(self, action: #selector(removeBtnPressed), for: .touchUpInside)
         
+        let topSeperatorLineView = UIView(frame: CGRect(x: 10, y: 0, width: frame.width - 20, height: 0.5))
+        topSeperatorLineView.backgroundColor = .white
+        
+        if indexPath.row != 0 {
+            cell.addSubview(topSeperatorLineView)
+        }
+        
         cell.addSubview(removeBtn)
         
         return cell
@@ -331,6 +335,7 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let frame: CGRect = tableView.frame
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
+        headerView.backgroundColor = UIColor(red: 75/255, green: 1/255, blue: 100/255, alpha: 1)
         
         let headerTitle = UILabel(frame: CGRect(x: 10, y: 10, width: frame.size.width - 40, height: 20))
         headerTitle.text = headerTitles[section]
