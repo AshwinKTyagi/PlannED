@@ -17,6 +17,7 @@
 		2B064AC824A26859008791AF /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B064AC724A26859008791AF /* Calendar.storyboard */; };
 		2B51EA6A24EC70FC00F66546 /* College.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B51EA6924EC70FC00F66546 /* College.storyboard */; };
 		2B5889B324B8EC3C0040E006 /* College.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5889B224B8EC3C0040E006 /* College.swift */; };
+		2B5AA19C24EF119600E8472B /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5AA19B24EF119600E8472B /* ChecklistViewController.swift */; };
 		2B5C36AB24C8C3A300930B77 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C36AA24C8C3A300930B77 /* User.swift */; };
 		2B5C36AD24C8C60100930B77 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C36AC24C8C60100930B77 /* UserData.swift */; };
 		2B5C36B524C8CB0A00930B77 /* SATPlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C36B224C8CB0900930B77 /* SATPlanningViewController.swift */; };
@@ -78,6 +79,7 @@
 		2B064AC724A26859008791AF /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		2B51EA6924EC70FC00F66546 /* College.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = College.storyboard; sourceTree = "<group>"; };
 		2B5889B224B8EC3C0040E006 /* College.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = College.swift; sourceTree = "<group>"; };
+		2B5AA19B24EF119600E8472B /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
 		2B5C36AA24C8C3A300930B77 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2B5C36AC24C8C60100930B77 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		2B5C36B224C8CB0900930B77 /* SATPlanningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SATPlanningViewController.swift; path = PlannED/Screens/Planning/ViewControllers/SATPlanningViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -269,6 +271,7 @@
 		2B6E42E524CA121D00EFAD3E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2B5AA19B24EF119600E8472B /* ChecklistViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				2B64383424D9FA9200F7F8E4 /* PlanningViewController.swift in Sources */,
 				2BA7A10124B1459000AEF8B8 /* SATEvent.swift in Sources */,
 				2B60B9EE24C6134E0048C2B2 /* SettingsViewController.swift in Sources */,
+				2B5AA19C24EF119600E8472B /* ChecklistViewController.swift in Sources */,
 				2B5C36B524C8CB0A00930B77 /* SATPlanningViewController.swift in Sources */,
 				2B7CAA2124C22A690029CB68 /* LoginViewController.swift in Sources */,
 				2BA7A0FD24B1349300AEF8B8 /* EventData.swift in Sources */,
