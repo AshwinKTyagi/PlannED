@@ -214,6 +214,21 @@ final class User: ObservableObject {
         self.ref.child("users").child((Auth.auth().currentUser?.uid)!).setValue(userData)
     }
 
+    // MARK: collegePlan
+    static func collegePlan() {
+        
+    }
+    
+    // MARK: collegePlan(appDate: String)
+    static func collegePlan(appDate: String) {
+        
+    }
+    
+    // MARK: collegePlan(appDate: String)
+    static func collegePlan(appDate: Date) {
+        
+    }
+    
 }
 
 // MARK: SAT struct

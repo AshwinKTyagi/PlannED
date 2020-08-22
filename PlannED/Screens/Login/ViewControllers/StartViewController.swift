@@ -55,6 +55,8 @@ class StartViewController: UIViewController{
         }
     }
     
+    
+    
     @IBAction func onLoginClick(_ sender: Any){
         
         performSegue(withIdentifier: "startToLoginSegue", sender: sender)

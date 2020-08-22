@@ -1,20 +1,20 @@
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 // To parse the JSON, add this file to your project and do:
 //
-//   let welcome = try Welcome(json)
+//   let collegeData = try CollegeData(json)
 
 import Foundation
 
-// MARK: - Welcome
-struct Welcome: Codable {
+// MARK: - CollegeData
+struct CollegeData: Codable {
     let collegeData: [String: CollegeDatum]
 }
 
-// MARK: Welcome convenience initializers and mutators
+// MARK: CollegeData convenience initializers and mutators
 
-extension Welcome {
+extension CollegeData {
     init(data: Data) throws {
-        self = try newJSONDecoder().decode(Welcome.self, from: data)
+        self = try newJSONDecoder().decode(CollegeData.self, from: data)
     }
 
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -30,8 +30,8 @@ extension Welcome {
 
     func with(
         collegeData: [String: CollegeDatum]? = nil
-    ) -> Welcome {
-        return Welcome(
+    ) -> CollegeData {
+        return CollegeData(
             collegeData: collegeData ?? self.collegeData
         )
     }
@@ -417,6 +417,12 @@ extension CollegeDatum {
 
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
+    }
+    
+    func ifNullOrPrivate(_ value: String) {
+        if value == "NULL" || value == "PrivacySuppressed"{
+            
+        }
     }
 }
 
