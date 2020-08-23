@@ -1,62 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="College" representedClassName="College" syncable="YES" codeGenerationType="class">
-        <attribute name="aanapii" optional="YES" attributeType="String"/>
-        <attribute name="accredAgency" optional="YES" attributeType="String"/>
-        <attribute name="accredCode" optional="YES" attributeType="String"/>
-        <attribute name="actcm25" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="actcm75" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="actcmmid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="acten25" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="acten75" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="actenmid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="actmt25" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="actmt75" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="actmtmid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="actwr25" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="actwr75" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="actwrmid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="actcm25" optional="YES" attributeType="String"/>
+        <attribute name="actcm75" optional="YES" attributeType="String"/>
+        <attribute name="actcmmid" optional="YES" attributeType="String"/>
+        <attribute name="acten25" optional="YES" attributeType="String"/>
+        <attribute name="acten75" optional="YES" attributeType="String"/>
+        <attribute name="actenmid" optional="YES" attributeType="String"/>
+        <attribute name="actmt25" optional="YES" attributeType="String"/>
+        <attribute name="actmt75" optional="YES" attributeType="String"/>
+        <attribute name="actmtmid" optional="YES" attributeType="String"/>
+        <attribute name="actwr25" optional="YES" attributeType="String"/>
+        <attribute name="actwr75" optional="YES" attributeType="String"/>
+        <attribute name="actwrmid" optional="YES" attributeType="String"/>
         <attribute name="admRate" optional="YES" attributeType="String"/>
         <attribute name="admRateAll" optional="YES" attributeType="String"/>
         <attribute name="ageEntry" optional="YES" attributeType="String"/>
         <attribute name="ageEntrySq" optional="YES" attributeType="String"/>
         <attribute name="ageGe24" optional="YES" attributeType="String"/>
         <attribute name="alias" optional="YES" attributeType="String"/>
-        <attribute name="annhi" optional="YES" attributeType="String"/>
-        <attribute name="avgFascal" optional="YES" attributeType="String"/>
-        <attribute name="ccBasic" optional="YES" attributeType="String"/>
-        <attribute name="ccUgProf" optional="YES" attributeType="String"/>
         <attribute name="city" optional="YES" attributeType="String"/>
-        <attribute name="control" optional="YES" attributeType="String"/>
-        <attribute name="costT4A" optional="YES" attributeType="String"/>
-        <attribute name="costT4P" optional="YES" attributeType="String"/>
         <attribute name="currentlyOper" optional="YES" attributeType="String"/>
         <attribute name="dependent" optional="YES" attributeType="String"/>
-        <attribute name="distanceOnly" optional="YES" attributeType="String"/>
         <attribute name="famIncome" optional="YES" attributeType="String"/>
         <attribute name="famIncomeInd" optional="YES" attributeType="String"/>
         <attribute name="female" optional="YES" attributeType="String"/>
         <attribute name="firstGen" optional="YES" attributeType="String"/>
         <attribute name="grads" optional="YES" attributeType="String"/>
-        <attribute name="hbcu" optional="YES" attributeType="String"/>
-        <attribute name="hcm2" optional="YES" attributeType="String"/>
         <attribute name="highDeg" optional="YES" attributeType="String"/>
-        <attribute name="hsi" optional="YES" attributeType="String"/>
-        <attribute name="inexpFTE" optional="YES" attributeType="String"/>
         <attribute name="instName" optional="YES" attributeType="String"/>
         <attribute name="instWebsite" optional="YES" attributeType="String"/>
         <attribute name="ipsed" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="lnFamInc" optional="YES" attributeType="String"/>
-        <attribute name="lnFamIncInd" optional="YES" attributeType="String"/>
-        <attribute name="lnMedianHHInc" optional="YES" attributeType="String"/>
-        <attribute name="locale" optional="YES" attributeType="String"/>
-        <attribute name="locale2" optional="YES" attributeType="String"/>
-        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="main" optional="YES" attributeType="String"/>
         <attribute name="married" optional="YES" attributeType="String"/>
-        <attribute name="mdFamIncome" optional="YES" attributeType="String"/>
-        <attribute name="medianHHInc" optional="YES" attributeType="String"/>
         <attribute name="menOnly" optional="YES" attributeType="String"/>
         <attribute name="nanti" optional="YES" attributeType="String"/>
         <attribute name="netPriceCalcWebsite" optional="YES" attributeType="String"/>
@@ -68,42 +44,38 @@
         <attribute name="pctAsian" optional="YES" attributeType="String"/>
         <attribute name="pctBA" optional="YES" attributeType="String"/>
         <attribute name="pctBlack" optional="YES" attributeType="String"/>
-        <attribute name="pctBornUS" optional="YES" attributeType="String"/>
+        <attribute name="pctBornUs" optional="YES" attributeType="String"/>
         <attribute name="pctGradProf" optional="YES" attributeType="String"/>
         <attribute name="pctHispanic" optional="YES" attributeType="String"/>
         <attribute name="pctPell" optional="YES" attributeType="String"/>
         <attribute name="pctWhite" optional="YES" attributeType="String"/>
-        <attribute name="pftfac" optional="YES" attributeType="String"/>
         <attribute name="povertyRate" optional="YES" attributeType="String"/>
         <attribute name="predDeg" optional="YES" attributeType="String"/>
-        <attribute name="region" optional="YES" attributeType="String"/>
         <attribute name="relAffiliation" optional="YES" attributeType="String"/>
-        <attribute name="satAvg" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="satAvgAll" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="satmt25" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="satmt75" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="satmtmid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="satAvg" optional="YES" attributeType="String"/>
+        <attribute name="satAvgAll" optional="YES" attributeType="String"/>
+        <attribute name="satmt25" optional="YES" attributeType="String"/>
+        <attribute name="satmt75" optional="YES" attributeType="String"/>
+        <attribute name="satmtmid" optional="YES" attributeType="String"/>
         <attribute name="satvr25" optional="YES" attributeType="String"/>
-        <attribute name="satvr75" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="satvrmid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="satwr25" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="satwr75" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="satwrmid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="satvr75" optional="YES" attributeType="String"/>
+        <attribute name="satvrmid" optional="YES" attributeType="String"/>
+        <attribute name="satwr25" optional="YES" attributeType="String"/>
+        <attribute name="satwr75" optional="YES" attributeType="String"/>
+        <attribute name="satwrmid" optional="YES" attributeType="String"/>
         <attribute name="schDeg" optional="YES" attributeType="String"/>
         <attribute name="stateAbbr" optional="YES" attributeType="String"/>
-        <attribute name="stFips" optional="YES" attributeType="String"/>
-        <attribute name="tribal" optional="YES" attributeType="String"/>
         <attribute name="tuitFTE" optional="YES" attributeType="String"/>
         <attribute name="tuitionFeeIn" optional="YES" attributeType="String"/>
         <attribute name="tuitionFeeOut" optional="YES" attributeType="String"/>
         <attribute name="tuitionFeeProg" optional="YES" attributeType="String"/>
         <attribute name="ugnonds" optional="YES" attributeType="String"/>
-        <attribute name="umempRate" optional="YES" attributeType="String"/>
+        <attribute name="unempRate" optional="YES" attributeType="String"/>
         <attribute name="veteran" optional="YES" attributeType="String"/>
         <attribute name="womenOnly" optional="YES" attributeType="String"/>
         <attribute name="zip" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="College" positionX="-63" positionY="-18" width="128" height="1558"/>
+        <element name="College" positionX="-63" positionY="-18" width="128" height="28"/>
     </elements>
 </model>

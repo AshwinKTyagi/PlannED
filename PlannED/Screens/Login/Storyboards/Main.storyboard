@@ -55,7 +55,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.15686274510000001" green="0.0039215686269999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="IOT-pr-HcB" firstAttribute="height" secondItem="aqE-dn-bx7" secondAttribute="height" id="5aL-8R-bjH"/>
                             <constraint firstItem="IOT-pr-HcB" firstAttribute="leading" secondItem="6wp-JB-92O" secondAttribute="leading" id="8ig-j4-zJf"/>
@@ -162,7 +162,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.15686274510000001" green="0.0039215686269999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="wX6-Xc-Gvy" firstAttribute="trailing" secondItem="bPK-3Z-8jY" secondAttribute="trailing" id="0Hs-ow-KEM"/>
                             <constraint firstItem="gqL-zQ-5bq" firstAttribute="height" secondItem="Dkq-ag-QpF" secondAttribute="height" id="4jl-cN-E5g"/>
@@ -334,7 +334,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.15686274510000001" green="0.0039215686269999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ecf-Dt-Yhr" firstAttribute="trailing" secondItem="Lpc-9C-DMQ" secondAttribute="trailing" constant="5" id="0Hg-wY-7VG"/>
                             <constraint firstItem="bgn-YT-qFB" firstAttribute="trailing" secondItem="a3X-k0-PgJ" secondAttribute="trailing" constant="20" id="0OR-eg-TL5"/>

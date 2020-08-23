@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="167" width="414" height="646"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CELL" id="BDN-ij-Dj0">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="BDN-ij-Dj0">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BDN-ij-Dj0" id="vT5-oi-LUY">
@@ -36,7 +36,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.15686274510000001" green="0.0039215686269999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="FJv-8v-6UC" firstAttribute="bottom" secondItem="PPy-ty-Jfk" secondAttribute="bottom" id="2zn-gM-Bpa"/>
                             <constraint firstItem="FJv-8v-6UC" firstAttribute="top" secondItem="Iu3-tb-Jbc" secondAttribute="bottom" constant="20" id="AQE-Tz-E2g"/>

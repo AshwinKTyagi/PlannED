@@ -23,9 +23,9 @@ final class Helper: ObservableObject {
     static var collegeNameData = [String]()
     static var collegeData = [tempCollege]()
 
-    var colleges: [NSManagedObject] = []
+    static var colleges: [NSManagedObject] = []
     
-    let ref = Database.database().reference()
+    static let ref = Database.database().reference()
     
     //generic addEvent method that accepts date as a Date and formats it into a String
     // MARK: addEvent with Date
@@ -473,36 +473,15 @@ final class Helper: ObservableObject {
     {
         
     }
-    
-    func setUpCollegeData() {
-        
-        self.ref.child("colleges").observeSingleEvent(of: .value, with: { (snapshot) in
-            var i: Int = 0
-            for child in snapshot.children  {
-                let snap = child as! DataSnapshot
-                fdhgs
-                
-                snap.childSnapshot(forPath: "INSTNM").value as? String ?? ""
-                snap.childSnapshot(forPath: "ALIAS").value as? String ?? ""
-                
-                
-                
-                i += 1
-            }
-            print(i)
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-    }
-    
+
     // MARK: saveCollegesToCoreData
-    func saveCollegeToCoreData(collegeData: CollegeData) {
-        guard (UIApplication.shared.delegate as? AppDelegate) != nil else {
-                return
+    static func saveCollegeToCoreData() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
         }
         
         // 1
-         let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+         let managedContext = appDelegate.persistentContainer.viewContext
         
         // 2
         let entity =
@@ -512,109 +491,101 @@ final class Helper: ObservableObject {
         let college = NSManagedObject(entity: entity,
                                       insertInto: managedContext)
         
-        // 3
-        for c in collegeData.collegeData {
-            college.setValue(c.key, forKey: "ipsed")
-            college.setValue(c.value.aanapii, forKey: "aanapii")
-            college.setValue(c.value.accredagency, forKey: "accredAgency")
-            college.setValue(c.value.accredcode, forKey: "accredCode")
-            college.setValue(c.value.actcm25, forKey: "actcm25")
-            college.setValue(c.value.actcm75, forKey: "actcm75")
-            college.setValue(c.value.actcmmid, forKey: "actcmmid")
-            college.setValue(c.value.acten25, forKey: "acten25")
-            college.setValue(c.value.acten75, forKey: "acten75")
-            college.setValue(c.value.actenmid, forKey: "actenmid")
-            college.setValue(c.value.actmt25, forKey: "actmt25")
-            college.setValue(c.value.actmt75, forKey: "actmt75")
-            college.setValue(c.value.actmtmid, forKey: "actmtmid")
-            college.setValue(c.value.actwr25, forKey: "actwr25")
-            college.setValue(c.value.actwr75, forKey: "actwr75")
-            college.setValue(c.value.actwrmid, forKey: "actwrmid")
-            college.setValue(c.value.admRate, forKey: "admRate")
-            college.setValue(c.value.admRateAll, forKey: "admRateAll")
-            college.setValue(c.value.ageEntry, forKey: "ageEntry")
-            college.setValue(c.value.ageEntrySq, forKey: "ageEntrySq")
-            college.setValue(c.value.agege24, forKey: "ageGe24")
-            college.setValue(c.value.alias, forKey: "alias")
-            college.setValue(c.value.annhi, forKey: "annhi")
-            college.setValue(c.value.avgfacsal, forKey: "avgFascal")
-            college.setValue(c.value.ccbasic, forKey: "ccBasic")
-            college.setValue(c.value.ccugprof, forKey: "ccUgProf")
-            college.setValue(c.value.city, forKey: "city")
-            college.setValue(c.value.control, forKey: "control")
-            college.setValue(c.value.costt4A, forKey: "costT4A")
-            college.setValue(c.value.costt4P, forKey: "costT4P")
-            college.setValue(c.value.curroper, forKey: "cuurentlyOper")
-            college.setValue(c.value.dependent, forKey: "dependent")
-            college.setValue(c.value.distanceonly, forKey: "distanceOnly")
-            college.setValue(c.value.faminc, forKey: "famIncome")
-            college.setValue(c.value.famincInd, forKey: "famIncomeInd")
-            college.setValue(c.value.female, forKey: "female")
-            college.setValue(c.value.firstGen, forKey: "firstGen")
-            college.setValue(c.value.grads, forKey: "grads")
-            college.setValue(c.value.hbcu, forKey: "hbcu")
-            college.setValue(c.value.hcm2, forKey: "hcm2")
-            college.setValue(c.value.highdeg, forKey: "highDeg")
-            college.setValue(c.value.hsi, forKey: "hsi")
-            college.setValue(c.value.inexpfte, forKey: "inexpFTE")
-            college.setValue(c.value.instnm, forKey: "instName")
-            college.setValue(c.value.insturl, forKey: "instWebsite")
-            college.setValue(c.value.latitude, forKey: "latitude")
-            college.setValue(c.value.lnfaminc, forKey: "lnFamInc")
-            college.setValue(c.value.lnfamincInd, forKey: "lnFamIncInd")
-            college.setValue(c.value.lnMedianHhInc, forKey: "lnMedianHHInc")
-            college.setValue(c.value.locale, forKey: "locale")
-            college.setValue(c.value.locale2, forKey: "locale2")
-            college.setValue(c.value.longitude, forKey: "longitude")
-            college.setValue(c.value.main, forKey: "main")
-            college.setValue(c.value.mdFaminc, forKey: "mdFamIncome")
-            college.setValue(c.value.menonly, forKey: "menOnly")
-            college.setValue(c.value.nanti, forKey: "nanti")
-            college.setValue(c.value.npcurl, forKey: "netPriceCalcWebsite")
-            college.setValue(c.value.numbranch, forKey: "numBranch")
-            college.setValue(c.value.opeid, forKey: "opeID")
-            college.setValue(c.value.opeid6, forKey: "opeID6")
-            college.setValue(c.value.openadmp, forKey: "openadmp")
-            college.setValue(c.value.pbi, forKey: "pbi")
-            college.setValue(c.value.pctAsian, forKey: "pctAsian")
-            college.setValue(c.value.pctBa, forKey: "pctBA")
-            college.setValue(c.value.pctBlack, forKey: "pctBlack")
-            college.setValue(c.value.pctBornUs, forKey: "pctBornUS")
-            college.setValue(c.value.pctGradProf, forKey: "pctGradProf")
-            college.setValue(c.value.pctHispanic, forKey: "pctHispanic")
-            college.setValue(c.value.pctpell, forKey: "pctPell")
-            college.setValue(c.value.pctWhite, forKey: "pctWhite")
-            college.setValue(c.value.pftfac, forKey: "pftfac")
-            college.setValue(c.value.povertyRate, forKey: "povertyRate")
-            college.setValue(c.value.preddeg, forKey: "predDeg")
-            college.setValue(c.value.region, forKey: "region")
-            college.setValue(c.value.relaffil, forKey: "relAffiliation")
-            college.setValue(c.value.satAvg, forKey: "satAvg")
-            college.setValue(c.value.satAvgAll, forKey: "satAvgAll")
-            college.setValue(c.value.satmt25, forKey: "satmt25")
-            college.setValue(c.value.satmt75, forKey: "satmt75")
-            college.setValue(c.value.satmtmid, forKey: "satmtmid")
-            college.setValue(c.value.satvr25, forKey: "satvr25")
-            college.setValue(c.value.satvr75, forKey: "satvr75")
-            college.setValue(c.value.satvrmid, forKey: "satvrmid")
-            college.setValue(c.value.satwr25, forKey: "satwr25")
-            college.setValue(c.value.satwr75, forKey: "satwr75")
-            college.setValue(c.value.satwrmid, forKey: "satwrmid")
-            college.setValue(c.value.schDeg, forKey: "schDeg")
-            college.setValue(c.value.stabbr, forKey: "stateAbbr")
-            college.setValue(c.value.stFIPS, forKey: "stFips")
-            college.setValue(c.value.tribal, forKey: "tribal")
-            college.setValue(c.value.tuitfte, forKey: "tuitFTE")
-            college.setValue(c.value.tuitionfeeIn, forKey: "tuitionFeeIn")
-            college.setValue(c.value.tuitionfeeOut, forKey: "tuitionFeeOut")
-            college.setValue(c.value.tuitionfeeProg, forKey: "tuitionFeeProg")
-            college.setValue(c.value.ugnonds, forKey: "ugnonds")
-            college.setValue(c.value.unempRate, forKey: "unempRate")
-            college.setValue(c.value.veteran, forKey: "veteran")
-            college.setValue(c.value.womenonly, forKey: "womenOnly")
-            college.setValue(c.value.zip, forKey: "zip")
-            
+        self.ref.child("colleges").observeSingleEvent(of: .value, with: { (snapshot) in
+            var i: Int = 0
+            for child in snapshot.children  {
+                let snap = child as! DataSnapshot
+                let formatter = NumberFormatter()
+                
+                college.setValue(formatter.number(from: snap.key), forKey: "ipsed")
+                college.setValue(snap.childSnapshot(forPath: "ACTCM25").value, forKey: "actcm25")
+                college.setValue(snap.childSnapshot(forPath: "ACTCM75").value, forKey: "actcm75")
+                college.setValue(snap.childSnapshot(forPath: "ACTCMMID").value, forKey: "actcmmid")
+                college.setValue(snap.childSnapshot(forPath: "ACTEN25").value, forKey: "acten25")
+                college.setValue(snap.childSnapshot(forPath: "ACTEN75").value, forKey: "acten75")
+                college.setValue(snap.childSnapshot(forPath: "ACTENMID").value, forKey: "actenmid")
+                college.setValue(snap.childSnapshot(forPath: "ACTMT25").value, forKey: "actmt25")
+                college.setValue(snap.childSnapshot(forPath: "ACTMT75").value, forKey: "actmt75")
+                college.setValue(snap.childSnapshot(forPath: "ACTMTMID").value, forKey: "actmtmid")
+                college.setValue(snap.childSnapshot(forPath: "ACTWR25").value, forKey: "actwr25")
+                college.setValue(snap.childSnapshot(forPath: "ACTWR75").value, forKey: "actwr75")
+                college.setValue(snap.childSnapshot(forPath: "ACTWRMID").value, forKey: "actwrmid")
+                college.setValue(snap.childSnapshot(forPath: "ADM_RATE").value, forKey: "admRate")
+                college.setValue(snap.childSnapshot(forPath: "ADM_RATE_ALL").value, forKey: "admRateAll")
+                college.setValue(snap.childSnapshot(forPath: "AGE_ENTRY").value, forKey: "ageEntry")
+                college.setValue(snap.childSnapshot(forPath: "AGE_ENTRY_SQ").value, forKey: "ageEntrySq")
+                college.setValue(snap.childSnapshot(forPath: "AGEGE24").value, forKey: "ageGe24")
+                college.setValue(snap.childSnapshot(forPath: "ALIAS").value, forKey: "alias")
+                college.setValue(snap.childSnapshot(forPath: "CITY").value, forKey: "city")
+                college.setValue(snap.childSnapshot(forPath: "CURROPER").value, forKey: "cuurentlyOper")
+                college.setValue(snap.childSnapshot(forPath: "DEPENDENT").value, forKey: "dependent")
+                college.setValue(snap.childSnapshot(forPath: "FAMINC").value, forKey: "famIncome")
+                college.setValue(snap.childSnapshot(forPath: "FAMINC_IND").value, forKey: "famIncomeInd")
+                college.setValue(snap.childSnapshot(forPath: "FEMALE").value, forKey: "female")
+                college.setValue(snap.childSnapshot(forPath: "FIRST_GEN").value, forKey: "firstGen")
+                college.setValue(snap.childSnapshot(forPath: "GRADS").value, forKey: "grads")
+                college.setValue(snap.childSnapshot(forPath: "HIGHDEG").value, forKey: "highDeg")
+                college.setValue(snap.childSnapshot(forPath: "INSTNM").value, forKey: "instName")
+                college.setValue(snap.childSnapshot(forPath: "INSTURL").value, forKey: "instWebsite")
+                college.setValue(snap.childSnapshot(forPath: "MAIN").value, forKey: "main")
+                college.setValue(snap.childSnapshot(forPath: "MARRIED").value, forKey: "married")
+                college.setValue(snap.childSnapshot(forPath: "MENONLY").value, forKey: "menOnly")
+                college.setValue(snap.childSnapshot(forPath: "NANTI").value, forKey: "nanti")
+                college.setValue(snap.childSnapshot(forPath: "NPCURL").value, forKey: "netPriceCalcWebsite")
+                college.setValue(snap.childSnapshot(forPath: "NUMBRANCH").value, forKey: "numBranch")
+                college.setValue(snap.childSnapshot(forPath: "OPEID").value, forKey: "opeID")
+                college.setValue(snap.childSnapshot(forPath: "OPEID6").value, forKey: "opeID6")
+                college.setValue(snap.childSnapshot(forPath: "OPENADMP").value, forKey: "openadmp")
+                college.setValue(snap.childSnapshot(forPath: "PBI").value, forKey: "pbi")
+                college.setValue(snap.childSnapshot(forPath: "PCT_ASIAN").value, forKey: "pctAsian")
+                college.setValue(snap.childSnapshot(forPath: "PCT_BA").value, forKey: "pctBA")
+                college.setValue(snap.childSnapshot(forPath: "PCT_BLACK").value, forKey: "pctBlack")
+                college.setValue(snap.childSnapshot(forPath: "PCT_BORN_US").value, forKey: "pctBornUS")
+                college.setValue(snap.childSnapshot(forPath: "PCT_GRAD_PROF").value, forKey: "pctGradProf")
+                college.setValue(snap.childSnapshot(forPath: "PCT_HISPANIC").value, forKey: "pctHispanic")
+                college.setValue(snap.childSnapshot(forPath: "PCTPELL").value, forKey: "pctPell")
+                college.setValue(snap.childSnapshot(forPath: "PCT_WHITE").value, forKey: "pctWhite")
+                college.setValue(snap.childSnapshot(forPath: "POVERTY_RATE").value, forKey: "povertyRate")
+                college.setValue(snap.childSnapshot(forPath: "PREDDEG").value, forKey: "predDeg")
+                college.setValue(snap.childSnapshot(forPath: "RELAFFIL").value, forKey: "relAffiliation")
+                college.setValue(snap.childSnapshot(forPath: "SAT_AVG").value, forKey: "satAvg")
+                college.setValue(snap.childSnapshot(forPath: "SAT_AVG_ALL").value, forKey: "satAvgAll")
+                college.setValue(snap.childSnapshot(forPath: "SATMT25").value, forKey: "satmt25")
+                college.setValue(snap.childSnapshot(forPath: "SATMT75").value, forKey: "satmt75")
+                college.setValue(snap.childSnapshot(forPath: "SATMTMID").value, forKey: "satmtmid")
+                college.setValue(snap.childSnapshot(forPath: "SATVR25").value, forKey: "satvr25")
+                college.setValue(snap.childSnapshot(forPath: "SATVR75").value, forKey: "satvr75")
+                college.setValue(snap.childSnapshot(forPath: "SATVRMID").value, forKey: "satvrmid")
+                college.setValue(snap.childSnapshot(forPath: "SATWR25").value, forKey: "satwr25")
+                college.setValue(snap.childSnapshot(forPath: "SATWR75").value, forKey: "satwr75")
+                college.setValue(snap.childSnapshot(forPath: "SATWRMID").value, forKey: "satwrmid")
+                college.setValue(snap.childSnapshot(forPath: "SCH_DEG").value, forKey: "schDeg")
+                college.setValue(snap.childSnapshot(forPath: "STABBR").value, forKey: "stateAbbr")
+                college.setValue(snap.childSnapshot(forPath: "TRIBAL").value, forKey: "tribal")
+                college.setValue(snap.childSnapshot(forPath: "TUITFTE").value, forKey: "tuitFTE")
+                college.setValue(snap.childSnapshot(forPath: "TUITIONFEE_IN").value, forKey: "tuitionFeeIn")
+                college.setValue(snap.childSnapshot(forPath: "TUITIONFEE_OUT").value, forKey: "tuitionFeeOut")
+                college.setValue(snap.childSnapshot(forPath: "TUITIONFEE_PROG").value, forKey: "tuitionFeeProg")
+                college.setValue(snap.childSnapshot(forPath: "UGNONDS").value, forKey: "ugnonds")
+                college.setValue(snap.childSnapshot(forPath: "UNEMP_RATE").value, forKey: "unempRate")
+                college.setValue(snap.childSnapshot(forPath: "VETERAN").value, forKey: "veteran")
+                college.setValue(snap.childSnapshot(forPath: "WOMENONLY").value, forKey: "womenOnly")
+                college.setValue(snap.childSnapshot(forPath: "ZIP").value, forKey: "zip")
+                
+                do {
+                    try managedContext.save()
+                    self.colleges.append(college)
+                } catch let error as NSError {
+                    print("Could not save. \(error), \(error.userInfo)")
+                }
+                
+                i += 1
+            }
+            print(i)
+        }) { (error) in
+            print(error.localizedDescription)
         }
+        
         
         // 4
         do {

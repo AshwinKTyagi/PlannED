@@ -46,7 +46,7 @@
                                 <color key="color" red="0.58823529409999997" green="0.0039215686269999999" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" red="0.15686274510000001" green="0.0039215686269999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="pHA-1k-3Fy" firstAttribute="leading" secondItem="JFe-ha-J3g" secondAttribute="leading" constant="10" id="5fL-5L-GSy"/>
                             <constraint firstItem="pHA-1k-3Fy" firstAttribute="top" secondItem="JFe-ha-J3g" secondAttribute="top" constant="10" id="IH5-0k-Pjp"/>

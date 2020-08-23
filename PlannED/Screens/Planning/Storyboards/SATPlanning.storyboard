@@ -122,7 +122,7 @@
                                 <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" red="0.15686274510000001" green="0.0039215686269999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="pfV-VB-j9l" firstAttribute="bottom" secondItem="EQU-zW-lNO" secondAttribute="bottom" constant="20" id="68v-QB-USt"/>
                             <constraint firstItem="pfV-VB-j9l" firstAttribute="trailing" secondItem="E4a-uG-N2B" secondAttribute="trailing" constant="20" id="7jo-Qr-qaB"/>
