@@ -31,14 +31,20 @@ class LoginViewController: UIViewController{
             if error == nil{
                 self.ref.child("users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
                     // Get user value
-                    let value = snapshot.value as? NSDictionary
-                    User.setEmail(email: value?["email"] as? String ?? "")
-                    User.setFirstName(firstName: value?["firstName"] as? String ?? "")
-                    User.setLastName(lastName: value?["lastName"] as? String ?? "")
+                        let value = snapshot.value as? NSDictionary
+                        User.setEmail(email: value?["email"] as? String ?? "")
+                        User.setFirstName(firstName: value?["firstName"] as? String ?? "")
+                        User.setLastName(lastName: value?["lastName"] as? String ?? "")
+                        User.setTakenSATs(sats: value?["takenSATs"] as? [Any] ?? [])
+                        User.setTakenACTs(acts: value?["takenACTs"] as? [Any] ?? [])
+                        User.setChosenColleges(colleges: value?["chosenColleges"] as? [Any] ?? [] )
+                    
                   }) { (error) in
                     print(error.localizedDescription)
                 }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute:  {
                 self.performSegue(withIdentifier: "loginToHomeSegue", sender: self)
+            })
             }
             else{
                 let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)

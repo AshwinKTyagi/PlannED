@@ -16,7 +16,6 @@
 		2B064ABC24A26192008791AF /* PlannEDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B064ABB24A26192008791AF /* PlannEDTests.swift */; };
 		2B064AC824A26859008791AF /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B064AC724A26859008791AF /* Calendar.storyboard */; };
 		2B51EA6A24EC70FC00F66546 /* College.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B51EA6924EC70FC00F66546 /* College.storyboard */; };
-		2B5670E924F323B00028ED48 /* PlannED.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B5670E724F323B00028ED48 /* PlannED.xcdatamodeld */; };
 		2B5889B324B8EC3C0040E006 /* College.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5889B224B8EC3C0040E006 /* College.swift */; };
 		2B5AA19C24EF119600E8472B /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5AA19B24EF119600E8472B /* ChecklistViewController.swift */; };
 		2B5C36AB24C8C3A300930B77 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C36AA24C8C3A300930B77 /* User.swift */; };
@@ -78,7 +77,7 @@
 		2B064ABD24A26192008791AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B064AC724A26859008791AF /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		2B51EA6924EC70FC00F66546 /* College.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = College.storyboard; sourceTree = "<group>"; };
-		2B5670E824F323B00028ED48 /* PlannED.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PlannED.xcdatamodel; sourceTree = "<group>"; };
+		2B5670EF24F448440028ED48 /* PlannED.xcdatamodeld */ = {isa = PBXFileReference; lastKnownFileType = file; path = PlannED.xcdatamodeld; sourceTree = "<group>"; };
 		2B5889B224B8EC3C0040E006 /* College.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = College.swift; sourceTree = "<group>"; };
 		2B5AA19B24EF119600E8472B /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
 		2B5C36AA24C8C3A300930B77 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -165,12 +164,12 @@
 				2BD6C1EF24A6792700D8652D /* Resources */,
 				2BD6C1EE24A677DE00D8652D /* Helpers */,
 				2B064AA424A26191008791AF /* AppDelegate.swift */,
-				2B5670E724F323B00028ED48 /* PlannED.xcdatamodeld */,
 				2B064AA624A26191008791AF /* SceneDelegate.swift */,
 				2B064AAD24A26192008791AF /* Assets.xcassets */,
 				2B064AAF24A26192008791AF /* LaunchScreen.storyboard */,
 				2B064AB224A26192008791AF /* Info.plist */,
 				2B7CAA2224C22FF80029CB68 /* GoogleService-Info.plist */,
+				2B5670EF24F448440028ED48 /* PlannED.xcdatamodeld */,
 			);
 			path = PlannED;
 			sourceTree = "<group>";
@@ -603,7 +602,6 @@
 				2B6E42EE24CB48CD00EFAD3E /* UserViewController.swift in Sources */,
 				2B5C36BD24C8CB5400930B77 /* AddEventViewController.swift in Sources */,
 				2B5C36B624C8CB0A00930B77 /* ACTPlanningViewController.swift in Sources */,
-				2B5670E924F323B00028ED48 /* PlannED.xcdatamodeld in Sources */,
 				2B5C36BC24C8CB5400930B77 /* RemoveEventViewController.swift in Sources */,
 				2BD6C1FB24A68EC500D8652D /* Event.swift in Sources */,
 				2B5C36BE24C8CB5400930B77 /* CalendarViewController.swift in Sources */,
@@ -886,19 +884,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		2B5670E724F323B00028ED48 /* PlannED.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				2B5670E824F323B00028ED48 /* PlannED.xcdatamodel */,
-			);
-			currentVersion = 2B5670E824F323B00028ED48 /* PlannED.xcdatamodel */;
-			path = PlannED.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 2B064A9924A26191008791AF /* Project object */;
 }

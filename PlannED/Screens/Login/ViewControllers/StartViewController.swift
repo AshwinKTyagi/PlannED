@@ -11,7 +11,7 @@ import SwiftUI
 import FirebaseCore
 import FirebaseAuth
 import FirebaseDatabase
-import CoreData
+//import CoreData
 
 class StartViewController: UIViewController{
     
@@ -30,10 +30,10 @@ class StartViewController: UIViewController{
         }
         
         print("------------------Start------------------")
-        fetchCollegeData()
-        if Helper.colleges.count == 0{
-            Helper.saveCollegeToCoreData() /*This function puts a lot of strain on app so it should only be used once on app's first start-up*/
-        }
+ //       fetchCollegeData()
+ //       if Helper.colleges.count == 0{
+ //           Helper.saveCollegeToCoreData() /*This function puts a lot of strain on firebase so it should only be used once on app's first start-up*/
+ //       }
     }
     
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
@@ -58,46 +58,47 @@ class StartViewController: UIViewController{
               }) { (error) in
                 print(error.localizedDescription)
             }
-            
-            self.performSegue(withIdentifier: "alreadyLoggedIn", sender: nil)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute:  {
+                self.performSegue(withIdentifier: "alreadyLoggedIn", sender: nil)
+            })
         }
     }
     
 
 
-    func fetchCollegeData() {
-    //1
-        guard let appDelegate =
-          UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext =
-          appDelegate.persistentContainer.viewContext
-        
-        //2
-        let fetchRequest =
-          NSFetchRequest<NSManagedObject>(entityName: "College")
-        
-        //3
-        do {
-            Helper.colleges = try managedContext.fetch(fetchRequest)
-        } catch let error as NSError {
-          print("Could not fetch. \(error), \(error.userInfo)")
-        }
-        
-    }
-    
-    @IBAction func onLoginClick(_ sender: Any){
-        
-        performSegue(withIdentifier: "startToLoginSegue", sender: sender)
-    }
-    
-    @IBAction func onSignupClick(_ sender: Any){
-        
-        performSegue(withIdentifier: "startToSignupSegue", sender: sender)
-    }
-    
+//    func fetchCollegeData() {
+//    //1
+//        guard let appDelegate =
+//          UIApplication.shared.delegate as? AppDelegate else {
+//            return
+//        }
+//
+//        let managedContext =
+//          appDelegate.persistentContainer.viewContext
+//
+//        //2
+//        let fetchRequest =
+//          NSFetchRequest<NSManagedObject>(entityName: "College")
+//
+//        //3
+//        do {
+//            Helper.colleges = try managedContext.fetch(fetchRequest)
+//        } catch let error as NSError {
+//          print("Could not fetch. \(error), \(error.userInfo)")
+//        }
+//
+//    }
+//
+//    @IBAction func onLoginClick(_ sender: Any){
+//
+//        performSegue(withIdentifier: "startToLoginSegue", sender: sender)
+//    }
+//
+//    @IBAction func onSignupClick(_ sender: Any){
+//
+//        performSegue(withIdentifier: "startToSignupSegue", sender: sender)
+//    }
+//
 }
 
 
