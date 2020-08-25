@@ -11,7 +11,7 @@ import SwiftUI
 import EventKit
 import UIKit
 import FSCalendar
-//import CoreData
+import CoreData
 import FirebaseDatabase
 
 final class Helper: ObservableObject {
@@ -19,11 +19,11 @@ final class Helper: ObservableObject {
     private static var events = [Event]()
     private static var satEvents = [SATEvent]()
     private static var actEvents = [ACTEvent]()
-    static var temporaryCollege = tempCollege(ipsed: "", name: "", alias: "")
+    static var temporaryCollege = tempCollege(ipsed: "", name: "", alias: "", reach: -1)
     static var collegeNameData = [String]()
     static var collegeData = [tempCollege]()
 
-    //static var colleges: [NSManagedObject] = []
+    static var colleges: [NSManagedObject] = []
     
     static let ref = Database.database().reference()
     
@@ -467,134 +467,246 @@ final class Helper: ObservableObject {
         count += 1
     }
     
-    
-    // MARK: TODO
-    func calcReachCollege()
+    // returns 0 for safety, 1 for target, 2 for reach
+    // MARK: calcReachSat(sat25, sat75)
+    static func calcReachSAT(sat25: Int, sat75: Int) -> Int
     {
+        if sat25 == -1 || sat75 == -1 {
+            return -1
+        }
         
+        var highestSat = Int()
+        for s in User.getTakenSATs() {
+            if s.total > highestSat {
+                highestSat = s.total
+            }
+        }
+        
+        if highestSat == 0 {
+            return -1
+        }
+        
+        if highestSat > sat75 + 20 {
+            return 0
+        }
+        else if highestSat > sat25 {
+            return 1
+        }
+        else {
+            return 2
+        }
     }
-
+    
+    // returns 0 for safety, 1 for target, 2 for reach
+    // MARK: calcReachSat(satmid)
+    static func calcReachSAT(satmid: Int) -> Int
+    {
+        if satmid == -1 {
+            return -1
+        }
+        var highestSat = Int()
+        for s in User.getTakenSATs() {
+            if s.total > highestSat {
+                highestSat = s.total
+            }
+        }
+        
+        if highestSat == 0 {
+            return -1
+        }
+        
+        if highestSat > satmid + 50 {
+            return 0
+        }
+        else if highestSat > satmid - 20 {
+            return 1
+        }
+        else {
+            return 2
+        }
+    }
+    
+    // returns 0 for safety, 1 for target, 2 for reach
+    // MARK: calcReachAct(act25, act75)
+    static func calcReachACT(act25: Int, act75: Int) -> Int
+    {
+        if act25 == -1 || act75 == -1 {
+            return -1
+        }
+        
+        var highestAct = Int()
+        for a in User.getTakenACTs() {
+            if a.total > highestAct {
+                highestAct = a.total
+            }
+        }
+        
+        if highestAct == 0 {
+            return -1
+        }
+        
+        if highestAct > act75 + 2 {
+            return 0
+        }
+        else if highestAct > act25 {
+            return 1
+        }
+        else {
+            return 2
+        }
+    }
+    
+    // returns 0 for safety, 1 for target, 2 for reach
+    // MARK: calcReachAct(actmid)
+    static func calcReachACT(actmid: Int) -> Int
+    {
+        if actmid == -1 {
+            return -1
+        }
+        var highestAct = Int()
+        for a in User.getTakenACTs() {
+            if a.total > highestAct {
+                highestAct = a.total
+            }
+        }
+        
+        if highestAct == 0 {
+            return -1
+        }
+        
+        if highestAct > actmid + 5 {
+            return 0
+        }
+        else if highestAct > actmid - 2 {
+            return 1
+        }
+        else {
+            return 2
+        }
+    }
+    
+    
     // MARK: saveCollegesToCoreData
-//    static func saveCollegeToCoreData() {
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-//            return
-//        }
-//        
-//        // 1
-//         let managedContext = appDelegate.persistentContainer.viewContext
-//        
-//        // 2
-//        let entity =
-//            NSEntityDescription.entity(forEntityName: "College",
-//                                       in: managedContext)!
-//        
-//        let college = NSManagedObject(entity: entity,
-//                                      insertInto: managedContext)
-//        
-//        self.ref.child("colleges").observeSingleEvent(of: .value, with: { (snapshot) in
-//            var i: Int = 0
-//            for child in snapshot.children  {
-//                let snap = child as! DataSnapshot
-//                let formatter = NumberFormatter()
-//                
-//                college.setValue(formatter.number(from: snap.key), forKey: "ipsed")
-//                college.setValue(snap.childSnapshot(forPath: "ACTCM25").value, forKey: "actcm25")
-//                college.setValue(snap.childSnapshot(forPath: "ACTCM75").value, forKey: "actcm75")
-//                college.setValue(snap.childSnapshot(forPath: "ACTCMMID").value, forKey: "actcmmid")
-//                college.setValue(snap.childSnapshot(forPath: "ACTEN25").value, forKey: "acten25")
-//                college.setValue(snap.childSnapshot(forPath: "ACTEN75").value, forKey: "acten75")
-//                college.setValue(snap.childSnapshot(forPath: "ACTENMID").value, forKey: "actenmid")
-//                college.setValue(snap.childSnapshot(forPath: "ACTMT25").value, forKey: "actmt25")
-//                college.setValue(snap.childSnapshot(forPath: "ACTMT75").value, forKey: "actmt75")
-//                college.setValue(snap.childSnapshot(forPath: "ACTMTMID").value, forKey: "actmtmid")
-//                college.setValue(snap.childSnapshot(forPath: "ACTWR25").value, forKey: "actwr25")
-//                college.setValue(snap.childSnapshot(forPath: "ACTWR75").value, forKey: "actwr75")
-//                college.setValue(snap.childSnapshot(forPath: "ACTWRMID").value, forKey: "actwrmid")
-//                college.setValue(snap.childSnapshot(forPath: "ADM_RATE").value, forKey: "admRate")
-//                college.setValue(snap.childSnapshot(forPath: "ADM_RATE_ALL").value, forKey: "admRateAll")
-//                college.setValue(snap.childSnapshot(forPath: "AGE_ENTRY").value, forKey: "ageEntry")
-//                college.setValue(snap.childSnapshot(forPath: "AGE_ENTRY_SQ").value, forKey: "ageEntrySq")
-//                college.setValue(snap.childSnapshot(forPath: "AGEGE24").value, forKey: "ageGe24")
-//                college.setValue(snap.childSnapshot(forPath: "ALIAS").value, forKey: "alias")
-//                college.setValue(snap.childSnapshot(forPath: "CITY").value, forKey: "city")
-//                college.setValue(snap.childSnapshot(forPath: "CURROPER").value, forKey: "cuurentlyOper")
-//                college.setValue(snap.childSnapshot(forPath: "DEPENDENT").value, forKey: "dependent")
-//                college.setValue(snap.childSnapshot(forPath: "FAMINC").value, forKey: "famIncome")
-//                college.setValue(snap.childSnapshot(forPath: "FAMINC_IND").value, forKey: "famIncomeInd")
-//                college.setValue(snap.childSnapshot(forPath: "FEMALE").value, forKey: "female")
-//                college.setValue(snap.childSnapshot(forPath: "FIRST_GEN").value, forKey: "firstGen")
-//                college.setValue(snap.childSnapshot(forPath: "GRADS").value, forKey: "grads")
-//                college.setValue(snap.childSnapshot(forPath: "HIGHDEG").value, forKey: "highDeg")
-//                college.setValue(snap.childSnapshot(forPath: "INSTNM").value, forKey: "instName")
-//                college.setValue(snap.childSnapshot(forPath: "INSTURL").value, forKey: "instWebsite")
-//                college.setValue(snap.childSnapshot(forPath: "MAIN").value, forKey: "main")
-//                college.setValue(snap.childSnapshot(forPath: "MARRIED").value, forKey: "married")
-//                college.setValue(snap.childSnapshot(forPath: "MENONLY").value, forKey: "menOnly")
-//                college.setValue(snap.childSnapshot(forPath: "NANTI").value, forKey: "nanti")
-//                college.setValue(snap.childSnapshot(forPath: "NPCURL").value, forKey: "netPriceCalcWebsite")
-//                college.setValue(snap.childSnapshot(forPath: "NUMBRANCH").value, forKey: "numBranch")
-//                college.setValue(snap.childSnapshot(forPath: "OPEID").value, forKey: "opeID")
-//                college.setValue(snap.childSnapshot(forPath: "OPEID6").value, forKey: "opeID6")
-//                college.setValue(snap.childSnapshot(forPath: "OPENADMP").value, forKey: "openadmp")
-//                college.setValue(snap.childSnapshot(forPath: "PBI").value, forKey: "pbi")
-//                college.setValue(snap.childSnapshot(forPath: "PCT_ASIAN").value, forKey: "pctAsian")
-//                college.setValue(snap.childSnapshot(forPath: "PCT_BA").value, forKey: "pctBA")
-//                college.setValue(snap.childSnapshot(forPath: "PCT_BLACK").value, forKey: "pctBlack")
-//                college.setValue(snap.childSnapshot(forPath: "PCT_BORN_US").value, forKey: "pctBornUS")
-//                college.setValue(snap.childSnapshot(forPath: "PCT_GRAD_PROF").value, forKey: "pctGradProf")
-//                college.setValue(snap.childSnapshot(forPath: "PCT_HISPANIC").value, forKey: "pctHispanic")
-//                college.setValue(snap.childSnapshot(forPath: "PCTPELL").value, forKey: "pctPell")
-//                college.setValue(snap.childSnapshot(forPath: "PCT_WHITE").value, forKey: "pctWhite")
-//                college.setValue(snap.childSnapshot(forPath: "POVERTY_RATE").value, forKey: "povertyRate")
-//                college.setValue(snap.childSnapshot(forPath: "PREDDEG").value, forKey: "predDeg")
-//                college.setValue(snap.childSnapshot(forPath: "RELAFFIL").value, forKey: "relAffiliation")
-//                college.setValue(snap.childSnapshot(forPath: "SAT_AVG").value, forKey: "satAvg")
-//                college.setValue(snap.childSnapshot(forPath: "SAT_AVG_ALL").value, forKey: "satAvgAll")
-//                college.setValue(snap.childSnapshot(forPath: "SATMT25").value, forKey: "satmt25")
-//                college.setValue(snap.childSnapshot(forPath: "SATMT75").value, forKey: "satmt75")
-//                college.setValue(snap.childSnapshot(forPath: "SATMTMID").value, forKey: "satmtmid")
-//                college.setValue(snap.childSnapshot(forPath: "SATVR25").value, forKey: "satvr25")
-//                college.setValue(snap.childSnapshot(forPath: "SATVR75").value, forKey: "satvr75")
-//                college.setValue(snap.childSnapshot(forPath: "SATVRMID").value, forKey: "satvrmid")
-//                college.setValue(snap.childSnapshot(forPath: "SATWR25").value, forKey: "satwr25")
-//                college.setValue(snap.childSnapshot(forPath: "SATWR75").value, forKey: "satwr75")
-//                college.setValue(snap.childSnapshot(forPath: "SATWRMID").value, forKey: "satwrmid")
-//                college.setValue(snap.childSnapshot(forPath: "SCH_DEG").value, forKey: "schDeg")
-//                college.setValue(snap.childSnapshot(forPath: "STABBR").value, forKey: "stateAbbr")
-//                college.setValue(snap.childSnapshot(forPath: "TRIBAL").value, forKey: "tribal")
-//                college.setValue(snap.childSnapshot(forPath: "TUITFTE").value, forKey: "tuitFTE")
-//                college.setValue(snap.childSnapshot(forPath: "TUITIONFEE_IN").value, forKey: "tuitionFeeIn")
-//                college.setValue(snap.childSnapshot(forPath: "TUITIONFEE_OUT").value, forKey: "tuitionFeeOut")
-//                college.setValue(snap.childSnapshot(forPath: "TUITIONFEE_PROG").value, forKey: "tuitionFeeProg")
-//                college.setValue(snap.childSnapshot(forPath: "UGNONDS").value, forKey: "ugnonds")
-//                college.setValue(snap.childSnapshot(forPath: "UNEMP_RATE").value, forKey: "unempRate")
-//                college.setValue(snap.childSnapshot(forPath: "VETERAN").value, forKey: "veteran")
-//                college.setValue(snap.childSnapshot(forPath: "WOMENONLY").value, forKey: "womenOnly")
-//                college.setValue(snap.childSnapshot(forPath: "ZIP").value, forKey: "zip")
-//                
-//                do {
-//                    try managedContext.save()
-//                    self.colleges.append(college)
-//                } catch let error as NSError {
-//                    print("Could not save. \(error), \(error.userInfo)")
-//                }
-//                
-//                i += 1
-//            }
-//            print(i)
-//        }) { (error) in
-//            print(error.localizedDescription)
-//        }
-//        
-//        
-//        // 4
-//        do {
-//            try managedContext.save()
-//            colleges.append(college)
-//        } catch let error as NSError {
-//            print("Could not save. \(error), \(error.userInfo)")
-//        }
-//    }
+    static func saveCollegeToCoreData() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        // 1
+         let managedContext = appDelegate.persistentContainer.viewContext
+        
+        // 2
+        let entity =
+            NSEntityDescription.entity(forEntityName: "College",
+                                       in: managedContext)!
+        
+        let college = NSManagedObject(entity: entity,
+                                      insertInto: managedContext)
+        
+        self.ref.child("colleges").observeSingleEvent(of: .value, with: { (snapshot) in
+            var i: Int = 0
+            for child in snapshot.children  {
+                let snap = child as! DataSnapshot
+                let formatter = NumberFormatter()
+                
+                college.setValue(formatter.number(from: snap.key), forKey: "ipsed")
+                college.setValue(snap.childSnapshot(forPath: "ACTCM25").value, forKey: "actcm25")
+                college.setValue(snap.childSnapshot(forPath: "ACTCM75").value, forKey: "actcm75")
+                college.setValue(snap.childSnapshot(forPath: "ACTCMMID").value, forKey: "actcmmid")
+                college.setValue(snap.childSnapshot(forPath: "ACTEN25").value, forKey: "acten25")
+                college.setValue(snap.childSnapshot(forPath: "ACTEN75").value, forKey: "acten75")
+                college.setValue(snap.childSnapshot(forPath: "ACTENMID").value, forKey: "actenmid")
+                college.setValue(snap.childSnapshot(forPath: "ACTMT25").value, forKey: "actmt25")
+                college.setValue(snap.childSnapshot(forPath: "ACTMT75").value, forKey: "actmt75")
+                college.setValue(snap.childSnapshot(forPath: "ACTMTMID").value, forKey: "actmtmid")
+                college.setValue(snap.childSnapshot(forPath: "ACTWR25").value, forKey: "actwr25")
+                college.setValue(snap.childSnapshot(forPath: "ACTWR75").value, forKey: "actwr75")
+                college.setValue(snap.childSnapshot(forPath: "ACTWRMID").value, forKey: "actwrmid")
+                college.setValue(snap.childSnapshot(forPath: "ADM_RATE").value, forKey: "admRate")
+                college.setValue(snap.childSnapshot(forPath: "ADM_RATE_ALL").value, forKey: "admRateAll")
+                college.setValue(snap.childSnapshot(forPath: "AGE_ENTRY").value, forKey: "ageEntry")
+                college.setValue(snap.childSnapshot(forPath: "AGE_ENTRY_SQ").value, forKey: "ageEntrySq")
+                college.setValue(snap.childSnapshot(forPath: "AGEGE24").value, forKey: "ageGe24")
+                college.setValue(snap.childSnapshot(forPath: "ALIAS").value, forKey: "alias")
+                college.setValue(snap.childSnapshot(forPath: "CITY").value, forKey: "city")
+                college.setValue(snap.childSnapshot(forPath: "CURROPER").value, forKey: "cuurentlyOper")
+                college.setValue(snap.childSnapshot(forPath: "DEPENDENT").value, forKey: "dependent")
+                college.setValue(snap.childSnapshot(forPath: "FAMINC").value, forKey: "famIncome")
+                college.setValue(snap.childSnapshot(forPath: "FAMINC_IND").value, forKey: "famIncomeInd")
+                college.setValue(snap.childSnapshot(forPath: "FEMALE").value, forKey: "female")
+                college.setValue(snap.childSnapshot(forPath: "FIRST_GEN").value, forKey: "firstGen")
+                college.setValue(snap.childSnapshot(forPath: "GRADS").value, forKey: "grads")
+                college.setValue(snap.childSnapshot(forPath: "HIGHDEG").value, forKey: "highDeg")
+                college.setValue(snap.childSnapshot(forPath: "INSTNM").value, forKey: "instName")
+                college.setValue(snap.childSnapshot(forPath: "INSTURL").value, forKey: "instWebsite")
+                college.setValue(snap.childSnapshot(forPath: "MAIN").value, forKey: "main")
+                college.setValue(snap.childSnapshot(forPath: "MARRIED").value, forKey: "married")
+                college.setValue(snap.childSnapshot(forPath: "MENONLY").value, forKey: "menOnly")
+                college.setValue(snap.childSnapshot(forPath: "NANTI").value, forKey: "nanti")
+                college.setValue(snap.childSnapshot(forPath: "NPCURL").value, forKey: "netPriceCalcWebsite")
+                college.setValue(snap.childSnapshot(forPath: "NUMBRANCH").value, forKey: "numBranch")
+                college.setValue(snap.childSnapshot(forPath: "OPEID").value, forKey: "opeID")
+                college.setValue(snap.childSnapshot(forPath: "OPEID6").value, forKey: "opeID6")
+                college.setValue(snap.childSnapshot(forPath: "OPENADMP").value, forKey: "openadmp")
+                college.setValue(snap.childSnapshot(forPath: "PBI").value, forKey: "pbi")
+                college.setValue(snap.childSnapshot(forPath: "PCT_ASIAN").value, forKey: "pctAsian")
+                college.setValue(snap.childSnapshot(forPath: "PCT_BA").value, forKey: "pctBA")
+                college.setValue(snap.childSnapshot(forPath: "PCT_BLACK").value, forKey: "pctBlack")
+                college.setValue(snap.childSnapshot(forPath: "PCT_BORN_US").value, forKey: "pctBornUS")
+                college.setValue(snap.childSnapshot(forPath: "PCT_GRAD_PROF").value, forKey: "pctGradProf")
+                college.setValue(snap.childSnapshot(forPath: "PCT_HISPANIC").value, forKey: "pctHispanic")
+                college.setValue(snap.childSnapshot(forPath: "PCTPELL").value, forKey: "pctPell")
+                college.setValue(snap.childSnapshot(forPath: "PCT_WHITE").value, forKey: "pctWhite")
+                college.setValue(snap.childSnapshot(forPath: "POVERTY_RATE").value, forKey: "povertyRate")
+                college.setValue(snap.childSnapshot(forPath: "PREDDEG").value, forKey: "predDeg")
+                college.setValue(snap.childSnapshot(forPath: "RELAFFIL").value, forKey: "relAffiliation")
+                college.setValue(snap.childSnapshot(forPath: "SAT_AVG").value, forKey: "satAvg")
+                college.setValue(snap.childSnapshot(forPath: "SAT_AVG_ALL").value, forKey: "satAvgAll")
+                college.setValue(snap.childSnapshot(forPath: "SATMT25").value, forKey: "satmt25")
+                college.setValue(snap.childSnapshot(forPath: "SATMT75").value, forKey: "satmt75")
+                college.setValue(snap.childSnapshot(forPath: "SATMTMID").value, forKey: "satmtmid")
+                college.setValue(snap.childSnapshot(forPath: "SATVR25").value, forKey: "satvr25")
+                college.setValue(snap.childSnapshot(forPath: "SATVR75").value, forKey: "satvr75")
+                college.setValue(snap.childSnapshot(forPath: "SATVRMID").value, forKey: "satvrmid")
+                college.setValue(snap.childSnapshot(forPath: "SATWR25").value, forKey: "satwr25")
+                college.setValue(snap.childSnapshot(forPath: "SATWR75").value, forKey: "satwr75")
+                college.setValue(snap.childSnapshot(forPath: "SATWRMID").value, forKey: "satwrmid")
+                college.setValue(snap.childSnapshot(forPath: "SCH_DEG").value, forKey: "schDeg")
+                college.setValue(snap.childSnapshot(forPath: "STABBR").value, forKey: "stateAbbr")
+                college.setValue(snap.childSnapshot(forPath: "TRIBAL").value, forKey: "tribal")
+                college.setValue(snap.childSnapshot(forPath: "TUITFTE").value, forKey: "tuitFTE")
+                college.setValue(snap.childSnapshot(forPath: "TUITIONFEE_IN").value, forKey: "tuitionFeeIn")
+                college.setValue(snap.childSnapshot(forPath: "TUITIONFEE_OUT").value, forKey: "tuitionFeeOut")
+                college.setValue(snap.childSnapshot(forPath: "TUITIONFEE_PROG").value, forKey: "tuitionFeeProg")
+                college.setValue(snap.childSnapshot(forPath: "UGNONDS").value, forKey: "ugnonds")
+                college.setValue(snap.childSnapshot(forPath: "UNEMP_RATE").value, forKey: "unempRate")
+                college.setValue(snap.childSnapshot(forPath: "VETERAN").value, forKey: "veteran")
+                college.setValue(snap.childSnapshot(forPath: "WOMENONLY").value, forKey: "womenOnly")
+                college.setValue(snap.childSnapshot(forPath: "ZIP").value, forKey: "zip")
+                
+                do {
+                    try managedContext.save()
+                    self.colleges.append(college)
+                } catch let error as NSError {
+                    print("Could not save. \(error), \(error.userInfo)")
+                }
+                
+                i += 1
+            }
+            print(i)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
+        
+        // 4
+        do {
+            try managedContext.save()
+            colleges.append(college)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
 
 }
 

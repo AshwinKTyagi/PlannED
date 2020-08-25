@@ -287,6 +287,14 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
         
         if indexPath.section == 0 {
             cell.textLabel!.text = User.getChosenCollegeNames()[indexPath.row]
+            switch(User.getChosenColleges()[indexPath.row].reach) {
+            case 0: cell.setHorizontalGradientBackground(colorOne: .systemGreen, colorTwo: .black)
+            case 1: cell.setHorizontalGradientBackground(colorOne: .systemYellow, colorTwo: .black)
+            case 2: cell.setHorizontalGradientBackground(colorOne: .systemRed, colorTwo: .black)
+            default:
+                print("sumn wnt wreng")
+            }
+            
         }
         else if indexPath.section == 1 {
             let formatter = DateFormatter()

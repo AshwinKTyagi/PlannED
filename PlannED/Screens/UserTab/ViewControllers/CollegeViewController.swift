@@ -65,6 +65,7 @@ class CollegeViewController: UIViewController{
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var infoBtn: UIButton!
     
+    var reach: Int = -1
     
     let ref = Database.database().reference()
     
@@ -131,6 +132,10 @@ class CollegeViewController: UIViewController{
                     
                     let total = x + y
                     self.satTotal75.text = formatter.string(from: NSNumber(value: total))
+                    
+                    if i == 0 {
+                        
+                    }
                 }
                 else {
                     self.satTotal75StackView.isHidden = true
@@ -346,7 +351,18 @@ class CollegeViewController: UIViewController{
                 self.degTextView.heightAnchor.constraint(equalToConstant: 0).isActive = true
                 self.degTextView.isHidden = true
             }
+            
+            switch(self.calcReach()) {
+            case 0: self.view.setVerticalGradientBackground(colorOne: .systemGreen, colorTwo: .black)
+            case 1: self.view.setVerticalGradientBackground(colorOne: .systemYellow, colorTwo: .black)
+            case 2: self.view.setVerticalGradientBackground(colorOne: .systemRed, colorTwo: .black)
+            default:
+                print("sumn wnt wreng")
+            }
+            
         })
+        
+        
     }
     
     
@@ -357,6 +373,7 @@ class CollegeViewController: UIViewController{
             sender.isSelected = false
         }
         else {
+            Helper.temporaryCollege.reach = reach
             User.addChosenCollege(college: Helper.temporaryCollege)
             sender.isSelected = true
         }
@@ -374,7 +391,76 @@ class CollegeViewController: UIViewController{
             sender.isSelected = true
         }
     }
+    
+    func calcReach() -> Int {
+        let formatter = NumberFormatter()
+        
+        var temp = Helper.calcReachSAT(sat25: formatter.number(from: satTotal25.text ?? "-1") as! Int, sat75: formatter.number(from: satTotal75.text ?? "-1") as! Int)
+        if temp == 2{
+            reach = temp
+            return 2
+        }
+        else {
+            reach = temp
+        }
+        
+        temp = Helper.calcReachACT(act25: formatter.number(from: actTotal25.text ?? "-1") as! Int, act75: formatter.number(from: actTotal75.text ?? "-1") as! Int)
+        if temp == 2 {
+            reach = temp
+            return 2
+        }
+        else if temp == 1 || reach == 1{
+            reach = temp
+            return 1
+        }
+        else {
+            reach = temp
+        }
+        
+        temp = Helper.calcReachACT(actmid: formatter.number(from: actTotalMid.text ?? "-1") as! Int)
+        if temp == 2 {
+            reach = temp
+            return 2
+        }
+        else if temp > reach{
+            reach = temp
+        }
+        
+        temp = Helper.calcReachSAT(satmid: formatter.number(from: satTotalMid.text ?? "-1") as! Int)
+        if temp == 2{
+            reach = temp
+            return 2
+        }
+        else if temp > reach{
+            reach = temp
+        }
+        
+        return reach
+    }
 }
 
-
-
+extension UIView{
+    func setVerticalGradientBackground(colorOne: UIColor, colorTwo: UIColor) {
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = bounds
+        gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
+        gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.5)
+        
+        layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    func setHorizontalGradientBackground(colorOne: UIColor, colorTwo: UIColor) {
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = bounds
+        gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.startPoint = CGPoint(x: 1.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
+        
+        layer.insertSublayer(gradientLayer, at: 0)
+    }
+}

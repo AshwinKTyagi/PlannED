@@ -348,11 +348,13 @@ struct tempCollege {
     let ipsed: String
     let name: String
     let alias: String
+    var reach: Int
     
-    init(ipsed: String, name: String, alias: String) {
+    init(ipsed: String, name: String, alias: String, reach: Int) {
         self.ipsed = ipsed
         self.name = name
         self.alias = alias
+        self.reach = reach
     }
     
     init(snapshot: DataSnapshot) {
@@ -360,12 +362,14 @@ struct tempCollege {
         ipsed = snapshotValue["ipsed"] as! String
         name = snapshotValue["name"] as! String
         alias = snapshotValue["alias"] as! String
+        reach = snapshotValue["reach"] as! Int
     }
     
     init(dict: NSDictionary){
         ipsed = dict["ipsed"] as! String
         name = dict["name"] as! String
         alias = dict["alias"] as! String
+        reach = dict["reach"] as! Int
     }
     
     func toAnyObject() -> Any {
@@ -373,6 +377,7 @@ struct tempCollege {
             "ipsed": ipsed,
             "name": name,
             "alias": alias,
+            "reach": reach
         ]
     }
 }

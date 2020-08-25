@@ -52,7 +52,7 @@ class CollegePlanningViewController: UIViewController{
                     let name = snap.childSnapshot(forPath: "INSTNM").value as? String ?? ""
                     let alias = snap.childSnapshot(forPath: "ALIAS").value as? String ?? ""
                     
-                    Helper.collegeData.append(tempCollege.init(ipsed: snap.key, name: name, alias: alias))
+                    Helper.collegeData.append(tempCollege.init(ipsed: snap.key, name: name, alias: alias, reach: -1))
                     Helper.collegeNameData.append(name)
                     
                     i += 1
