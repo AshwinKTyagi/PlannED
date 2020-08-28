@@ -42,6 +42,11 @@ final class User: ObservableObject {
         self.takenSATs = sats
     }
     
+    static func setChosenCollegeChecklist(index: Int, checklistIndex: Int, value: Bool) {
+        chosenColleges[index].checklist[checklistIndex] = value
+        saveDataToFirebase()
+    }
+    
     static func setTakenSATs(sats: [Any]) {
         var tempSat = [SAT]()
         
@@ -349,12 +354,14 @@ struct tempCollege {
     let name: String
     let alias: String
     var reach: Int
+    var checklist: [Bool]
     
-    init(ipsed: String, name: String, alias: String, reach: Int) {
+    init(ipsed: String, name: String, alias: String, reach: Int, checklist: [Bool]) {
         self.ipsed = ipsed
         self.name = name
         self.alias = alias
         self.reach = reach
+        self.checklist = checklist
     }
     
     init(snapshot: DataSnapshot) {
@@ -363,6 +370,7 @@ struct tempCollege {
         name = snapshotValue["name"] as! String
         alias = snapshotValue["alias"] as! String
         reach = snapshotValue["reach"] as! Int
+        checklist = snapshotValue["checklist"] as! [Bool]
     }
     
     init(dict: NSDictionary){
@@ -370,6 +378,7 @@ struct tempCollege {
         name = dict["name"] as! String
         alias = dict["alias"] as! String
         reach = dict["reach"] as! Int
+        checklist = dict["checklist"] as! [Bool]
     }
     
     func toAnyObject() -> Any {
@@ -377,7 +386,8 @@ struct tempCollege {
             "ipsed": ipsed,
             "name": name,
             "alias": alias,
-            "reach": reach
+            "reach": reach,
+            "checklist": checklist
         ]
     }
 }

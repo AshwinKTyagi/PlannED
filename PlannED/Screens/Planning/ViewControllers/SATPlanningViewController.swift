@@ -9,6 +9,8 @@
 import UIKit
 import MultiSelectSegmentedControl
 
+
+// MARK: CELLCLASS
 class CellClass: UITableViewCell {
     
 }

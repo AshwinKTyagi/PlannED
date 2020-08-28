@@ -354,14 +354,22 @@ class CollegeViewController: UIViewController{
             
             switch(self.calcReach()) {
             case 0: self.view.setVerticalGradientBackground(colorOne: .systemGreen, colorTwo: .black)
+                self.reach = 0
             case 1: self.view.setVerticalGradientBackground(colorOne: .systemYellow, colorTwo: .black)
+                self.reach = 1
             case 2: self.view.setVerticalGradientBackground(colorOne: .systemRed, colorTwo: .black)
+                self.reach = 2
             default:
                 print("sumn wnt wreng")
             }
             
         })
         
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
     }
     
@@ -394,48 +402,39 @@ class CollegeViewController: UIViewController{
     
     func calcReach() -> Int {
         let formatter = NumberFormatter()
+        var high = Int()
         
         var temp = Helper.calcReachSAT(sat25: formatter.number(from: satTotal25.text ?? "-1") as! Int, sat75: formatter.number(from: satTotal75.text ?? "-1") as! Int)
         if temp == 2{
-            reach = temp
             return 2
         }
-        else {
-            reach = temp
-        }
+        high = temp
         
         temp = Helper.calcReachACT(act25: formatter.number(from: actTotal25.text ?? "-1") as! Int, act75: formatter.number(from: actTotal75.text ?? "-1") as! Int)
         if temp == 2 {
-            reach = temp
             return 2
         }
-        else if temp == 1 || reach == 1{
-            reach = temp
+        else if high == 1 || temp == 1{
             return 1
-        }
-        else {
-            reach = temp
         }
         
         temp = Helper.calcReachACT(actmid: formatter.number(from: actTotalMid.text ?? "-1") as! Int)
         if temp == 2 {
-            reach = temp
             return 2
         }
-        else if temp > reach{
-            reach = temp
+        else if temp > high{
+            high = temp
         }
         
         temp = Helper.calcReachSAT(satmid: formatter.number(from: satTotalMid.text ?? "-1") as! Int)
         if temp == 2{
-            reach = temp
             return 2
         }
-        else if temp > reach{
-            reach = temp
+        else if temp > high{
+                high = temp
         }
         
-        return reach
+        return high
     }
 }
 

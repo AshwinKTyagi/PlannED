@@ -19,7 +19,7 @@ final class Helper: ObservableObject {
     private static var events = [Event]()
     private static var satEvents = [SATEvent]()
     private static var actEvents = [ACTEvent]()
-    static var temporaryCollege = tempCollege(ipsed: "", name: "", alias: "", reach: -1)
+    static var temporaryCollege = tempCollege(ipsed: "", name: "", alias: "", reach: -1, checklist: [false, false, false, false, false, false])
     static var collegeNameData = [String]()
     static var collegeData = [tempCollege]()
 
