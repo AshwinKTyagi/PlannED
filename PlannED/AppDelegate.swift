@@ -19,6 +19,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
+        
+//        addTestData()
+        
+//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "College")
+//
+//        do {
+//            if let results = try persistentContainer.viewContext.fetch(fetchRequest) as? [NSManagedObject] {
+//                for result in results {
+//                    if let ipsed = result.value(forKey: "ipsed") as? Int, let instName = result.value(forKey: "instName") as? String {
+//                        print("\(ipsed), \(instName)")
+//                    }
+//                }
+//            }
+//        } catch {
+//            print("There was a fetch error")
+//        }
+        
         return true
     }
 
@@ -72,6 +89,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      })
         return container
     }()
+    
+
+    func addTestData() {
+        guard let entity = NSEntityDescription.entity(forEntityName: "College", in: persistentContainer.viewContext) else {
+            fatalError("Could not find entity description!")
+        }
+        
+        var rng = SystemRandomNumberGenerator()
+        
+        for i in 1...25 {
+            let device = NSManagedObject(entity: entity, insertInto: persistentContainer.viewContext)
+            device.setValue(i, forKey: "ipsed")
+            device.setValue("collegeName\(rng.next())", forKey: "instName")
+        }
+    }
     // MARK: - Core Data Saving support
     func saveContext () {
         let context = persistentContainer.viewContext

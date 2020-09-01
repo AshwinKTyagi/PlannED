@@ -24,6 +24,9 @@ class LoginViewController: UIViewController{
         btnViewPassword.tintColor = UIColor.init(red: 40/255, green: 1/255, blue: 55/255, alpha: 1)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        email.delegate = self
+        password.delegate = self
     }
     
     @IBAction func onLoginClick(_ sender: Any){
@@ -65,5 +68,14 @@ class LoginViewController: UIViewController{
             password.isSecureTextEntry = true
             btnViewPassword.tintColor = UIColor.init(red: 40/255, green: 1/255, blue: 55/255, alpha: 1)
         }
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        
+        return false
     }
 }

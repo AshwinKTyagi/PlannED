@@ -31,6 +31,7 @@
 		2B60B9EE24C6134E0048C2B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B60B9ED24C6134E0048C2B2 /* SettingsViewController.swift */; };
 		2B64383224D9EE8300F7F8E4 /* CollegeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64383124D9EE8300F7F8E4 /* CollegeViewController.swift */; };
 		2B64383424D9FA9200F7F8E4 /* PlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64383324D9FA9200F7F8E4 /* PlanningViewController.swift */; };
+		2B6844A724FEC4960005E2C1 /* PlannED.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B6844A524FEC4960005E2C1 /* PlannED.xcdatamodeld */; };
 		2B6BA3BF24B6430200433937 /* ACTEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6BA3BE24B6430200433937 /* ACTEvent.swift */; };
 		2B6E42E724CA12CE00EFAD3E /* Checklist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B6E42E624CA12CE00EFAD3E /* Checklist.storyboard */; };
 		2B6E42EC24CA173300EFAD3E /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B6E42EB24CA173300EFAD3E /* User.storyboard */; };
@@ -77,7 +78,6 @@
 		2B064ABD24A26192008791AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B064AC724A26859008791AF /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		2B51EA6924EC70FC00F66546 /* College.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = College.storyboard; sourceTree = "<group>"; };
-		2B5670EF24F448440028ED48 /* PlannED.xcdatamodeld */ = {isa = PBXFileReference; lastKnownFileType = file; path = PlannED.xcdatamodeld; sourceTree = "<group>"; };
 		2B5889B224B8EC3C0040E006 /* College.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = College.swift; sourceTree = "<group>"; };
 		2B5AA19B24EF119600E8472B /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
 		2B5C36AA24C8C3A300930B77 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -93,6 +93,7 @@
 		2B60B9ED24C6134E0048C2B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2B64383124D9EE8300F7F8E4 /* CollegeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollegeViewController.swift; path = PlannED/Screens/UserTab/ViewControllers/CollegeViewController.swift; sourceTree = SOURCE_ROOT; };
 		2B64383324D9FA9200F7F8E4 /* PlanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlanningViewController.swift; path = PlannED/Resources/PlanningViewController.swift; sourceTree = SOURCE_ROOT; };
+		2B6844A624FEC4960005E2C1 /* PlannED.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PlannED.xcdatamodel; sourceTree = "<group>"; };
 		2B6BA3BE24B6430200433937 /* ACTEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTEvent.swift; sourceTree = "<group>"; };
 		2B6E42E624CA12CE00EFAD3E /* Checklist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Checklist.storyboard; sourceTree = "<group>"; };
 		2B6E42EB24CA173300EFAD3E /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
@@ -169,7 +170,7 @@
 				2B064AAF24A26192008791AF /* LaunchScreen.storyboard */,
 				2B064AB224A26192008791AF /* Info.plist */,
 				2B7CAA2224C22FF80029CB68 /* GoogleService-Info.plist */,
-				2B5670EF24F448440028ED48 /* PlannED.xcdatamodeld */,
+				2B6844A524FEC4960005E2C1 /* PlannED.xcdatamodeld */,
 			);
 			path = PlannED;
 			sourceTree = "<group>";
@@ -602,6 +603,7 @@
 				2B6E42EE24CB48CD00EFAD3E /* UserViewController.swift in Sources */,
 				2B5C36BD24C8CB5400930B77 /* AddEventViewController.swift in Sources */,
 				2B5C36B624C8CB0A00930B77 /* ACTPlanningViewController.swift in Sources */,
+				2B6844A724FEC4960005E2C1 /* PlannED.xcdatamodeld in Sources */,
 				2B5C36BC24C8CB5400930B77 /* RemoveEventViewController.swift in Sources */,
 				2BD6C1FB24A68EC500D8652D /* Event.swift in Sources */,
 				2B5C36BE24C8CB5400930B77 /* CalendarViewController.swift in Sources */,
@@ -884,6 +886,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2B6844A524FEC4960005E2C1 /* PlannED.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2B6844A624FEC4960005E2C1 /* PlannED.xcdatamodel */,
+			);
+			currentVersion = 2B6844A624FEC4960005E2C1 /* PlannED.xcdatamodel */;
+			path = PlannED.xcdatamodeld;
+			sourceTree = SOURCE_ROOT;
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2B064A9924A26191008791AF /* Project object */;
 }

@@ -31,6 +31,10 @@ class SignUpViewController: UIViewController{
         
         navigationController?.setNavigationBarHidden(false, animated: true)
                 
+        email.delegate = self
+        password.delegate = self	
+        passwordConfirm.delegate = self
+        
         ref = Database.database().reference()
 
     }
@@ -116,3 +120,10 @@ class SignUpViewController: UIViewController{
     
 }
 
+extension SignUpViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return false
+    }
+}
