@@ -1,14 +1,3 @@
-//
-//  College.swift
-//  PlannED
-//
-//  Created by Ashwin Tyagi on 7/9/20.
-//  Copyright © 2020 Ashwin Tyagi. All rights reserved.
-//
-
-
-import SwiftUI
-import CoreLocation
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 // To parse the JSON, add this file to your project and do:
 //
@@ -18,11 +7,7 @@ import Foundation
 
 // MARK: - CollegeData
 struct CollegeData: Codable {
-    let collegeData: CollegeDataClass
-
-    enum CodingKeys: String, CodingKey {
-        case collegeData = "CollegeData"
-    }
+    let collegeData: [String: CollegeDatum]
 }
 
 // MARK: CollegeData convenience initializers and mutators
@@ -44,7 +29,7 @@ extension CollegeData {
     }
 
     func with(
-        collegeData: CollegeDataClass? = nil
+        collegeData: [String: CollegeDatum]? = nil
     ) -> CollegeData {
         return CollegeData(
             collegeData: collegeData ?? self.collegeData
@@ -60,308 +45,149 @@ extension CollegeData {
     }
 }
 
-// MARK: - CollegeDataClass
-struct CollegeDataClass: Codable {
-    let type, name: String
-    let crs: CRS
-    let features: [Feature]
-}
-
-// MARK: CollegeDataClass convenience initializers and mutators
-
-extension CollegeDataClass {
-    init(data: Data) throws {
-        self = try newJSONDecoder().decode(CollegeDataClass.self, from: data)
-    }
-
-    init(_ json: String, using encoding: String.Encoding = .utf8) throws {
-        guard let data = json.data(using: encoding) else {
-            throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
-        }
-        try self.init(data: data)
-    }
-
-    init(fromURL url: URL) throws {
-        try self.init(data: try Data(contentsOf: url))
-    }
-
-    func with(
-        type: String? = nil,
-        name: String? = nil,
-        crs: CRS? = nil,
-        features: [Feature]? = nil
-    ) -> CollegeDataClass {
-        return CollegeDataClass(
-            type: type ?? self.type,
-            name: name ?? self.name,
-            crs: crs ?? self.crs,
-            features: features ?? self.features
-        )
-    }
-
-    func jsonData() throws -> Data {
-        return try newJSONEncoder().encode(self)
-    }
-
-    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
-        return String(data: try self.jsonData(), encoding: encoding)
-    }
-}
-
-// MARK: - CRS
-struct CRS: Codable {
-    let type: String
-    let properties: CRSProperties
-}
-
-// MARK: CRS convenience initializers and mutators
-
-extension CRS {
-    init(data: Data) throws {
-        self = try newJSONDecoder().decode(CRS.self, from: data)
-    }
-
-    init(_ json: String, using encoding: String.Encoding = .utf8) throws {
-        guard let data = json.data(using: encoding) else {
-            throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
-        }
-        try self.init(data: data)
-    }
-
-    init(fromURL url: URL) throws {
-        try self.init(data: try Data(contentsOf: url))
-    }
-
-    func with(
-        type: String? = nil,
-        properties: CRSProperties? = nil
-    ) -> CRS {
-        return CRS(
-            type: type ?? self.type,
-            properties: properties ?? self.properties
-        )
-    }
-
-    func jsonData() throws -> Data {
-        return try newJSONEncoder().encode(self)
-    }
-
-    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
-        return String(data: try self.jsonData(), encoding: encoding)
-    }
-}
-
-// MARK: - CRSProperties
-struct CRSProperties: Codable {
-    let name: String
-}
-
-// MARK: CRSProperties convenience initializers and mutators
-
-extension CRSProperties {
-    init(data: Data) throws {
-        self = try newJSONDecoder().decode(CRSProperties.self, from: data)
-    }
-
-    init(_ json: String, using encoding: String.Encoding = .utf8) throws {
-        guard let data = json.data(using: encoding) else {
-            throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
-        }
-        try self.init(data: data)
-    }
-
-    init(fromURL url: URL) throws {
-        try self.init(data: try Data(contentsOf: url))
-    }
-
-    func with(
-        name: String? = nil
-    ) -> CRSProperties {
-        return CRSProperties(
-            name: name ?? self.name
-        )
-    }
-
-    func jsonData() throws -> Data {
-        return try newJSONEncoder().encode(self)
-    }
-
-    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
-        return String(data: try self.jsonData(), encoding: encoding)
-    }
-}
-
-// MARK: - Feature
-struct Feature: Codable {
-    let type: FeatureType
-    let properties: FeatureProperties
-    let geometry: Geometry
-}
-
-// MARK: Feature convenience initializers and mutators
-
-extension Feature {
-    init(data: Data) throws {
-        self = try newJSONDecoder().decode(Feature.self, from: data)
-    }
-
-    init(_ json: String, using encoding: String.Encoding = .utf8) throws {
-        guard let data = json.data(using: encoding) else {
-            throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
-        }
-        try self.init(data: data)
-    }
-
-    init(fromURL url: URL) throws {
-        try self.init(data: try Data(contentsOf: url))
-    }
-
-    func with(
-        type: FeatureType? = nil,
-        properties: FeatureProperties? = nil,
-        geometry: Geometry? = nil
-    ) -> Feature {
-        return Feature(
-            type: type ?? self.type,
-            properties: properties ?? self.properties,
-            geometry: geometry ?? self.geometry
-        )
-    }
-
-    func jsonData() throws -> Data {
-        return try newJSONEncoder().encode(self)
-    }
-
-    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
-        return String(data: try self.jsonData(), encoding: encoding)
-    }
-}
-
-// MARK: - Geometry
-struct Geometry: Codable {
-    let type: GeometryType
-    let coordinates: [Double]
-}
-
-// MARK: Geometry convenience initializers and mutators
-
-extension Geometry {
-    init(data: Data) throws {
-        self = try newJSONDecoder().decode(Geometry.self, from: data)
-    }
-
-    init(_ json: String, using encoding: String.Encoding = .utf8) throws {
-        guard let data = json.data(using: encoding) else {
-            throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
-        }
-        try self.init(data: data)
-    }
-
-    init(fromURL url: URL) throws {
-        try self.init(data: try Data(contentsOf: url))
-    }
-
-    func with(
-        type: GeometryType? = nil,
-        coordinates: [Double]? = nil
-    ) -> Geometry {
-        return Geometry(
-            type: type ?? self.type,
-            coordinates: coordinates ?? self.coordinates
-        )
-    }
-
-    func jsonData() throws -> Data {
-        return try newJSONEncoder().encode(self)
-    }
-
-    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
-        return String(data: try self.jsonData(), encoding: encoding)
-    }
-}
-
-enum GeometryType: String, Codable {
-    case point = "Point"
-}
-
-// MARK: - FeatureProperties
-struct FeatureProperties: Codable {
-    let objectid: Int
-    let ipedsid, name, address, city: String
-    let state: String
-    let zip, zip4, telephone, type: String
-    let status: String
-    let population: Int
-    let county, countyfips: String
-    let country: String
-    let latitude, longitude: Double
-    let naicsCode: String
-    let naicsDesc: String
-    let source: String
-    let sourcedate: Int
-    let valMethod: String
-    let valDate: Int
-    let website: String
-    let stfips, cofips, sector, level: String
-    let hiOffer, degGrant, locale, closeDate: String
-    let mergeID, alias, sizeSet, instSize: String
-    let ptEnroll, ftEnroll, totEnroll: Int
-    let housing: String
-    let dormCap, totEmp: Int
-    let shelterID: String
+// MARK: - CollegeDatum
+struct CollegeDatum: Codable {
+    let opeid, opeid6: Int
+    let instnm, city, stabbr, zip: String
+    let accredagency: String
+    let insturl: String
+    let npcurl: String
+    let schDeg, hcm2, main, numbranch: String
+    let preddeg, highdeg, control, stFIPS: String
+    let region, locale, locale2, latitude: String
+    let longitude, ccbasic, ccugprof, ccsizset: String
+    let hbcu, pbi, annhi, tribal: String
+    let aanapii, hsi, nanti, menonly: String
+    let womenonly, relaffil, admRate, admRateAll: String
+    let satvr25, satvr75, satmt25, satmt75: Int
+    let satwr25, satwr75, satvrmid, satmtmid: Int
+    let satwrmid, actcm25, actcm75, acten25: Int
+    let acten75, actmt25, actmt75, actwr25: Int
+    let actwr75, actcmmid, actenmid, actmtmid: Int
+    let actwrmid, satAvg, satAvgAll: Int
+    let distanceonly, curroper, costt4A, costt4P: String
+    let tuitionfeeIn, tuitionfeeOut, tuitionfeeProg, tuitfte: String
+    let inexpfte, avgfacsal, pftfac, pctpell: String
+    let ageEntry, ageEntrySq, agege24, female: String
+    let married, dependent, veteran, firstGen: String
+    let faminc, mdFaminc, famincInd, lnfaminc: String
+    let lnfamincInd, pctWhite, pctBlack, pctAsian: String
+    let pctHispanic, pctBa, pctGradProf, pctBornUs: String
+    let medianHhInc, povertyRate, unempRate, lnMedianHhInc: String
+    let alias, openadmp, ugnonds, grads: String
+    let accredcode, empty: String
 
     enum CodingKeys: String, CodingKey {
-        case objectid = "OBJECTID"
-        case ipedsid = "IPEDSID"
-        case name = "NAME"
-        case address = "ADDRESS"
+        case opeid = "OPEID"
+        case opeid6 = "OPEID6"
+        case instnm = "INSTNM"
         case city = "CITY"
-        case state = "STATE"
+        case stabbr = "STABBR"
         case zip = "ZIP"
-        case zip4 = "ZIP4"
-        case telephone = "TELEPHONE"
-        case type = "TYPE"
-        case status = "STATUS"
-        case population = "POPULATION"
-        case county = "COUNTY"
-        case countyfips = "COUNTYFIPS"
-        case country = "COUNTRY"
+        case accredagency = "ACCREDAGENCY"
+        case insturl = "INSTURL"
+        case npcurl = "NPCURL"
+        case schDeg = "SCH_DEG"
+        case hcm2 = "HCM2"
+        case main = "MAIN"
+        case numbranch = "NUMBRANCH"
+        case preddeg = "PREDDEG"
+        case highdeg = "HIGHDEG"
+        case control = "CONTROL"
+        case stFIPS = "ST_FIPS"
+        case region = "REGION"
+        case locale = "LOCALE"
+        case locale2 = "LOCALE2"
         case latitude = "LATITUDE"
         case longitude = "LONGITUDE"
-        case naicsCode = "NAICS_CODE"
-        case naicsDesc = "NAICS_DESC"
-        case source = "SOURCE"
-        case sourcedate = "SOURCEDATE"
-        case valMethod = "VAL_METHOD"
-        case valDate = "VAL_DATE"
-        case website = "WEBSITE"
-        case stfips = "STFIPS"
-        case cofips = "COFIPS"
-        case sector = "SECTOR"
-        case level = "LEVEL_"
-        case hiOffer = "HI_OFFER"
-        case degGrant = "DEG_GRANT"
-        case locale = "LOCALE"
-        case closeDate = "CLOSE_DATE"
-        case mergeID = "MERGE_ID"
+        case ccbasic = "CCBASIC"
+        case ccugprof = "CCUGPROF"
+        case ccsizset = "CCSIZSET"
+        case hbcu = "HBCU"
+        case pbi = "PBI"
+        case annhi = "ANNHI"
+        case tribal = "TRIBAL"
+        case aanapii = "AANAPII"
+        case hsi = "HSI"
+        case nanti = "NANTI"
+        case menonly = "MENONLY"
+        case womenonly = "WOMENONLY"
+        case relaffil = "RELAFFIL"
+        case admRate = "ADM_RATE"
+        case admRateAll = "ADM_RATE_ALL"
+        case satvr25 = "SATVR25"
+        case satvr75 = "SATVR75"
+        case satmt25 = "SATMT25"
+        case satmt75 = "SATMT75"
+        case satwr25 = "SATWR25"
+        case satwr75 = "SATWR75"
+        case satvrmid = "SATVRMID"
+        case satmtmid = "SATMTMID"
+        case satwrmid = "SATWRMID"
+        case actcm25 = "ACTCM25"
+        case actcm75 = "ACTCM75"
+        case acten25 = "ACTEN25"
+        case acten75 = "ACTEN75"
+        case actmt25 = "ACTMT25"
+        case actmt75 = "ACTMT75"
+        case actwr25 = "ACTWR25"
+        case actwr75 = "ACTWR75"
+        case actcmmid = "ACTCMMID"
+        case actenmid = "ACTENMID"
+        case actmtmid = "ACTMTMID"
+        case actwrmid = "ACTWRMID"
+        case satAvg = "SAT_AVG"
+        case satAvgAll = "SAT_AVG_ALL"
+        case distanceonly = "DISTANCEONLY"
+        case curroper = "CURROPER"
+        case costt4A = "COSTT4_A"
+        case costt4P = "COSTT4_P"
+        case tuitionfeeIn = "TUITIONFEE_IN"
+        case tuitionfeeOut = "TUITIONFEE_OUT"
+        case tuitionfeeProg = "TUITIONFEE_PROG"
+        case tuitfte = "TUITFTE"
+        case inexpfte = "INEXPFTE"
+        case avgfacsal = "AVGFACSAL"
+        case pftfac = "PFTFAC"
+        case pctpell = "PCTPELL"
+        case ageEntry = "AGE_ENTRY"
+        case ageEntrySq = "AGE_ENTRY_SQ"
+        case agege24 = "AGEGE24"
+        case female = "FEMALE"
+        case married = "MARRIED"
+        case dependent = "DEPENDENT"
+        case veteran = "VETERAN"
+        case firstGen = "FIRST_GEN"
+        case faminc = "FAMINC"
+        case mdFaminc = "MD_FAMINC"
+        case famincInd = "FAMINC_IND"
+        case lnfaminc = "LNFAMINC"
+        case lnfamincInd = "LNFAMINC_IND"
+        case pctWhite = "PCT_WHITE"
+        case pctBlack = "PCT_BLACK"
+        case pctAsian = "PCT_ASIAN"
+        case pctHispanic = "PCT_HISPANIC"
+        case pctBa = "PCT_BA"
+        case pctGradProf = "PCT_GRAD_PROF"
+        case pctBornUs = "PCT_BORN_US"
+        case medianHhInc = "MEDIAN_HH_INC"
+        case povertyRate = "POVERTY_RATE"
+        case unempRate = "UNEMP_RATE"
+        case lnMedianHhInc = "LN_MEDIAN_HH_INC"
         case alias = "ALIAS"
-        case sizeSet = "SIZE_SET"
-        case instSize = "INST_SIZE"
-        case ptEnroll = "PT_ENROLL"
-        case ftEnroll = "FT_ENROLL"
-        case totEnroll = "TOT_ENROLL"
-        case housing = "HOUSING"
-        case dormCap = "DORM_CAP"
-        case totEmp = "TOT_EMP"
-        case shelterID = "SHELTER_ID"
+        case openadmp = "OPENADMP"
+        case ugnonds = "UGNONDS"
+        case grads = "GRADS"
+        case accredcode = "ACCREDCODE"
+        case empty = ""
     }
 }
 
-// MARK: FeatureProperties convenience initializers and mutators
+// MARK: CollegeDatum convenience initializers and mutators
 
-extension FeatureProperties {
+extension CollegeDatum {
     init(data: Data) throws {
-        self = try newJSONDecoder().decode(FeatureProperties.self, from: data)
+        self = try newJSONDecoder().decode(CollegeDatum.self, from: data)
     }
 
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -376,94 +202,212 @@ extension FeatureProperties {
     }
 
     func with(
-        objectid: Int? = nil,
-        ipedsid: String? = nil,
-        name: String? = nil,
-        address: String? = nil,
+        opeid: Int? = nil,
+        opeid6: Int? = nil,
+        instnm: String? = nil,
         city: String? = nil,
-        state: String? = nil,
+        stabbr: String? = nil,
         zip: String? = nil,
-        zip4: String? = nil,
-        telephone: String? = nil,
-        type: String? = nil,
-        status: String? = nil,
-        population: Int? = nil,
-        county: String? = nil,
-        countyfips: String? = nil,
-        country: String? = nil,
-        latitude: Double? = nil,
-        longitude: Double? = nil,
-        naicsCode: String? = nil,
-        naicsDesc: String? = nil,
-        source: String? = nil,
-        sourcedate: Int? = nil,
-        valMethod: String? = nil,
-        valDate: Int? = nil,
-        website: String? = nil,
-        stfips: String? = nil,
-        cofips: String? = nil,
-        sector: String? = nil,
-        level: String? = nil,
-        hiOffer: String? = nil,
-        degGrant: String? = nil,
+        accredagency: String? = nil,
+        insturl: String? = nil,
+        npcurl: String? = nil,
+        schDeg: String? = nil,
+        hcm2: String? = nil,
+        main: String? = nil,
+        numbranch: String? = nil,
+        preddeg: String? = nil,
+        highdeg: String? = nil,
+        control: String? = nil,
+        stFIPS: String? = nil,
+        region: String? = nil,
         locale: String? = nil,
-        closeDate: String? = nil,
-        mergeID: String? = nil,
+        locale2: String? = nil,
+        latitude: String? = nil,
+        longitude: String? = nil,
+        ccbasic: String? = nil,
+        ccugprof: String? = nil,
+        ccsizset: String? = nil,
+        hbcu: String? = nil,
+        pbi: String? = nil,
+        annhi: String? = nil,
+        tribal: String? = nil,
+        aanapii: String? = nil,
+        hsi: String? = nil,
+        nanti: String? = nil,
+        menonly: String? = nil,
+        womenonly: String? = nil,
+        relaffil: String? = nil,
+        admRate: String? = nil,
+        admRateAll: String? = nil,
+        satvr25: Int? = nil,
+        satvr75: Int? = nil,
+        satmt25: Int? = nil,
+        satmt75: Int? = nil,
+        satwr25: Int? = nil,
+        satwr75: Int? = nil,
+        satvrmid: Int? = nil,
+        satmtmid: Int? = nil,
+        satwrmid: Int? = nil,
+        actcm25: Int? = nil,
+        actcm75: Int? = nil,
+        acten25: Int? = nil,
+        acten75: Int? = nil,
+        actmt25: Int? = nil,
+        actmt75: Int? = nil,
+        actwr25: Int? = nil,
+        actwr75: Int? = nil,
+        actcmmid: Int? = nil,
+        actenmid: Int? = nil,
+        actmtmid: Int? = nil,
+        actwrmid: Int? = nil,
+        satAvg: Int? = nil,
+        satAvgAll: Int? = nil,
+        distanceonly: String? = nil,
+        curroper: String? = nil,
+        costt4A: String? = nil,
+        costt4P: String? = nil,
+        tuitionfeeIn: String? = nil,
+        tuitionfeeOut: String? = nil,
+        tuitionfeeProg: String? = nil,
+        tuitfte: String? = nil,
+        inexpfte: String? = nil,
+        avgfacsal: String? = nil,
+        pftfac: String? = nil,
+        pctpell: String? = nil,
+        ageEntry: String? = nil,
+        ageEntrySq: String? = nil,
+        agege24: String? = nil,
+        female: String? = nil,
+        married: String? = nil,
+        dependent: String? = nil,
+        veteran: String? = nil,
+        firstGen: String? = nil,
+        faminc: String? = nil,
+        mdFaminc: String? = nil,
+        famincInd: String? = nil,
+        lnfaminc: String? = nil,
+        lnfamincInd: String? = nil,
+        pctWhite: String? = nil,
+        pctBlack: String? = nil,
+        pctAsian: String? = nil,
+        pctHispanic: String? = nil,
+        pctBa: String? = nil,
+        pctGradProf: String? = nil,
+        pctBornUs: String? = nil,
+        medianHhInc: String? = nil,
+        povertyRate: String? = nil,
+        unempRate: String? = nil,
+        lnMedianHhInc: String? = nil,
         alias: String? = nil,
-        sizeSet: String? = nil,
-        instSize: String? = nil,
-        ptEnroll: Int? = nil,
-        ftEnroll: Int? = nil,
-        totEnroll: Int? = nil,
-        housing: String? = nil,
-        dormCap: Int? = nil,
-        totEmp: Int? = nil,
-        shelterID: String? = nil
-    ) -> FeatureProperties {
-        return FeatureProperties(
-            objectid: objectid ?? self.objectid,
-            ipedsid: ipedsid ?? self.ipedsid,
-            name: name ?? self.name,
-            address: address ?? self.address,
+        openadmp: String? = nil,
+        ugnonds: String? = nil,
+        grads: String? = nil,
+        accredcode: String? = nil,
+        empty: String? = nil
+    ) -> CollegeDatum {
+        return CollegeDatum(
+            opeid: opeid ?? self.opeid,
+            opeid6: opeid6 ?? self.opeid6,
+            instnm: instnm ?? self.instnm,
             city: city ?? self.city,
-            state: state ?? self.state,
+            stabbr: stabbr ?? self.stabbr,
             zip: zip ?? self.zip,
-            zip4: zip4 ?? self.zip4,
-            telephone: telephone ?? self.telephone,
-            type: type ?? self.type,
-            status: status ?? self.status,
-            population: population ?? self.population,
-            county: county ?? self.county,
-            countyfips: countyfips ?? self.countyfips,
-            country: country ?? self.country,
+            accredagency: accredagency ?? self.accredagency,
+            insturl: insturl ?? self.insturl,
+            npcurl: npcurl ?? self.npcurl,
+            schDeg: schDeg ?? self.schDeg,
+            hcm2: hcm2 ?? self.hcm2,
+            main: main ?? self.main,
+            numbranch: numbranch ?? self.numbranch,
+            preddeg: preddeg ?? self.preddeg,
+            highdeg: highdeg ?? self.highdeg,
+            control: control ?? self.control,
+            stFIPS: stFIPS ?? self.stFIPS,
+            region: region ?? self.region,
+            locale: locale ?? self.locale,
+            locale2: locale2 ?? self.locale2,
             latitude: latitude ?? self.latitude,
             longitude: longitude ?? self.longitude,
-            naicsCode: naicsCode ?? self.naicsCode,
-            naicsDesc: naicsDesc ?? self.naicsDesc,
-            source: source ?? self.source,
-            sourcedate: sourcedate ?? self.sourcedate,
-            valMethod: valMethod ?? self.valMethod,
-            valDate: valDate ?? self.valDate,
-            website: website ?? self.website,
-            stfips: stfips ?? self.stfips,
-            cofips: cofips ?? self.cofips,
-            sector: sector ?? self.sector,
-            level: level ?? self.level,
-            hiOffer: hiOffer ?? self.hiOffer,
-            degGrant: degGrant ?? self.degGrant,
-            locale: locale ?? self.locale,
-            closeDate: closeDate ?? self.closeDate,
-            mergeID: mergeID ?? self.mergeID,
+            ccbasic: ccbasic ?? self.ccbasic,
+            ccugprof: ccugprof ?? self.ccugprof,
+            ccsizset: ccsizset ?? self.ccsizset,
+            hbcu: hbcu ?? self.hbcu,
+            pbi: pbi ?? self.pbi,
+            annhi: annhi ?? self.annhi,
+            tribal: tribal ?? self.tribal,
+            aanapii: aanapii ?? self.aanapii,
+            hsi: hsi ?? self.hsi,
+            nanti: nanti ?? self.nanti,
+            menonly: menonly ?? self.menonly,
+            womenonly: womenonly ?? self.womenonly,
+            relaffil: relaffil ?? self.relaffil,
+            admRate: admRate ?? self.admRate,
+            admRateAll: admRateAll ?? self.admRateAll,
+            satvr25: satvr25 ?? self.satvr25,
+            satvr75: satvr75 ?? self.satvr75,
+            satmt25: satmt25 ?? self.satmt25,
+            satmt75: satmt75 ?? self.satmt75,
+            satwr25: satwr25 ?? self.satwr25,
+            satwr75: satwr75 ?? self.satwr75,
+            satvrmid: satvrmid ?? self.satvrmid,
+            satmtmid: satmtmid ?? self.satmtmid,
+            satwrmid: satwrmid ?? self.satwrmid,
+            actcm25: actcm25 ?? self.actcm25,
+            actcm75: actcm75 ?? self.actcm75,
+            acten25: acten25 ?? self.acten25,
+            acten75: acten75 ?? self.acten75,
+            actmt25: actmt25 ?? self.actmt25,
+            actmt75: actmt75 ?? self.actmt75,
+            actwr25: actwr25 ?? self.actwr25,
+            actwr75: actwr75 ?? self.actwr75,
+            actcmmid: actcmmid ?? self.actcmmid,
+            actenmid: actenmid ?? self.actenmid,
+            actmtmid: actmtmid ?? self.actmtmid,
+            actwrmid: actwrmid ?? self.actwrmid,
+            satAvg: satAvg ?? self.satAvg,
+            satAvgAll: satAvgAll ?? self.satAvgAll,
+            distanceonly: distanceonly ?? self.distanceonly,
+            curroper: curroper ?? self.curroper,
+            costt4A: costt4A ?? self.costt4A,
+            costt4P: costt4P ?? self.costt4P,
+            tuitionfeeIn: tuitionfeeIn ?? self.tuitionfeeIn,
+            tuitionfeeOut: tuitionfeeOut ?? self.tuitionfeeOut,
+            tuitionfeeProg: tuitionfeeProg ?? self.tuitionfeeProg,
+            tuitfte: tuitfte ?? self.tuitfte,
+            inexpfte: inexpfte ?? self.inexpfte,
+            avgfacsal: avgfacsal ?? self.avgfacsal,
+            pftfac: pftfac ?? self.pftfac,
+            pctpell: pctpell ?? self.pctpell,
+            ageEntry: ageEntry ?? self.ageEntry,
+            ageEntrySq: ageEntrySq ?? self.ageEntrySq,
+            agege24: agege24 ?? self.agege24,
+            female: female ?? self.female,
+            married: married ?? self.married,
+            dependent: dependent ?? self.dependent,
+            veteran: veteran ?? self.veteran,
+            firstGen: firstGen ?? self.firstGen,
+            faminc: faminc ?? self.faminc,
+            mdFaminc: mdFaminc ?? self.mdFaminc,
+            famincInd: famincInd ?? self.famincInd,
+            lnfaminc: lnfaminc ?? self.lnfaminc,
+            lnfamincInd: lnfamincInd ?? self.lnfamincInd,
+            pctWhite: pctWhite ?? self.pctWhite,
+            pctBlack: pctBlack ?? self.pctBlack,
+            pctAsian: pctAsian ?? self.pctAsian,
+            pctHispanic: pctHispanic ?? self.pctHispanic,
+            pctBa: pctBa ?? self.pctBa,
+            pctGradProf: pctGradProf ?? self.pctGradProf,
+            pctBornUs: pctBornUs ?? self.pctBornUs,
+            medianHhInc: medianHhInc ?? self.medianHhInc,
+            povertyRate: povertyRate ?? self.povertyRate,
+            unempRate: unempRate ?? self.unempRate,
+            lnMedianHhInc: lnMedianHhInc ?? self.lnMedianHhInc,
             alias: alias ?? self.alias,
-            sizeSet: sizeSet ?? self.sizeSet,
-            instSize: instSize ?? self.instSize,
-            ptEnroll: ptEnroll ?? self.ptEnroll,
-            ftEnroll: ftEnroll ?? self.ftEnroll,
-            totEnroll: totEnroll ?? self.totEnroll,
-            housing: housing ?? self.housing,
-            dormCap: dormCap ?? self.dormCap,
-            totEmp: totEmp ?? self.totEmp,
-            shelterID: shelterID ?? self.shelterID
+            openadmp: openadmp ?? self.openadmp,
+            ugnonds: ugnonds ?? self.ugnonds,
+            grads: grads ?? self.grads,
+            accredcode: accredcode ?? self.accredcode,
+            empty: empty ?? self.empty
         )
     }
 
@@ -474,10 +418,12 @@ extension FeatureProperties {
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }
-}
-
-enum FeatureType: String, Codable {
-    case feature = "Feature"
+    
+    func ifNullOrPrivate(_ value: String) {
+        if value == "NULL" || value == "PrivacySuppressed"{
+            
+        }
+    }
 }
 
 // MARK: - Helper functions for creating encoders and decoders

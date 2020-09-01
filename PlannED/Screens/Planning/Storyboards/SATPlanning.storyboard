@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iBQ-Ef-jvk">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--SAT Planning-->
+        <scene sceneID="JFV-Rb-6eb">
+            <objects>
+                <viewController id="iBQ-Ef-jvk" customClass="SATPlanningViewController" customModule="PlannED" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ClT-zX-4Ag">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4a-uG-N2B">
+                                <rect key="frame" x="20" y="94" width="374" height="40"/>
+                                <color key="backgroundColor" red="0.58823529409999997" green="0.0039215686269999999" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Select SAT Date">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onClickSelectSATDate:" destination="iBQ-Ef-jvk" eventType="touchDown" id="wzK-1A-HR1"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Kvi-8d-kGx">
+                                <rect key="frame" x="20" y="142" width="374" height="141"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Practice Days per Week:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6B1-or-ArZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5KJ-9f-ZJp">
+                                        <rect key="frame" x="0.0" y="34.5" width="374" height="33"/>
+                                        <color key="backgroundColor" red="0.58823529409999997" green="0.0039215686269999999" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="QCq-MW-F6x"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="1 Time"/>
+                                            <segment title="2 Times"/>
+                                            <segment title="3 Times"/>
+                                        </segments>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="onPracticeSelection:" destination="iBQ-Ef-jvk" eventType="valueChanged" id="xPH-EY-ltB"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pJW-V4-Dp8">
+                                        <rect key="frame" x="0.0" y="74.5" width="374" height="66.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Days:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ZE-Pk-aUR">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wJE-or-bac" customClass="MultiSelectSegmentedControl" customModule="MultiSelectSegmentedControl">
+                                                <rect key="frame" x="0.0" y="34.5" width="374" height="32"/>
+                                                <color key="backgroundColor" red="0.58823529409999997" green="0.0039215686269999999" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="jEM-er-gcJ"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedBackgroundColor">
+                                                        <color key="value" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsMultipleSelection" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="4ZE-Pk-aUR" secondAttribute="trailing" id="Gt0-yt-Pci"/>
+                                            <constraint firstItem="4ZE-Pk-aUR" firstAttribute="leading" secondItem="pJW-V4-Dp8" secondAttribute="leading" id="Q07-7s-yIv"/>
+                                            <constraint firstItem="wJE-or-bac" firstAttribute="leading" secondItem="pJW-V4-Dp8" secondAttribute="leading" id="emW-5s-lGp"/>
+                                            <constraint firstAttribute="trailing" secondItem="wJE-or-bac" secondAttribute="trailing" id="ldV-TZ-0Y3"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="5KJ-9f-ZJp" secondAttribute="trailing" id="3oQ-tP-Rlc"/>
+                                    <constraint firstAttribute="trailing" secondItem="pJW-V4-Dp8" secondAttribute="trailing" id="9gW-bI-k7j"/>
+                                    <constraint firstAttribute="trailing" secondItem="6B1-or-ArZ" secondAttribute="trailing" id="PQo-xR-2ra"/>
+                                    <constraint firstItem="5KJ-9f-ZJp" firstAttribute="leading" secondItem="Kvi-8d-kGx" secondAttribute="leading" id="qsQ-2E-qcD"/>
+                                    <constraint firstItem="6B1-or-ArZ" firstAttribute="leading" secondItem="Kvi-8d-kGx" secondAttribute="leading" id="y6g-8l-iUc"/>
+                                    <constraint firstItem="pJW-V4-Dp8" firstAttribute="leading" secondItem="Kvi-8d-kGx" secondAttribute="leading" id="zfG-WR-hx5"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EQU-zW-lNO">
+                                <rect key="frame" x="20" y="802" width="374" height="40"/>
+                                <color key="backgroundColor" red="0.58823529409999997" green="0.0039215686269999999" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Finish">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onClickFinish:" destination="iBQ-Ef-jvk" eventType="touchDown" id="RJP-qy-ZGb"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="49p-Uh-3jy">
+                                <rect key="frame" x="187.88888888888891" y="430" width="37" height="37.000000000000007"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pfV-VB-j9l" firstAttribute="bottom" secondItem="EQU-zW-lNO" secondAttribute="bottom" constant="20" id="68v-QB-USt"/>
+                            <constraint firstItem="pfV-VB-j9l" firstAttribute="trailing" secondItem="E4a-uG-N2B" secondAttribute="trailing" constant="20" id="7jo-Qr-qaB"/>
+                            <constraint firstItem="pfV-VB-j9l" firstAttribute="trailing" secondItem="EQU-zW-lNO" secondAttribute="trailing" constant="20" id="KXG-fS-Zh1"/>
+                            <constraint firstItem="EQU-zW-lNO" firstAttribute="height" secondItem="E4a-uG-N2B" secondAttribute="height" id="UNh-J0-GPx"/>
+                            <constraint firstItem="pfV-VB-j9l" firstAttribute="trailing" secondItem="Kvi-8d-kGx" secondAttribute="trailing" constant="20" id="Wvw-YL-lFD"/>
+                            <constraint firstItem="Kvi-8d-kGx" firstAttribute="leading" secondItem="pfV-VB-j9l" secondAttribute="leading" constant="20" id="YzQ-xx-sX2"/>
+                            <constraint firstItem="EQU-zW-lNO" firstAttribute="leading" secondItem="pfV-VB-j9l" secondAttribute="leading" constant="20" id="kTW-9O-loc"/>
+                            <constraint firstItem="E4a-uG-N2B" firstAttribute="leading" secondItem="pfV-VB-j9l" secondAttribute="leading" constant="20" id="omg-cn-SWU"/>
+                            <constraint firstItem="Kvi-8d-kGx" firstAttribute="top" secondItem="E4a-uG-N2B" secondAttribute="bottom" constant="8" id="qI1-kP-9Kk"/>
+                            <constraint firstItem="E4a-uG-N2B" firstAttribute="top" secondItem="pfV-VB-j9l" secondAttribute="top" constant="50" id="u8k-aD-4Um"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pfV-VB-j9l"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="SAT Planning" id="Lad-dT-ojb"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="49p-Uh-3jy" id="ELA-YH-Zrt"/>
+                        <outlet property="btnFinish" destination="EQU-zW-lNO" id="88Z-j6-ATk"/>
+                        <outlet property="btnSelectSATDate" destination="E4a-uG-N2B" id="VlG-Uj-7q8"/>
+                        <outlet property="daySelecter" destination="wJE-or-bac" id="TX4-dL-iZ3"/>
+                        <outlet property="practiceIntensity" destination="5KJ-9f-ZJp" id="n1l-t3-bqH"/>
+                        <outlet property="setDaySetting" destination="pJW-V4-Dp8" id="mJC-nm-wkO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2UO-ck-YVZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1250.7246376811595" y="18.75"/>
+        </scene>
+    </scenes>
+</document>

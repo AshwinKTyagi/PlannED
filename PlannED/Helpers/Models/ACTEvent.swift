@@ -14,6 +14,7 @@ final class ACTEvent: ObservableObject {
     private var ACTDate = String()
     private var registrationDate = String()
     
+    // MARK: initializeEvent
     func initializeEvent(dID: String, rID: String, actDate: String, registration: String) {
         
         if rID == "TBD" || registration == "TBD" {
@@ -30,6 +31,7 @@ final class ACTEvent: ObservableObject {
         }
     }
     
+    // MARK: getter functions
     func getDateID() -> String{
         return dateID
     }
