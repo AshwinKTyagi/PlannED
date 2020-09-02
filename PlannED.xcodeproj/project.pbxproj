@@ -77,6 +77,7 @@
 		2B064ABB24A26192008791AF /* PlannEDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannEDTests.swift; sourceTree = "<group>"; };
 		2B064ABD24A26192008791AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B064AC724A26859008791AF /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
+		2B17CDC32500129A007B3891 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		2B51EA6924EC70FC00F66546 /* College.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = College.storyboard; sourceTree = "<group>"; };
 		2B5889B224B8EC3C0040E006 /* College.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = College.swift; sourceTree = "<group>"; };
 		2B5AA19B24EF119600E8472B /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
@@ -403,6 +404,7 @@
 		3545688456925621B289F79B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2B17CDC32500129A007B3891 /* AdSupport.framework */,
 				E36B2C0EC406BAEB0B759BCA /* Pods_PlannED.framework */,
 				054AF9CBE2E504F3EFA6A9DE /* Pods_PlannEDTests.framework */,
 			);
