@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Firebase
 import FirebaseDatabase
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
 //        addTestData()
         
 //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "College")

@@ -5,12 +5,21 @@
 //  Created by Ashwin Tyagi on 8/20/20.
 //  Copyright © 2020 Ashwin Tyagi. All rights reserved.
 //
-
+import GoogleMobileAds
 import SwiftUI
 
 class ChecklistViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    lazy var adBannerView: GADBannerView = {
+        let adBannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        adBannerView.adUnitID = "ca-app-pub-8501671653071605/1974659335"
+        adBannerView.delegate = self
+        adBannerView.rootViewController = self
+        
+        return adBannerView
+    }()
     
     var collegeEvents = [String]()
     var satEvents = [String]()
@@ -37,6 +46,9 @@ class ChecklistViewController: UIViewController {
         collegeEvents = User.getChosenCollegeNames()
         satEvents = helper.getSATDates()
         actEvents = helper.getACTDates()
+        
+        adBannerView.load(GADRequest())
+               
         
     }
     
@@ -368,3 +380,45 @@ extension ChecklistViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+extension ChecklistViewController: GADBannerViewDelegate{
+    
+    /// Tells the delegate an ad request loaded an ad.
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("adViewDidReceiveAd")
+        let translateTransform = CGAffineTransform(translationX: 0, y: -bannerView.bounds.size.height)
+        bannerView.transform = translateTransform
+        
+        UIView.animate(withDuration: 0.5) {
+            self.tableView.tableHeaderView?.frame = bannerView.frame
+            bannerView.transform = CGAffineTransform.identity
+            self.tableView.tableHeaderView = bannerView
+        }
+    }
+
+    /// Tells the delegate an ad request failed.
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+
+    /// Tells the delegate that a full-screen view will be presented in response
+    /// to the user clicking on an ad.
+    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+        print("adViewWillPresentScreen")
+    }
+
+    /// Tells the delegate that the full-screen view will be dismissed.
+    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewWillDismissScreen")
+    }
+
+    /// Tells the delegate that the full-screen view has been dismissed.
+    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewDidDismissScreen")
+    }
+
+    /// Tells the delegate that a user click will open another app (such as the App Store), backgrounding the current app.
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+        print("adViewWillLeaveApplication")
+    }
+    
+}
