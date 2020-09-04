@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ptk-kv-2fU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ptk-kv-2fU">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -39,7 +39,7 @@
                                         </variation>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CMt-ay-GK6">
-                                        <rect key="frame" x="0.0" y="29.5" width="414" height="331.5"/>
+                                        <rect key="frame" x="0.0" y="29.5" width="414" height="278.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="vrM-4R-T7Q">
@@ -54,11 +54,17 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KnQ-xG-jGJ">
+                                        <rect key="frame" x="0.0" y="311" width="414" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="2BM-4Q-hBk"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="CMt-ay-GK6" firstAttribute="leading" secondItem="QYJ-yw-goz" secondAttribute="leading" id="TVR-rr-7XM"/>
                                     <constraint firstAttribute="trailing" secondItem="4Oy-gE-lKM" secondAttribute="trailing" constant="10" id="YEM-GI-1SQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="CMt-ay-GK6" secondAttribute="bottom" id="cW4-UL-Ced"/>
+                                    <constraint firstAttribute="bottom" secondItem="KnQ-xG-jGJ" secondAttribute="bottom" id="kdb-zH-Xpf"/>
                                     <constraint firstItem="4Oy-gE-lKM" firstAttribute="top" secondItem="QYJ-yw-goz" secondAttribute="top" id="otW-gy-7Mh"/>
                                     <constraint firstAttribute="trailing" secondItem="4Oy-gE-lKM" secondAttribute="trailing" id="qdA-NN-z4h"/>
                                     <constraint firstAttribute="trailing" secondItem="CMt-ay-GK6" secondAttribute="trailing" id="zCA-42-ASs"/>
@@ -233,14 +239,14 @@
                         <viewLayoutGuide key="safeArea" id="cqM-qg-AT5"/>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="VAh-tm-RG1"/>
-                                <exclude reference="dWz-rF-Sld"/>
-                                <exclude reference="hYR-dc-UG7"/>
                                 <exclude reference="L4I-0H-rGa"/>
                                 <exclude reference="Wuv-K6-QY6"/>
                                 <exclude reference="jSp-Wa-WNS"/>
                                 <exclude reference="q3W-Qz-U1k"/>
                                 <exclude reference="rlZ-sB-s9S"/>
+                                <exclude reference="VAh-tm-RG1"/>
+                                <exclude reference="dWz-rF-Sld"/>
+                                <exclude reference="hYR-dc-UG7"/>
                                 <exclude reference="Ehr-ns-WLG"/>
                                 <exclude reference="JEd-mc-iff"/>
                                 <exclude reference="XoB-GN-Fob"/>
@@ -252,10 +258,10 @@
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
-                                <include reference="dWz-rF-Sld"/>
-                                <include reference="hYR-dc-UG7"/>
                                 <include reference="Wuv-K6-QY6"/>
                                 <include reference="q3W-Qz-U1k"/>
+                                <include reference="dWz-rF-Sld"/>
+                                <include reference="hYR-dc-UG7"/>
                                 <include reference="Ehr-ns-WLG"/>
                                 <include reference="JEd-mc-iff"/>
                                 <include reference="XoB-GN-Fob"/>
@@ -264,10 +270,10 @@
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="constraints">
-                                <include reference="VAh-tm-RG1"/>
                                 <include reference="L4I-0H-rGa"/>
                                 <include reference="jSp-Wa-WNS"/>
                                 <include reference="rlZ-sB-s9S"/>
+                                <include reference="VAh-tm-RG1"/>
                                 <include reference="fZG-Pl-JjS"/>
                                 <include reference="gfh-1b-Y9p"/>
                                 <include reference="tQL-sj-5WY"/>
@@ -301,6 +307,7 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="adContainer" destination="KnQ-xG-jGJ" id="YOC-d5-c1I"/>
                         <outlet property="btnEventClose" destination="4OX-3x-COK" id="UBc-ra-8JH"/>
                         <outlet property="calendar" destination="ab9-po-WQN" id="QmX-Lm-DZL"/>
                         <outlet property="eventDateLabel" destination="mPI-nc-jeC" id="c8d-e7-toO"/>

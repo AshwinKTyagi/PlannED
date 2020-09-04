@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QwE-wt-dhC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QwE-wt-dhC">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FJv-8v-6UC">
-                                <rect key="frame" x="0.0" y="167" width="414" height="646"/>
+                                <rect key="frame" x="0.0" y="167" width="414" height="596"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="BDN-ij-Dj0">
@@ -35,22 +35,33 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PYl-Zv-ENW">
+                                <rect key="frame" x="0.0" y="763" width="414" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="YrL-WG-DJG"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="FJv-8v-6UC" firstAttribute="bottom" secondItem="PPy-ty-Jfk" secondAttribute="bottom" id="2zn-gM-Bpa"/>
+                            <constraint firstItem="PYl-Zv-ENW" firstAttribute="top" secondItem="FJv-8v-6UC" secondAttribute="bottom" id="05V-Ec-1yb"/>
                             <constraint firstItem="FJv-8v-6UC" firstAttribute="top" secondItem="Iu3-tb-Jbc" secondAttribute="bottom" constant="20" id="AQE-Tz-E2g"/>
+                            <constraint firstItem="PPy-ty-Jfk" firstAttribute="trailing" secondItem="PYl-Zv-ENW" secondAttribute="trailing" id="EFk-qe-NdA"/>
+                            <constraint firstItem="PPy-ty-Jfk" firstAttribute="bottom" secondItem="PYl-Zv-ENW" secondAttribute="bottom" id="Ghm-Kh-VKU"/>
                             <constraint firstItem="PPy-ty-Jfk" firstAttribute="trailing" secondItem="Iu3-tb-Jbc" secondAttribute="trailing" constant="20" id="Jd3-sf-sF9"/>
                             <constraint firstItem="Iu3-tb-Jbc" firstAttribute="top" secondItem="PPy-ty-Jfk" secondAttribute="top" constant="20" id="VOq-kn-9YX"/>
                             <constraint firstItem="Iu3-tb-Jbc" firstAttribute="leading" secondItem="PPy-ty-Jfk" secondAttribute="leading" constant="20" id="htc-vr-fNL"/>
                             <constraint firstItem="FJv-8v-6UC" firstAttribute="trailing" secondItem="PPy-ty-Jfk" secondAttribute="trailing" id="jhi-ld-4oN"/>
                             <constraint firstItem="FJv-8v-6UC" firstAttribute="leading" secondItem="PPy-ty-Jfk" secondAttribute="leading" id="scZ-Vr-5GA"/>
+                            <constraint firstItem="PYl-Zv-ENW" firstAttribute="leading" secondItem="PPy-ty-Jfk" secondAttribute="leading" id="x02-H3-QKM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PPy-ty-Jfk"/>
                     </view>
                     <navigationItem key="navigationItem" title="Checklist" id="sPX-bg-1Be"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="adContainer" destination="PYl-Zv-ENW" id="4zm-VQ-cuW"/>
                         <outlet property="tableView" destination="FJv-8v-6UC" id="GKn-16-p67"/>
                     </connections>
                 </viewController>

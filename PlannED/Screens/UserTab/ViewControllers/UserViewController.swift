@@ -10,6 +10,7 @@ import SwiftUI
 import FirebaseDatabase
 import FirebaseAuth
 import FirebaseCore
+import GoogleMobileAds
 
 class UserViewController: UIViewController {
  
@@ -33,9 +34,21 @@ class UserViewController: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    @IBOutlet weak var adContainer: UIView!
+    
     let ref = Database.database().reference()
     
     let headerTitles = ["Colleges", "SATs", "ACTs"]
+    
+    lazy var adBannerView: GADBannerView = {
+        let adBannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        adBannerView.adUnitID = "ca-app-pub-8501671653071605/1974659335"
+        adBannerView.delegate = self
+        adBannerView.rootViewController = self
+        
+        return adBannerView
+    }()
+    
     
     // MARK: viewDidLoad
     override func viewDidLoad() {
@@ -57,6 +70,8 @@ class UserViewController: UIViewController {
         writingTextField.delegate = self
         
         datePicker.maximumDate = Date()
+        
+        adBannerView.load(GADRequest())
         
     }
     
@@ -468,4 +483,53 @@ extension String {
         
         return false
     }
+}
+
+// MARK: EXTENSION
+extension UserViewController: GADBannerViewDelegate{
+    
+    /// Tells the delegate an ad request loaded an ad.
+    // MARK: adViewDidReceiveAd
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("adViewDidReceiveAd - Calendar")
+        let translateTransform = CGAffineTransform(translationX: 0, y: -bannerView.bounds.size.height)
+        bannerView.transform = translateTransform
+        
+        UIView.animate(withDuration: 0.5) {
+            self.adContainer.frame = bannerView.frame
+            bannerView.transform = CGAffineTransform.identity
+            self.adContainer.addSubview(bannerView)
+        }
+    }
+
+    /// Tells the delegate an ad request failed.
+    // MARK:adView: didFailToReceiveAdWithError
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+
+    /// Tells the delegate that a full-screen view will be presented in response to the user clicking on an ad.
+    // MARK: adViewWillPresentScreen
+    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+        print("adViewWillPresentScreen")
+    }
+
+    /// Tells the delegate that the full-screen view will be dismissed.
+    // MARK: adViewWillDismissScreen
+    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewWillDismissScreen")
+    }
+
+    /// Tells the delegate that the full-screen view has been dismissed.
+    // MARK: adViewDidDismissScreen
+    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewDidDismissScreen")
+    }
+
+    /// Tells the delegate that a user click will open another app (such as the App Store), backgrounding the current app.
+    // MARK: adViewWillLeaveApplication
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+        print("adViewWillLeaveApplication")
+    }
+    
 }

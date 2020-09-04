@@ -11,6 +11,8 @@ import SwiftUI
 class ChecklistViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var adContainer: UIView!
+    
     
     lazy var adBannerView: GADBannerView = {
         let adBannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
@@ -34,6 +36,7 @@ class ChecklistViewController: UIViewController {
     var selectedIndexPath = [IndexPath]()
     var extraHeight = CGFloat()
     
+    // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,6 +55,7 @@ class ChecklistViewController: UIViewController {
         
     }
     
+    // MARK: viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -224,7 +228,7 @@ extension ChecklistViewController: UITableViewDelegate, UITableViewDataSource {
                 return 150
         }
         else {
-            return 30
+            return 50
         }
     }
     
@@ -264,13 +268,13 @@ extension ChecklistViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
             
-        let checkBox = UIButton(frame: CGRect(x: 10, y: 7.5, width: 15, height: 15))
+        let checkBox = UIButton(frame: CGRect(x: 10, y: 17.5, width: 15, height: 15))
         checkBox.setImage(UIImage(systemName: "square"), for: .normal)
         checkBox.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
         checkBox.tintColor = .white
         checkBox.addTarget(self, action: #selector(checkBoxPressed), for: .touchUpInside)
 
-        let labelView = UILabel(frame: CGRect(x: 30, y: 0, width: frame.width - 20, height: 30))
+        let labelView = UILabel(frame: CGRect(x: 30, y: 0, width: frame.width - 20, height: 50))
         labelView.textColor = .white
       
         if indexPath.section == 1 {
@@ -380,43 +384,49 @@ extension ChecklistViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// MARK: EXTENSION: 
 extension ChecklistViewController: GADBannerViewDelegate{
     
     /// Tells the delegate an ad request loaded an ad.
+    // MARK: adViewDidReceiveAd
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("adViewDidReceiveAd")
         let translateTransform = CGAffineTransform(translationX: 0, y: -bannerView.bounds.size.height)
         bannerView.transform = translateTransform
         
         UIView.animate(withDuration: 0.5) {
-            self.tableView.tableHeaderView?.frame = bannerView.frame
+            self.adContainer.frame = bannerView.frame
             bannerView.transform = CGAffineTransform.identity
-            self.tableView.tableHeaderView = bannerView
+            self.adContainer.addSubview(bannerView)
         }
     }
 
     /// Tells the delegate an ad request failed.
+    // MARK:adView: didFailToReceiveAdWithError
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
         print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
     }
 
-    /// Tells the delegate that a full-screen view will be presented in response
-    /// to the user clicking on an ad.
+    /// Tells the delegate that a full-screen view will be presented in response to the user clicking on an ad.
+    // MARK: adViewWillPresentScreen
     func adViewWillPresentScreen(_ bannerView: GADBannerView) {
         print("adViewWillPresentScreen")
     }
 
     /// Tells the delegate that the full-screen view will be dismissed.
+    // MARK: adViewWillDismissScreen
     func adViewWillDismissScreen(_ bannerView: GADBannerView) {
         print("adViewWillDismissScreen")
     }
 
     /// Tells the delegate that the full-screen view has been dismissed.
+    // MARK: adViewDidDismissScreen
     func adViewDidDismissScreen(_ bannerView: GADBannerView) {
         print("adViewDidDismissScreen")
     }
 
     /// Tells the delegate that a user click will open another app (such as the App Store), backgrounding the current app.
+    // MARK: adViewWillLeaveApplication
     func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
         print("adViewWillLeaveApplication")
     }
