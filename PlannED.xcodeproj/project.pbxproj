@@ -49,7 +49,6 @@
 		2BA7A0FF24B1390200AEF8B8 /* eventData.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BA7A0FE24B1390200AEF8B8 /* eventData.json */; };
 		2BA7A10124B1459000AEF8B8 /* SATEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7A10024B1459000AEF8B8 /* SATEvent.swift */; };
 		2BD6C1ED24A677D800D8652D /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD6C1EC24A677D800D8652D /* Helper.swift */; };
-		2BD6C1FB24A68EC500D8652D /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD6C1FA24A68EC500D8652D /* Event.swift */; };
 		D2B11C35D207BA3852C21372 /* Pods_PlannED.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E36B2C0EC406BAEB0B759BCA /* Pods_PlannED.framework */; };
 /* End PBXBuildFile section */
 
@@ -112,7 +111,6 @@
 		2BA7A0FE24B1390200AEF8B8 /* eventData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = eventData.json; sourceTree = "<group>"; };
 		2BA7A10024B1459000AEF8B8 /* SATEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SATEvent.swift; sourceTree = "<group>"; };
 		2BD6C1EC24A677D800D8652D /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
-		2BD6C1FA24A68EC500D8652D /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		8EF3A7DF9D8B261445459A78 /* Pods-PlannEDTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlannEDTests.debug.xcconfig"; path = "Target Support Files/Pods-PlannEDTests/Pods-PlannEDTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC7833266B3393723250F94A /* Pods-PlannED.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlannED.debug.xcconfig"; path = "Target Support Files/Pods-PlannED/Pods-PlannED.debug.xcconfig"; sourceTree = "<group>"; };
 		E36B2C0EC406BAEB0B759BCA /* Pods_PlannED.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlannED.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,9 +196,7 @@
 			children = (
 				2BA7A10024B1459000AEF8B8 /* SATEvent.swift */,
 				2B6BA3BE24B6430200433937 /* ACTEvent.swift */,
-				2BD6C1FA24A68EC500D8652D /* Event.swift */,
 				2B5889B224B8EC3C0040E006 /* College.swift */,
-				2B5C36AA24C8C3A300930B77 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -335,6 +331,7 @@
 		2BD6C1EE24A677DE00D8652D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				2B5C36AA24C8C3A300930B77 /* User.swift */,
 				2BD6C1EC24A677D800D8652D /* Helper.swift */,
 				2B5ECBA524B7BD900051BCE2 /* DecodingModels */,
 				2B5889B124B8EBA80040E006 /* Models */,
@@ -607,7 +604,6 @@
 				2B5C36B624C8CB0A00930B77 /* ACTPlanningViewController.swift in Sources */,
 				2B6844A724FEC4960005E2C1 /* PlannED.xcdatamodeld in Sources */,
 				2B5C36BC24C8CB5400930B77 /* RemoveEventViewController.swift in Sources */,
-				2BD6C1FB24A68EC500D8652D /* Event.swift in Sources */,
 				2B5C36BE24C8CB5400930B77 /* CalendarViewController.swift in Sources */,
 				2B64383424D9FA9200F7F8E4 /* PlanningViewController.swift in Sources */,
 				2BA7A10124B1459000AEF8B8 /* SATEvent.swift in Sources */,

@@ -21,6 +21,8 @@ final class User: ObservableObject {
     static private var takenACTs = [ACT]()
     static private var chosenColleges = [tempCollege]()
     
+    static private var eventDates = [tempEvent]()
+    
     static private var ref = Database.database().reference()
     
     static private var helper = Helper()
@@ -85,6 +87,23 @@ final class User: ObservableObject {
         }
         
         self.chosenColleges = tempColleges
+    }
+    
+    static func setEventDates(events: [Any]) {
+        var tempEvents = [tempEvent]()
+        
+        for e in events {
+            tempEvents.append(tempEvent.init(dict: e as! NSDictionary))
+            
+            if tempEvents.last?.id == "SAT" {
+                helper.addSATPlanning(days: tempEvents.last!.days, date: tempEvents.last!.date)
+            }
+            else if tempEvents.last?.id == "ACT" {
+                helper.addACTPlanning(days: tempEvents.last!.days, date: tempEvents.last!.date)
+            }
+        }
+        
+        self.eventDates = tempEvents
     }
     
     // MARK: getter functions
@@ -160,6 +179,20 @@ final class User: ObservableObject {
         return colleges
     }
     
+    static func getEventDates() -> [tempEvent] {
+        return eventDates
+    }
+    
+    static func getEventDatesAsAnyObjects() -> [Any] {
+        var dates = [Any]()
+        
+        for e in eventDates{
+            dates.append(e.toAnyObject())
+        }
+        
+        return dates
+    }
+    
     // MARK: add functions
     static func addTakenSAT(english: Int, math: Int, writing: Int, date: Date) {
         let sat = SAT.init(e: english, m: math, w: writing, d: date)
@@ -175,6 +208,11 @@ final class User: ObservableObject {
     
     static func addChosenCollege(college: tempCollege) {
         chosenColleges.append(college)
+        saveDataToFirebase()
+    }
+    
+    static func addEventDate(eventDate: String, eventType: String, days: [String]){
+        eventDates.append(tempEvent.init(id: eventType, date: eventDate, days: days))
         saveDataToFirebase()
     }
     
@@ -213,7 +251,8 @@ final class User: ObservableObject {
                         "email": User.getEmail(),
                         "takenSATs": User.getTakenSATsAsAnyObjects(),
                         "takenACTs": User.getTakenACTsAsAnyObjects(),
-                        "chosenColleges": User.getChosenCollegesAsAnyObjects()
+                        "chosenColleges": User.getChosenCollegesAsAnyObjects(),
+                        "finalEventDates": User.getEventDatesAsAnyObjects()
             ] as [String : Any]
         
         self.ref.child("users").child((Auth.auth().currentUser?.uid)!).setValue(userData)
@@ -392,3 +431,86 @@ struct tempCollege {
     }
 }
 
+// MARK: Event struct
+struct Event {
+    
+    var id: String
+    var name: String
+    var description: String
+    var date: String
+    
+    static var idList = ["Normal", "SAT", "ACT", "College"]
+    
+    init(id: String, n: String, desc: String, date: String) {
+        self.id = id
+        self.name = n
+        self.description = desc
+        self.date = date
+    }
+    
+    
+    init(snapshot: DataSnapshot) {
+        let snapshotValue = snapshot.value as! [String: AnyObject]
+        id = snapshotValue["id"] as! String
+        name = snapshotValue["name"] as! String
+        description = snapshotValue["description"] as! String
+        date = snapshotValue["date"] as! String
+    }
+    
+    init(dict: NSDictionary){
+        id = dict["id"] as! String
+        name = dict["name"] as! String
+        description = dict["description"] as! String
+        date = dict["date"] as! String
+    }
+    
+    // function for saving data
+    func toAnyObject() -> Any {
+        return [
+            "id": id,
+            "name": name,
+            "description": description,
+            "date": date
+        ]
+     }
+
+}
+
+// MARK: tempEvent
+struct tempEvent {
+    var id: String
+    var date: String
+    var days: [String]
+    
+    static var idList = ["Normal", "SAT", "ACT", "College"]
+    
+    init(id: String, date: String, days: [String]) {
+        self.id = id
+        self.date = date
+        self.days = days
+    }
+    
+    
+    init(snapshot: DataSnapshot) {
+        let snapshotValue = snapshot.value as! [String: AnyObject]
+        id = snapshotValue["id"] as! String
+        date = snapshotValue["date"] as! String
+        days = snapshotValue["days"] as! [String]
+    }
+    
+    init(dict: NSDictionary){
+        id = dict["id"] as! String
+        date = dict["date"] as! String
+        days = dict["days"] as! [String]
+    }
+    
+    // function for saving data
+    func toAnyObject() -> Any {
+        return [
+            "id": id,
+            "date": date,
+            "days": days
+        ]
+     }
+
+}

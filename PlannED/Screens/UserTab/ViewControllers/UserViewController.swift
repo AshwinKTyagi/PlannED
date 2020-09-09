@@ -491,7 +491,7 @@ extension UserViewController: GADBannerViewDelegate{
     /// Tells the delegate an ad request loaded an ad.
     // MARK: adViewDidReceiveAd
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("adViewDidReceiveAd - Calendar")
+        print("adViewDidReceiveAd - User")
         let translateTransform = CGAffineTransform(translationX: 0, y: -bannerView.bounds.size.height)
         bannerView.transform = translateTransform
         

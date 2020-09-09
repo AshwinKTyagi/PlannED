@@ -24,8 +24,8 @@ class ChecklistViewController: UIViewController {
     }()
     
     var collegeEvents = [String]()
-    var satEvents = [String]()
-    var actEvents = [String]()
+    var plannedSatEvents = [Event]()
+    var plannedActEvents = [Event]()
     
     let helper = Helper()
     
@@ -47,12 +47,36 @@ class ChecklistViewController: UIViewController {
         tableView.accessibilityValue = "tableView"
         
         collegeEvents = User.getChosenCollegeNames()
-        satEvents = helper.getSATDates()
-        actEvents = helper.getACTDates()
+        
+        for e in helper.getEvents() {
+            if e.id == "SAT" {
+                var containsDuplicate = false
+                for s in plannedSatEvents{
+                    if s.name == e.name && s.date == e.date {
+                        containsDuplicate = true
+                        break
+                    }
+                }
+                if !containsDuplicate {
+                    plannedSatEvents.append(e)
+                }
+            }
+            else if e.id == "ACT"{
+                var containsDuplicate = false
+                for a in plannedActEvents{
+                    if a.name == e.name && a.date == e.date {
+                        containsDuplicate = true
+                        break
+                    }
+                }
+                if !containsDuplicate {
+                    plannedActEvents.append(e)
+                }
+            }
+        }
         
         adBannerView.load(GADRequest())
                
-        
     }
     
     // MARK: viewWillAppear
@@ -60,9 +84,35 @@ class ChecklistViewController: UIViewController {
         super.viewWillAppear(animated)
         
         collegeEvents = User.getChosenCollegeNames()
-        satEvents = helper.getSATDates()
-        actEvents = helper.getACTDates()
-        tableView.reloadData()
+        
+	        for e in helper.getEvents() {
+            if e.id == "SAT" {
+                var containsDuplicate = false
+                for s in plannedSatEvents{
+                    if s.name == e.name && s.date == e.date {
+                        containsDuplicate = true
+                        break
+                    }
+                }
+                if !containsDuplicate {
+                    plannedSatEvents.append(e)
+                }
+            }
+            else if e.id == "ACT"{
+                var containsDuplicate = false
+                for a in plannedActEvents{
+                    if a.name == e.name && a.date == e.date {
+                        containsDuplicate = true
+                        break
+                    }
+                }
+                if !containsDuplicate {
+                    plannedActEvents.append(e)
+                }
+            }
+        }
+        
+        
     }
     
     // MARK: didRecieveMemoryWarning
@@ -203,7 +253,7 @@ class ChecklistViewController: UIViewController {
 
 extension ChecklistViewController: UITableViewDelegate, UITableViewDataSource {
     
-    // MARK: tableView: snumberOfRowsInSection
+    // MARK: tableView: numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView.accessibilityValue == "subView"{
             return 3
@@ -212,10 +262,10 @@ extension ChecklistViewController: UITableViewDelegate, UITableViewDataSource {
             return collegeEvents.count
         }
         else if section == 1 {
-            return satEvents.count
+            return plannedSatEvents.count
         }
         else {
-            return actEvents.count
+            return plannedActEvents.count
         }
     }
     
@@ -278,10 +328,10 @@ extension ChecklistViewController: UITableViewDelegate, UITableViewDataSource {
         labelView.textColor = .white
       
         if indexPath.section == 1 {
-            labelView.text = "SAT: " + satEvents[indexPath.row]
+            labelView.text = plannedSatEvents[indexPath.row].date + ": " + plannedSatEvents[indexPath.row].name
         }
         else {
-            labelView.text = "ACT: " + actEvents[indexPath.row]
+            labelView.text = plannedActEvents[indexPath.row].date + ": " + plannedActEvents[indexPath.row].name
         }
         
         let topSeperatorLineView = UIView(frame: CGRect(x: 10, y: 0, width: frame.width - 20, height: 0.5))
@@ -307,7 +357,7 @@ extension ChecklistViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: tableView: viewForHeaderInSection
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let frame: CGRect = tableView.frame
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 50))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 30))
         headerView.backgroundColor = UIColor(red: 75/255, green: 1/255, blue: 100/255, alpha: 1)
         
         let headerTitle = UILabel(frame: CGRect(x: 10, y: 5, width: frame.size.width - 40, height: 20))
@@ -317,6 +367,10 @@ extension ChecklistViewController: UITableViewDelegate, UITableViewDataSource {
         headerView.addSubview(headerTitle)
 
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
     }
     
     // MARK: tableView: didSelectRowAt
@@ -390,7 +444,7 @@ extension ChecklistViewController: GADBannerViewDelegate{
     /// Tells the delegate an ad request loaded an ad.
     // MARK: adViewDidReceiveAd
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("adViewDidReceiveAd")
+        print("adViewDidReceiveAd - Checklist")
         let translateTransform = CGAffineTransform(translationX: 0, y: -bannerView.bounds.size.height)
         bannerView.transform = translateTransform
         

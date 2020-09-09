@@ -30,16 +30,14 @@ final class Helper: ObservableObject {
     //generic addEvent method that accepts date as a Date and formats it into a String
     // MARK: addEvent with Date
     func addEvent(eventType: String, name: String, desc: String, date: Date) {
-        
-        let event = Event()
-        
+                
         let d = date
         
         let formatter = DateFormatter()
         formatter.dateFormat = "MM-dd-yyyy"
         let string = formatter.string(from: d)
         
-        event.initializeEvent(eventType: eventType, eventName: name, eventDescription: desc, eventDate: string)
+        let event = Event.init(id: eventType, n: name, desc: desc, date: string)
         
         Helper.events.append(event)
         
@@ -49,9 +47,7 @@ final class Helper: ObservableObject {
     // MARK: addEvent with String
     func addEvent(eventType: String, name: String, desc: String, date: String) {
         
-        let event = Event()
-        
-        event.initializeEvent(eventType: eventType, eventName: name, eventDescription: desc, eventDate: date)
+        let event = Event.init(id: eventType, n: name, desc: desc, date: date)
         
         Helper.events.append(event)
         
@@ -153,6 +149,12 @@ final class Helper: ObservableObject {
         
         addEvent(eventType: "ACT", name: "ACT Registration Deadline", desc: "Registration Date for the \(date) ACT.", date: actRegID)
         addEvent(eventType: "ACT", name: "ACT", desc: "This is the ACT date that you have been planning for. Be sure to register by \(actRegistration).", date: actDateID)
+        
+        for e in User.getEventDates() {
+            if e.date != date{
+                User.addEventDate(eventDate: date, eventType: "ACT", days: days)
+            }
+        }
         
         let endDate = actDateID.toDate(withFormat: "MM/dd/yyyy")
         let currentDate = Date()
@@ -257,6 +259,12 @@ final class Helper: ObservableObject {
         addEvent(eventType: "SAT", name: "SAT Registration Deadline", desc: "Registration Date for the \(date) SAT", date: satRegID)
         addEvent(eventType: "SAT", name: "SAT", desc: "This is the SAT date that you have been planning for. Be sure to register by \(satRegistration).", date: satDateID)
         
+        for e in User.getEventDates() {
+            if e.date != date{
+                User.addEventDate(eventDate: date, eventType: "SAT", days: days)
+            }
+        }
+        
         let endDate = satDateID.toDate(withFormat: "MM/dd/yyyy")
         let currentDate = Date()
         
@@ -315,7 +323,7 @@ final class Helper: ObservableObject {
         var string = ""
         
         for event in Helper.events {
-            string = string + " | " + event.getName()
+            string = string + " | " + event.name
         }
         return string
     }
@@ -333,7 +341,7 @@ final class Helper: ObservableObject {
         var dateStrings = [String]()
         
         for event in Helper.events{
-            dateStrings.append(event.getEventDate())
+            dateStrings.append(event.date)
         }
         
         return dateStrings
@@ -347,7 +355,7 @@ final class Helper: ObservableObject {
         
         for event in Helper.events{
             
-            nameStrings.append(event.getName())
+            nameStrings.append(event.name)
         }
         
         return nameStrings
@@ -436,7 +444,7 @@ final class Helper: ObservableObject {
     func removeEvent (eventName: String, eventDate: String) {
         var count = 0
         for s in Helper.events {
-            if eventName == s.getName() && eventDate == s.getEventDate(){
+            if eventName == s.name && eventDate == s.date{
                 Helper.events.remove(at: count)
             }
         }
@@ -448,7 +456,7 @@ final class Helper: ObservableObject {
     func removeSATEvents(){
         var count = 0
         for s in Helper.events{
-            if s.getEventType() == "SAT"{
+            if s.id == "SAT"{
                 Helper.events.remove(at: count)
             }
         }
@@ -460,7 +468,7 @@ final class Helper: ObservableObject {
     func removeACTEvents(){
         var count = 0
         for s in Helper.events{
-            if s.getEventType() == "ACT"{
+            if s.id == "ACT"{
                 Helper.events.remove(at: count)
             }
         }

@@ -37,13 +37,13 @@ class RemoveEventViewController: UIViewController {
         stackView.isHidden = true
         eventTableView.isHidden = true
         
-        dataSource = Event.getEventTypeList()
+        dataSource = Event.idList
         
         let formatter = DateFormatter()
         formatter.dateFormat = "MM-dd-yyyy"
         let tempDate = formatter.string(from: Date())
 
-        for e in helper.getEvents() where e.getEventType() == "Normal" && tempDate == e.getEventDate(){
+        for e in helper.getEvents() where e.id == "Normal" && tempDate == e.date{
             tempEventArray.append(e)
         }
         
@@ -65,7 +65,7 @@ class RemoveEventViewController: UIViewController {
 
         tempEventArray = []
 
-        for e in helper.getEvents() where e.getEventType() == "Normal" && tempDate == e.getEventDate(){
+        for e in helper.getEvents() where e.id == "Normal" && tempDate == e.date{
             tempEventArray.append(e)
         }
         
@@ -149,7 +149,7 @@ extension RemoveEventViewController: UITableViewDelegate, UITableViewDataSource{
 
             cell.backgroundColor = UIColor.systemIndigo
             cell.textLabel!.textColor = UIColor.white
-            cell.textLabel!.text = tempEventArray[indexPath.row].getName()
+            cell.textLabel!.text = tempEventArray[indexPath.row].name
             
             return cell
         } else {

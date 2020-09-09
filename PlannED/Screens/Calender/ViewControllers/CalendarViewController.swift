@@ -87,9 +87,9 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         //updates tableView to show the events on the date selected
         if helper.getEventDates().contains(string) {
             for event in helper.getEvents(){
-                if event.getEventDate() == string{
+                if event.date == string{
                     dayEvents.append(event)
-                    dayEventNames.append(event.getName())
+                    dayEventNames.append(event.name)
                         
                     
                 }
@@ -115,7 +115,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         
         var count = 0
         for e in helper.getEvents(){
-            if e.getEventDate() == string {
+            if e.date == string {
                 count += 1
             }
         }
@@ -156,15 +156,15 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         for e in helper.getEvents(){
-            if e.getName() == tableView.cellForRow(at: indexPath)?.textLabel!.text{
-                eventNameLabel.text = e.getName()
-                eventDateLabel.text = e.getEventDate()
+            if e.name == tableView.cellForRow(at: indexPath)?.textLabel!.text{
+                eventNameLabel.text = e.name
+                eventDateLabel.text = e.date
                 
-                if e.getDescription().isEmpty {
+                if e.description.isEmpty {
                     eventDescriptionLabel.text = "No description"
                 }
                 else {
-                    eventDescriptionLabel.text = e.getDescription()
+                    eventDescriptionLabel.text = e.description
                 }
             }
         }
