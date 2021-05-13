@@ -7,9 +7,9 @@
 //
 import UIKit
 import SwiftUI
-import FirebaseDatabase
-import FirebaseAuth
 import FirebaseCore
+import FirebaseAuth
+import FirebaseDatabase
 
 class CollegePlanningViewController: UIViewController{
     

@@ -15,7 +15,7 @@ class ChecklistViewController: UIViewController {
     
     
     lazy var adBannerView: GADBannerView = {
-        let adBannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        let adBannerView = GADBannerView(adSize: kGADAdSizeBanner)
         adBannerView.adUnitID = "ca-app-pub-8501671653071605/1974659335"
         adBannerView.delegate = self
         adBannerView.rootViewController = self
@@ -456,26 +456,26 @@ extension ChecklistViewController: GADBannerViewDelegate{
     }
 
     /// Tells the delegate an ad request failed.
-    // MARK:adView: didFailToReceiveAdWithError
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+    // MARK:bannerView: didFailToReceiveAdWithError
+    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
         print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
     }
-
+    
     /// Tells the delegate that a full-screen view will be presented in response to the user clicking on an ad.
     // MARK: adViewWillPresentScreen
-    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+    func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
         print("adViewWillPresentScreen")
     }
 
     /// Tells the delegate that the full-screen view will be dismissed.
     // MARK: adViewWillDismissScreen
-    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+    func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
         print("adViewWillDismissScreen")
     }
 
     /// Tells the delegate that the full-screen view has been dismissed.
     // MARK: adViewDidDismissScreen
-    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+    func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
         print("adViewDidDismissScreen")
     }
 
@@ -484,5 +484,6 @@ extension ChecklistViewController: GADBannerViewDelegate{
     func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
         print("adViewWillLeaveApplication")
     }
+    
     
 }

@@ -232,7 +232,7 @@ THE SOFTWARE.
 
 ## FirebaseAnalytics
 
-Copyright 2020 Google
+Copyright 2021 Google
 
 ## FirebaseAuth
 
@@ -1472,11 +1472,11 @@ Copyright 2020 Google
 
 ## Google-Mobile-Ads-SDK
 
-Copyright 2020 Google
+Copyright 2021 Google
 
 ## GoogleAppMeasurement
 
-Copyright 2020 Google
+Copyright 2021 Google
 
 ## GoogleDataTransport
 
@@ -1686,7 +1686,7 @@ Copyright 2020 Google
 
 ## GoogleUserMessagingPlatform
 
-Copyright 2020 Google
+Copyright 2021 Google
 
 ## GoogleUtilities
 
