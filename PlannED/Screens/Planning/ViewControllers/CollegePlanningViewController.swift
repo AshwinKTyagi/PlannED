@@ -74,8 +74,8 @@ class CollegePlanningViewController: UIViewController{
         
         let textField = collegeSearchBar.searchTextField as UITextField
  
-        textField.backgroundColor = UIColor(red: 150/255, green: 1/255, blue: 190/255, alpha: 1)
-        textField.textColor = .white
+        textField.backgroundColor = .systemTeal
+        textField.textColor = .black
         
         let glassIconView = textField.leftView as! UIImageView
         glassIconView.tintColor = .white

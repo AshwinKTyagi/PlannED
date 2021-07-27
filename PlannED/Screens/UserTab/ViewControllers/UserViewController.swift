@@ -359,7 +359,7 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource, UIText
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let frame: CGRect = tableView.frame
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
-        headerView.backgroundColor = UIColor(red: 75/255, green: 1/255, blue: 100/255, alpha: 1)
+        headerView.backgroundColor = .systemTeal
         
         let headerTitle = UILabel(frame: CGRect(x: 10, y: 10, width: frame.size.width - 40, height: 20))
         headerTitle.text = headerTitles[section]

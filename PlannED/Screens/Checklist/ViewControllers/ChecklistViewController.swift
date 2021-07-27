@@ -123,14 +123,19 @@ class ChecklistViewController: UIViewController {
     // MARK: checkBoxPressed
     @objc func checkBoxPressed(_ sender: UIButton) {
         let stringArr = sender.accessibilityIdentifier?.split(separator: ".")
+        print(sender.accessibilityIdentifier ?? "No accessibility Identifirr")
         let formatter = NumberFormatter()
+        let section = formatter.number(from: String(stringArr![0])) as! Int
         let index = formatter.number(from: String(stringArr![1])) as! Int
         let checkboxIndex = formatter.number(from: String(stringArr![3])) as! Int
         
         
-        print(collegeEvents[index])
         
-        User.setChosenCollegeChecklist(index: index, checklistIndex: checkboxIndex, value: !sender.isSelected)
+        if section != 0 {
+            //make sure to update database 
+        } else {
+            User.setChosenCollegeChecklist(index: index, checklistIndex: checkboxIndex, value: !sender.isSelected)
+        }
         
         sender.isSelected = !sender.isSelected
     }
@@ -316,12 +321,14 @@ extension ChecklistViewController: UITableViewDelegate, UITableViewDataSource {
             for v in cell.subviews {
                 v.removeFromSuperview()
             }
+            print(indexPath.section, ",", indexPath.row)
         }
             
         let checkBox = UIButton(frame: CGRect(x: 10, y: 17.5, width: 15, height: 15))
         checkBox.setImage(UIImage(systemName: "square"), for: .normal)
         checkBox.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
         checkBox.tintColor = .white
+        checkBox.accessibilityIdentifier = "\(indexPath.section).\(indexPath.row).check.0"
         checkBox.addTarget(self, action: #selector(checkBoxPressed), for: .touchUpInside)
 
         let labelView = UILabel(frame: CGRect(x: 30, y: 0, width: frame.width - 20, height: 50))
@@ -358,11 +365,11 @@ extension ChecklistViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let frame: CGRect = tableView.frame
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 30))
-        headerView.backgroundColor = UIColor(red: 75/255, green: 1/255, blue: 100/255, alpha: 1)
+        headerView.backgroundColor = .systemTeal
         
         let headerTitle = UILabel(frame: CGRect(x: 10, y: 5, width: frame.size.width - 40, height: 20))
         headerTitle.text = headerTitles[section]
-        headerTitle.textColor = .white
+        headerTitle.textColor = .black
         
         headerView.addSubview(headerTitle)
 
